@@ -1,0 +1,543 @@
+[2024-09-02 17:27:15.303] [amf_app] [start] Options parsed!
+[2024-09-02 17:27:15.305] [system] [debug] Parsing the configuration file, file type YAML.
+[2024-09-02 17:27:15.305] [config ] [info] Reading NF configuration from /openair-amf/etc/config.yaml
+[2024-09-02 17:27:15.312] [config ] [debug] Unknown NF udr in configuration. Ignored
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of log_level
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of register_nf
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of http_version
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of curl_timeout
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of NSSF
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of NRF
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of UDM
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of AUSF
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of SMF
+[2024-09-02 17:27:15.312] [config ] [debug] Validating configuration of AMF
+[2024-09-02 17:27:15.346] [config ] [debug] Validating configuration of database
+[2024-09-02 17:27:15.346] [config ] [info] ==== OPENAIRINTERFACE amf vBranch: HEAD Abrev. Hash: 1386199e Date: Thu Dec 14 08:42:30 2023 +0000 ====
+[2024-09-02 17:27:15.346] [config ] [info] Basic Configuration:
+[2024-09-02 17:27:15.346] [config ] [info]   - log_level..................................: debug
+[2024-09-02 17:27:15.346] [config ] [info]   - register_nf................................: Yes
+[2024-09-02 17:27:15.346] [config ] [info]   - http_version...............................: 2
+[2024-09-02 17:27:15.346] [config ] [info]   - Curl Timeout...............................: 3000 (ms)
+[2024-09-02 17:27:15.346] [config ] [info]   AMF:
+[2024-09-02 17:27:15.346] [config ] [info]     - host.....................................: oai-amf
+[2024-09-02 17:27:15.346] [config ] [info]     - SBI
+[2024-09-02 17:27:15.346] [config ] [info]       + URL....................................: http://oai-amf:8080
+[2024-09-02 17:27:15.346] [config ] [info]       + API Version............................: v1
+[2024-09-02 17:27:15.346] [config ] [info]       + IPv4 Address ..........................: 192.168.70.138
+[2024-09-02 17:27:15.346] [config ] [info]     - N2
+[2024-09-02 17:27:15.346] [config ] [info]       + Port...................................: 38412
+[2024-09-02 17:27:15.346] [config ] [info]       + IPv4 Address ..........................: 192.168.70.138
+[2024-09-02 17:27:15.346] [config ] [info]       + MTU....................................: 1500
+[2024-09-02 17:27:15.346] [config ] [info]       + Interface name: .......................: eth0
+[2024-09-02 17:27:15.346] [config ] [info]     - Instance ID..............................: 1
+[2024-09-02 17:27:15.346] [config ] [info]     - PID Directory............................: /var/run
+[2024-09-02 17:27:15.346] [config ] [info]     - AMF Name.................................: OAI-AMF
+[2024-09-02 17:27:15.346] [config ] [info]     - Support Features Options
+[2024-09-02 17:27:15.346] [config ] [info]       + Enable Simple Scenario.................: No
+[2024-09-02 17:27:15.346] [config ] [info]       + Enable NSSF............................: Yes
+[2024-09-02 17:27:15.346] [config ] [info]       + Enable SMF Selection...................: Yes
+[2024-09-02 17:27:15.346] [config ] [info]     - Relative Capacity........................: 30
+[2024-09-02 17:27:15.346] [config ] [info]     - Emergency Support........................: No
+[2024-09-02 17:27:15.346] [config ] [info]     - Served GUAMI List
+[2024-09-02 17:27:15.346] [config ] [info]       + MCC....................................: 208
+[2024-09-02 17:27:15.346] [config ] [info]         MNC....................................: 95
+[2024-09-02 17:27:15.346] [config ] [info]         AMF Region ID..........................: 01
+[2024-09-02 17:27:15.346] [config ] [info]         AMF Set ID.............................: 001
+[2024-09-02 17:27:15.346] [config ] [info]         AMF Pointer............................: 01
+[2024-09-02 17:27:15.346] [config ] [info]       + MCC....................................: 001
+[2024-09-02 17:27:15.346] [config ] [info]         MNC....................................: 01
+[2024-09-02 17:27:15.346] [config ] [info]         AMF Region ID..........................: 01
+[2024-09-02 17:27:15.346] [config ] [info]         AMF Set ID.............................: 001
+[2024-09-02 17:27:15.346] [config ] [info]         AMF Pointer............................: 01
+[2024-09-02 17:27:15.346] [config ] [info]     - PLMN Support List
+[2024-09-02 17:27:15.346] [config ] [info]       + MCC....................................: 208
+[2024-09-02 17:27:15.346] [config ] [info]         MNC....................................: 95
+[2024-09-02 17:27:15.346] [config ] [info]         TAC....................................: 40960
+[2024-09-02 17:27:15.346] [config ] [info]             - NSSAI
+[2024-09-02 17:27:15.346] [config ] [info]                   + SST........................: 1
+[2024-09-02 17:27:15.346] [config ] [info]                     SD.........................: ffffff
+[2024-09-02 17:27:15.346] [config ] [info]                   + SST........................: 1
+[2024-09-02 17:27:15.346] [config ] [info]                     SD.........................: 000001
+[2024-09-02 17:27:15.346] [config ] [info]                   + SST........................: 222
+[2024-09-02 17:27:15.346] [config ] [info]                     SD.........................: 00007B
+[2024-09-02 17:27:15.346] [config ] [info]                   + SST........................: 128
+[2024-09-02 17:27:15.346] [config ] [info]                     SD.........................: 000080
+[2024-09-02 17:27:15.346] [config ] [info]                   + SST........................: 130
+[2024-09-02 17:27:15.346] [config ] [info]                     SD.........................: 000082
+[2024-09-02 17:27:15.346] [config ] [info]                   + SST........................: 131
+[2024-09-02 17:27:15.346] [config ] [info]                     SD.........................: 000083
+[2024-09-02 17:27:15.346] [config ] [info]     - Supported Integrity Algorithms
+[2024-09-02 17:27:15.346] [config ] [info]       + .......................................: NIA1
+[2024-09-02 17:27:15.346] [config ] [info]       + .......................................: NIA2
+[2024-09-02 17:27:15.346] [config ] [info]     - Supported Encryption Algorithms
+[2024-09-02 17:27:15.346] [config ] [info]       + .......................................: NEA1
+[2024-09-02 17:27:15.346] [config ] [info]       + .......................................: NEA2
+[2024-09-02 17:27:15.346] [config ] [info] Peer NF Configuration:
+[2024-09-02 17:27:15.346] [config ] [info]   NSSF:
+[2024-09-02 17:27:15.346] [config ] [info]     - host.....................................: oai-nssf
+[2024-09-02 17:27:15.346] [config ] [info]     - SBI
+[2024-09-02 17:27:15.346] [config ] [info]       + URL....................................: http://oai-nssf:8080
+[2024-09-02 17:27:15.346] [config ] [info]       + API Version............................: v1
+[2024-09-02 17:27:15.346] [config ] [info]   NRF:
+[2024-09-02 17:27:15.346] [config ] [info]     - host.....................................: oai-nrf
+[2024-09-02 17:27:15.346] [config ] [info]     - SBI
+[2024-09-02 17:27:15.346] [config ] [info]       + URL....................................: http://oai-nrf:80
+[2024-09-02 17:27:15.346] [config ] [info]       + API Version............................: v1
+[2024-09-02 17:27:15.346] [config ] [info]   UDM:
+[2024-09-02 17:27:15.346] [config ] [info]     - host.....................................: oai-udm
+[2024-09-02 17:27:15.346] [config ] [info]     - SBI
+[2024-09-02 17:27:15.346] [config ] [info]       + URL....................................: http://oai-udm:8080
+[2024-09-02 17:27:15.346] [config ] [info]       + API Version............................: v1
+[2024-09-02 17:27:15.346] [config ] [info]   AUSF:
+[2024-09-02 17:27:15.346] [config ] [info]     - host.....................................: oai-ausf
+[2024-09-02 17:27:15.346] [config ] [info]     - SBI
+[2024-09-02 17:27:15.346] [config ] [info]       + URL....................................: http://oai-ausf:8080
+[2024-09-02 17:27:15.346] [config ] [info]       + API Version............................: v1
+[2024-09-02 17:27:15.346] [itti] [start] Starting...
+[2024-09-02 17:27:15.346] [itti] [start] Started
+[2024-09-02 17:27:15.346] [amf_app] [start] Creating AMF application functionality layer
+[2024-09-02 17:27:15.346] [itti] [info] Starting timer_manager_task
+[2024-09-02 17:27:15.346] [itti] [warning] Could not set schedparam to ITTI task 0, err=1
+[2024-09-02 17:27:15.349] [amf_n1] [start] amf_n1 started
+[2024-09-02 17:27:15.349] [sctp] [debug] Creating socket!
+[2024-09-02 17:27:15.409] [sctp] [debug] Getaddrinfo on 192.168.70.138 was OK
+[2024-09-02 17:27:15.409] [sctp] [info] Created socket (3)
+[2024-09-02 17:27:15.415] [ngap] [info] Set N2 AMF IPv4 Addr 192.168.70.138, port 38412
+[2024-09-02 17:27:15.415] [sctp] [info] Create pthread to receive SCTP message
+[2024-09-02 17:27:15.416] [amf_n2] [start] amf_n2 started
+[2024-09-02 17:27:15.417] [amf_sbi] [start] amf_sbi started
+[2024-09-02 17:27:15.418] [amf_app] [debug] NF instance info
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	Instance ID: 5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	Instance name: OAI-AMF
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	Instance type: AMF
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	Status: REGISTERED
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	HeartBeat timer: 50
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	Priority: 1
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	Capacity: 100
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	SNSSAI:
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		 SST, SD: 1, ffffff
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		 SST, SD: 1, 1
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		 SST, SD: 222, 7b
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		 SST, SD: 128, 80
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		 SST, SD: 130, 82
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		 SST, SD: 131, 83
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	IPv4 Addr:
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		 192.168.70.138
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	NF Service
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		Service Instance ID: namf_communication, Service name: namf_communication, Version (apiVersionInUri: v1, apiFullVersion: 1.0.0 ), Scheme: http, Service status: REGISTERED,  IpEndPoints: Ipv4 Address: 192.168.70.138, TransportProtocol: TCP, Port: 8080
+[2024-09-02 17:27:15.418] [amf_app] [debug] 	AMF Info
+[2024-09-02 17:27:15.418] [amf_app] [warning] Format error in format string 		AMF Set ID: %d, AMF Region ID: %d: invalid type specifier
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		AMF GUAMI List, AMF_ID: 0x10041
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		AMF GUAMI List, PLMN (MCC: 208, MNC: 95)
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		AMF GUAMI List, AMF_ID: 0x10041
+[2024-09-02 17:27:15.418] [amf_app] [debug] 		AMF GUAMI List, PLMN (MCC: 001, MNC: 01)
+[2024-09-02 17:27:15.418] [amf_app] [debug] Send ITTI msg to SBI task to trigger the registration request towards NRF
+[2024-09-02 17:27:15.418] [amf_app] [start] Started timer (1)
+[2024-09-02 17:27:15.418] [amf_app] [debug] Initiating AMF server endpoints
+[2024-09-02 17:27:15.418] [amf_sbi] [info] Receive Register NF Instance Request, handling ...
+[2024-09-02 17:27:15.418] [amf_sbi] [debug] Send NF Instance Registration to NRF (HTTP version 1)
+[2024-09-02 17:27:15.418] [amf_app] [debug] AMF profile to json:
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:27:15.418] [amf_sbi] [debug] Send NF Instance Registration to NRF, NRF URL http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:15.418] [amf_sbi] [debug] Send NF Instance Registration to NRF, msg body: 
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:27:15.418] [amf_sbi] [info] Send HTTP message to http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:15.418] [amf_sbi] [info] HTTP message Body: {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:27:15.419] [amf_server] [info] HTTP2 server started
+* Could not resolve host: oai-nrf
+* Closing connection 0
+[2024-09-02 17:27:15.438] [amf_sbi] [info] Get response with HTTP code (0)
+[2024-09-02 17:27:15.438] [amf_sbi] [info] Cannot get response when calling http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:15.438] [amf_app] [warning] NF Instance Registration, got issue when registering to NRF
+[2024-09-02 17:27:15.439] [amf_app] [debug] Delete AMF Profile instance...
+[2024-09-02 17:27:15.439] [amf_app] [debug] Received SBI_REGISTER_NF_INSTANCE_RESPONSE
+[2024-09-02 17:27:15.439] [amf_app] [debug] Handle NF Instance Registration response
+[2024-09-02 17:27:15.439] [amf_app] [debug] Delete AMF Profile instance...
+[2024-09-02 17:27:35.418] [amf_app] [info] 
+[2024-09-02 17:27:35.418] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:27:35.418] [amf_app] [info] |------------------------------------------------------gNBs' information---------------------------------------------|
+[2024-09-02 17:27:35.418] [amf_app] [info] |    Index    |      Status      |       Global ID       |       gNB Name       |                 PLMN               |
+[2024-09-02 17:27:35.418] [amf_app] [info] |      -      |          -       |           -           |           -          |                 -                  |
+[2024-09-02 17:27:35.418] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:27:35.418] [amf_app] [info] 
+[2024-09-02 17:27:35.418] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:27:35.418] [amf_app] [info] |----------------------------------------------------UEs' information------------------------------------------------|
+[2024-09-02 17:27:35.418] [amf_app] [info] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |  Cell ID  |
+[2024-09-02 17:27:35.418] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:27:35.418] [amf_app] [info] 
+[2024-09-02 17:27:35.439] [amf_app] [debug] Send ITTI msg to SBI task to trigger the registration request towards NRF
+[2024-09-02 17:27:35.439] [amf_sbi] [info] Receive Register NF Instance Request, handling ...
+[2024-09-02 17:27:35.439] [amf_sbi] [debug] Send NF Instance Registration to NRF (HTTP version 1)
+[2024-09-02 17:27:35.439] [amf_app] [debug] AMF profile to json:
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:27:35.439] [amf_sbi] [debug] Send NF Instance Registration to NRF, NRF URL http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:35.439] [amf_sbi] [debug] Send NF Instance Registration to NRF, msg body: 
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:27:35.439] [amf_sbi] [info] Send HTTP message to http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:35.439] [amf_sbi] [info] HTTP message Body: {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+* Could not resolve host: oai-nrf
+* Closing connection 0
+[2024-09-02 17:27:35.448] [amf_sbi] [info] Get response with HTTP code (0)
+[2024-09-02 17:27:35.448] [amf_sbi] [info] Cannot get response when calling http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:35.448] [amf_app] [warning] NF Instance Registration, got issue when registering to NRF
+[2024-09-02 17:27:35.448] [amf_app] [debug] Delete AMF Profile instance...
+[2024-09-02 17:27:35.448] [amf_app] [debug] Received SBI_REGISTER_NF_INSTANCE_RESPONSE
+[2024-09-02 17:27:35.448] [amf_app] [debug] Handle NF Instance Registration response
+[2024-09-02 17:27:35.448] [amf_app] [debug] Delete AMF Profile instance...
+[2024-09-02 17:27:38.024] [sctp] [debug] SCTP Association Change event received
+[2024-09-02 17:27:38.024] [sctp] [debug] Add new association with Id (6)
+[2024-09-02 17:27:38.024] [sctp] [info] ----------------------
+[2024-09-02 17:27:38.024] [sctp] [info] Local addresses: 
+[2024-09-02 17:27:38.024] [sctp] [info]     - IPv4 Addr: 192.168.70.138
+[2024-09-02 17:27:38.024] [sctp] [info] ----------------------
+[2024-09-02 17:27:38.024] [sctp] [info] Peer addresses: 
+[2024-09-02 17:27:38.024] [sctp] [info]     - IPv4 Addr: 192.168.70.153
+[2024-09-02 17:27:38.024] [sctp] [info] ----------------------
+[2024-09-02 17:27:38.024] [ngap] [debug] Ready to handle new NGAP SCTP association request (id 6)
+[2024-09-02 17:27:38.024] [ngap] [debug] Create a new gNB context with assoc_id (6)
+[2024-09-02 17:27:38.024] [sctp] [info] [Assoc_id 6, Socket 4] Received a message (length 67) from port 46937, on stream 0, PPID 60
+[2024-09-02 17:27:38.024] [ngap] [debug] Handling SCTP payload from SCTP Server on assoc_id (6), stream_id (0), instreams (2), outstreams (2)
+[2024-09-02 17:27:38.032] [ngap] [debug] Decoded NGAP message, procedure code 21, present 1
+<absent>
+InitiatingMessage ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupRequestIEs ::= {
+                id: 27
+                criticality: 0 (reject)
+                value: GlobalGNB-ID ::= {
+                    pLMNIdentity: 02 F8 59
+                    gNB-ID: 00 00 E0 00 (4 bits unused)
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 82
+                criticality: 1 (ignore)
+                value: gnb-rfsim
+            }
+            NGSetupRequestIEs ::= {
+                id: 102
+                criticality: 0 (reject)
+                value: SupportedTAList ::= {
+                    SupportedTAItem ::= {
+                        tAC: 00 A0 00
+                        broadcastPLMNList: BroadcastPLMNList ::= {
+                            BroadcastPLMNItem ::= {
+                                pLMNIdentity: 02 F8 59
+                                tAISliceSupportList: SliceSupportList ::= {
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 01
+                                        }
+                                    }
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 80
+                                            sD: 00 00 80
+                                        }
+                                    }
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 82
+                                            sD: 00 00 82
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 21
+                criticality: 1 (ignore)
+                value: 0 (v32)
+            }
+        }
+    }
+}
+[2024-09-02 17:27:38.032] [ngap] [debug] [gNB Assoc Id 6] Sending ITTI NG Setup Request message to TASK_AMF_N2
+InitiatingMessage ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupRequest ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupRequestIEs ::= {
+                id: 27
+                criticality: 0 (reject)
+                value: GlobalGNB-ID ::= {
+                    pLMNIdentity: 02 F8 59
+                    gNB-ID: 00 00 E0 00 (4 bits unused)
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 82
+                criticality: 1 (ignore)
+                value: gnb-rfsim
+            }
+            NGSetupRequestIEs ::= {
+                id: 102
+                criticality: 0 (reject)
+                value: SupportedTAList ::= {
+                    SupportedTAItem ::= {
+                        tAC: 00 A0 00
+                        broadcastPLMNList: BroadcastPLMNList ::= {
+                            BroadcastPLMNItem ::= {
+                                pLMNIdentity: 02 F8 59
+                                tAISliceSupportList: SliceSupportList ::= {
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 01
+                                        }
+                                    }
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 80
+                                            sD: 00 00 80
+                                        }
+                                    }
+                                    SliceSupportItem ::= {
+                                        s-NSSAI: S-NSSAI ::= {
+                                            sST: 82
+                                            sD: 00 00 82
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            NGSetupRequestIEs ::= {
+                id: 21
+                criticality: 1 (ignore)
+                value: 0 (v32)
+            }
+        }
+    }
+}
+[2024-09-02 17:27:38.032] [ngap] [debug] Received TAC 0xa000
+[2024-09-02 17:27:38.032] [amf_n2] [info] Received NGSetupRequest message, handling
+[2024-09-02 17:27:38.032] [amf_n2] [debug] [gNB Assoc ID 6] Handle NG Setup Request...
+[2024-09-02 17:27:38.032] [amf_n2] [debug] Parameters: assoc_id 6, stream 0
+[2024-09-02 17:27:38.032] [amf_n2] [debug] Update gNB context with assoc id (6)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] RAN Node Info, Global RAN Node ID: 0xe000, MCC 208, MNC 95
+[2024-09-02 17:27:38.032] [amf_n2] [debug] IE RanNodeName: gnb-rfsim
+[2024-09-02 17:27:38.032] [amf_n2] [debug] IE DefaultPagingDRX: 0
+[2024-09-02 17:27:38.032] [amf_n2] [debug] TAC configured 40960, TAC received 40960
+[2024-09-02 17:27:38.032] [amf_n2] [debug] Common PLMN MCC 208, MNC 95
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from gNB (SST 1, SD 16777215)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 16777215)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] Common S-NSSAI (SST 1, SD 16777215)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 1)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 222, SD 123)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 128, SD 128)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 130, SD 130)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 131, SD 131)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from gNB (SST 128, SD 128)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 16777215)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 1)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 222, SD 123)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 128, SD 128)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] Common S-NSSAI (SST 128, SD 128)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 130, SD 130)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 131, SD 131)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from gNB (SST 130, SD 130)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 16777215)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 1, SD 1)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 222, SD 123)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 128, SD 128)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 130, SD 130)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] Common S-NSSAI (SST 130, SD 130)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] S-NSSAI from AMF (SST 131, SD 131)
+[2024-09-02 17:27:38.032] [amf_n2] [debug] Encoding NG_SETUP_RESPONSE ...
+[2024-09-02 17:27:38.032] [ngap] [debug] MCC 208, MNC 95
+SuccessfulOutcome ::= {
+    procedureCode: 21
+    criticality: 0 (reject)
+    value: NGSetupResponse ::= {
+        protocolIEs: ProtocolIE-Container ::= {
+            NGSetupResponseIEs ::= {
+                id: 1
+                criticality: 0 (reject)
+                value: OAI-AMF
+            }
+            NGSetupResponseIEs ::= {
+                id: 96
+                criticality: 0 (reject)
+                value: ServedGUAMIList ::= {
+                    ServedGUAMIItem ::= {
+                        gUAMI: GUAMI ::= {
+                            pLMNIdentity: 02 F8 59
+                            aMFRegionID: 01
+                            aMFSetID: 00 40 (6 bits unused)
+                            aMFPointer: 04 (2 bits unused)
+                        }
+                    }
+                    ServedGUAMIItem ::= {
+                        gUAMI: GUAMI ::= {
+                            pLMNIdentity: 00 F1 10
+                            aMFRegionID: 01
+                            aMFSetID: 00 40 (6 bits unused)
+                            aMFPointer: 04 (2 bits unused)
+                        }
+                    }
+                }
+            }
+            NGSetupResponseIEs ::= {
+                id: 86
+                criticality: 1 (ignore)
+                value: 30
+            }
+            NGSetupResponseIEs ::= {
+                id: 80
+                criticality: 0 (reject)
+                value: PLMNSupportList ::= {
+                    PLMNSupportItem ::= {
+                        pLMNIdentity: 02 F8 59
+                        sliceSupportList: SliceSupportList ::= {
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 01
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 01
+                                    sD: 00 00 01
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: DE
+                                    sD: 00 00 7B
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 80
+                                    sD: 00 00 80
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 82
+                                    sD: 00 00 82
+                                }
+                            }
+                            SliceSupportItem ::= {
+                                s-NSSAI: S-NSSAI ::= {
+                                    sST: 83
+                                    sD: 00 00 83
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+[2024-09-02 17:27:38.032] [ngap] [debug] Encoded size (81)
+[2024-09-02 17:27:38.032] [sctp] [debug] [Socket 4, Assoc ID 6] Sending buffer 0x7fc944000e50 of 81 bytes on stream 0 with PPID 60
+[2024-09-02 17:27:38.032] [sctp] [debug] Successfully sent 81 bytes on stream 0
+[2024-09-02 17:27:38.032] [amf_n2] [debug] Sending NG_SETUP_RESPONSE Ok
+[2024-09-02 17:27:38.032] [amf_n2] [debug] gNB with gNB_id 0xe000, assoc_id 6 has been attached to AMF
+[2024-09-02 17:27:38.032] [ngap] [debug] Free NGAP Message PDU
+[2024-09-02 17:27:38.032] [ngap] [debug] Free NGAP Message PDU
+[2024-09-02 17:27:55.418] [amf_app] [info] 
+[2024-09-02 17:27:55.418] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:27:55.418] [amf_app] [info] |------------------------------------------------------gNBs' information---------------------------------------------|
+[2024-09-02 17:27:55.418] [amf_app] [info] |    Index    |      Status      |       Global ID       |       gNB Name       |                 PLMN               |
+[2024-09-02 17:27:55.418] [amf_app] [info] |      1      |    Connected     |        0xe000        |       gnb-rfsim           |               208, 95              | 
+[2024-09-02 17:27:55.418] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:27:55.418] [amf_app] [info] 
+[2024-09-02 17:27:55.418] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:27:55.418] [amf_app] [info] |----------------------------------------------------UEs' information------------------------------------------------|
+[2024-09-02 17:27:55.418] [amf_app] [info] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |  Cell ID  |
+[2024-09-02 17:27:55.418] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:27:55.418] [amf_app] [info] 
+[2024-09-02 17:27:55.448] [amf_app] [debug] Send ITTI msg to SBI task to trigger the registration request towards NRF
+[2024-09-02 17:27:55.448] [amf_sbi] [info] Receive Register NF Instance Request, handling ...
+[2024-09-02 17:27:55.448] [amf_sbi] [debug] Send NF Instance Registration to NRF (HTTP version 1)
+[2024-09-02 17:27:55.448] [amf_app] [debug] AMF profile to json:
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:27:55.448] [amf_sbi] [debug] Send NF Instance Registration to NRF, NRF URL http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:55.448] [amf_sbi] [debug] Send NF Instance Registration to NRF, msg body: 
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:27:55.448] [amf_sbi] [info] Send HTTP message to http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:55.448] [amf_sbi] [info] HTTP message Body: {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+* Could not resolve host: oai-nrf
+* Closing connection 0
+[2024-09-02 17:27:55.458] [amf_sbi] [info] Get response with HTTP code (0)
+[2024-09-02 17:27:55.458] [amf_sbi] [info] Cannot get response when calling http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:27:55.458] [amf_app] [warning] NF Instance Registration, got issue when registering to NRF
+[2024-09-02 17:27:55.458] [amf_app] [debug] Received SBI_REGISTER_NF_INSTANCE_RESPONSE
+[2024-09-02 17:27:55.458] [amf_app] [debug] Handle NF Instance Registration response
+[2024-09-02 17:27:55.458] [amf_app] [debug] Delete AMF Profile instance...
+[2024-09-02 17:27:55.458] [amf_app] [debug] Delete AMF Profile instance...
+[2024-09-02 17:28:15.419] [amf_app] [info] 
+[2024-09-02 17:28:15.419] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:28:15.419] [amf_app] [info] |------------------------------------------------------gNBs' information---------------------------------------------|
+[2024-09-02 17:28:15.419] [amf_app] [info] |    Index    |      Status      |       Global ID       |       gNB Name       |                 PLMN               |
+[2024-09-02 17:28:15.419] [amf_app] [info] |      1      |    Connected     |        0xe000        |       gnb-rfsim           |               208, 95              | 
+[2024-09-02 17:28:15.419] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:28:15.419] [amf_app] [info] 
+[2024-09-02 17:28:15.419] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:28:15.419] [amf_app] [info] |----------------------------------------------------UEs' information------------------------------------------------|
+[2024-09-02 17:28:15.419] [amf_app] [info] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |  Cell ID  |
+[2024-09-02 17:28:15.419] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:28:15.419] [amf_app] [info] 
+[2024-09-02 17:28:15.458] [amf_app] [debug] Send ITTI msg to SBI task to trigger the registration request towards NRF
+[2024-09-02 17:28:15.458] [amf_sbi] [info] Receive Register NF Instance Request, handling ...
+[2024-09-02 17:28:15.458] [amf_sbi] [debug] Send NF Instance Registration to NRF (HTTP version 1)
+[2024-09-02 17:28:15.458] [amf_app] [debug] AMF profile to json:
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:28:15.458] [amf_sbi] [debug] Send NF Instance Registration to NRF, NRF URL http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:28:15.458] [amf_sbi] [debug] Send NF Instance Registration to NRF, msg body: 
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:28:15.458] [amf_sbi] [info] Send HTTP message to http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:28:15.458] [amf_sbi] [info] HTTP message Body: {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:28:15.669] [amf_sbi] [info] Get response with HTTP code (0)
+[2024-09-02 17:28:15.669] [amf_sbi] [info] Cannot get response when calling http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:28:15.669] [amf_app] [warning] NF Instance Registration, got issue when registering to NRF
+[2024-09-02 17:28:15.669] [amf_app] [debug] Delete AMF Profile instance...
+[2024-09-02 17:28:15.669] [amf_app] [debug] Received SBI_REGISTER_NF_INSTANCE_RESPONSE
+[2024-09-02 17:28:15.669] [amf_app] [debug] Handle NF Instance Registration response
+[2024-09-02 17:28:15.669] [amf_app] [debug] Delete AMF Profile instance...
+* Could not resolve host: oai-nrf
+* Closing connection 0
+[2024-09-02 17:28:35.419] [amf_app] [info] 
+[2024-09-02 17:28:35.419] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:28:35.419] [amf_app] [info] |------------------------------------------------------gNBs' information---------------------------------------------|
+[2024-09-02 17:28:35.419] [amf_app] [info] |    Index    |      Status      |       Global ID       |       gNB Name       |                 PLMN               |
+[2024-09-02 17:28:35.419] [amf_app] [info] |      1      |    Connected     |        0xe000        |       gnb-rfsim           |               208, 95              | 
+[2024-09-02 17:28:35.419] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:28:35.419] [amf_app] [info] 
+[2024-09-02 17:28:35.419] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:28:35.419] [amf_app] [info] |----------------------------------------------------UEs' information------------------------------------------------|
+[2024-09-02 17:28:35.419] [amf_app] [info] | Index |      5GMM state      |      IMSI        |     GUTI      | RAN UE NGAP ID | AMF UE ID |  PLMN   |  Cell ID  |
+[2024-09-02 17:28:35.419] [amf_app] [info] |--------------------------------------------------------------------------------------------------------------------|
+[2024-09-02 17:28:35.419] [amf_app] [info] 
+[2024-09-02 17:28:35.669] [amf_app] [debug] Send ITTI msg to SBI task to trigger the registration request towards NRF
+[2024-09-02 17:28:35.669] [amf_sbi] [info] Receive Register NF Instance Request, handling ...
+[2024-09-02 17:28:35.669] [amf_sbi] [debug] Send NF Instance Registration to NRF (HTTP version 1)
+[2024-09-02 17:28:35.669] [amf_app] [debug] AMF profile to json:
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:28:35.669] [amf_sbi] [debug] Send NF Instance Registration to NRF, NRF URL http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:28:35.669] [amf_sbi] [debug] Send NF Instance Registration to NRF, msg body: 
+ {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+[2024-09-02 17:28:35.669] [amf_sbi] [info] Send HTTP message to http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:28:35.669] [amf_sbi] [info] HTTP message Body: {"amfInfo":{"amfRegionId":"01","amfSetId":"001","guamiList":[{"amfId":"010041","plmnId":{"mcc":"208","mnc":"95"}},{"amfId":"010041","plmnId":{"mcc":"001","mnc":"01"}}]},"capacity":100,"custom_info":null,"heartBeatTimer":50,"ipv4Addresses":["192.168.70.138"],"nfInstanceId":"5ec27afc-ee45-4db9-b3f1-08afa7e1f795","nfInstanceName":"OAI-AMF","nfServices":[{"ipEndPoints":[{"ipv4Address":"192.168.70.138","port":8080,"transport":"TCP"}],"nfServiceStatus":"REGISTERED","scheme":"http","serviceInstanceId":"namf_communication","serviceName":"namf_communication","versions":[{"apiFullVersion":"1.0.0","apiVersionInUri":"v1"}]}],"nfStatus":"REGISTERED","nfType":"AMF","priority":1,"sNssais":[{"sd":"ffffff","sst":1},{"sd":"1","sst":1},{"sd":"7b","sst":222},{"sd":"80","sst":128},{"sd":"82","sst":130},{"sd":"83","sst":131}]}
+* Could not resolve host: oai-nrf
+* Closing connection 0
+[2024-09-02 17:28:35.813] [amf_sbi] [info] Get response with HTTP code (0)
+[2024-09-02 17:28:35.813] [amf_sbi] [info] Cannot get response when calling http://oai-nrf:80/nnrf-nfm/v1/nf-instances/5ec27afc-ee45-4db9-b3f1-08afa7e1f795
+[2024-09-02 17:28:35.813] [amf_app] [warning] NF Instance Registration, got issue when registering to NRF
+[2024-09-02 17:28:35.813] [amf_app] [debug] Delete AMF Profile instance...
+[2024-09-02 17:28:35.813] [amf_app] [debug] Received SBI_REGISTER_NF_INSTANCE_RESPONSE
+[2024-09-02 17:28:35.813] [amf_app] [debug] Handle NF Instance Registration response
+[2024-09-02 17:28:35.813] [amf_app] [debug] Delete AMF Profile instance...

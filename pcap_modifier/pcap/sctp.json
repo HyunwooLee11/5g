@@ -1,0 +1,206 @@
+[
+  {
+    "_index": "packets-2024-05-14",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "1",
+          "frame.time": "May 14, 2024 10:03:30.759075000 EDT",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_epoch": "1715695410.759075000",
+          "frame.time_delta": "0.000000000",
+          "frame.time_delta_displayed": "0.000000000",
+          "frame.time_relative": "0.000000000",
+          "frame.number": "1",
+          "frame.len": "54",
+          "frame.cap_len": "54",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.protocols": "eth:ethertype:ip:sctp"
+        },
+        "eth": {
+          "eth.dst": "02:42:c0:a8:46:8a",
+          "eth.dst_tree": {
+            "eth.dst_resolved": "02:42:c0:a8:46:8a",
+            "eth.dst.oui": "148160",
+            "eth.addr": "02:42:c0:a8:46:8a",
+            "eth.addr_resolved": "02:42:c0:a8:46:8a",
+            "eth.addr.oui": "148160",
+            "eth.dst.lg": "1",
+            "eth.lg": "1",
+            "eth.dst.ig": "0",
+            "eth.ig": "0"
+          },
+          "eth.src": "02:42:c0:a8:46:99",
+          "eth.src_tree": {
+            "eth.src_resolved": "02:42:c0:a8:46:99",
+            "eth.src.oui": "148160",
+            "eth.addr": "02:42:c0:a8:46:99",
+            "eth.addr_resolved": "02:42:c0:a8:46:99",
+            "eth.addr.oui": "148160",
+            "eth.src.lg": "1",
+            "eth.lg": "1",
+            "eth.src.ig": "0",
+            "eth.ig": "0"
+          },
+          "eth.type": "0x0800"
+        },
+        "ip": {
+          "ip.version": "4",
+          "ip.hdr_len": "20",
+          "ip.dsfield": "0x02",
+          "ip.dsfield_tree": {
+            "ip.dsfield.dscp": "0",
+            "ip.dsfield.ecn": "2"
+          },
+          "ip.len": "40",
+          "ip.id": "0x0005",
+          "ip.flags": "0x02",
+          "ip.flags_tree": {
+            "ip.flags.rb": "0",
+            "ip.flags.df": "1",
+            "ip.flags.mf": "0"
+          },
+          "ip.frag_offset": "0",
+          "ip.ttl": "64",
+          "ip.proto": "132",
+          "ip.checksum": "0x2bd7",
+          "ip.checksum.status": "2",
+          "ip.src": "192.168.70.153",
+          "ip.addr": "192.168.70.153",
+          "ip.src_host": "192.168.70.153",
+          "ip.host": "192.168.70.153",
+          "ip.dst": "192.168.70.138",
+          "ip.addr": "192.168.70.138",
+          "ip.dst_host": "192.168.70.138",
+          "ip.host": "192.168.70.138"
+        },
+        "sctp": {
+          "sctp.srcport": "45768",
+          "sctp.dstport": "38412",
+          "sctp.verification_tag": "0xf2aab49a",
+          "sctp.assoc_index": "65535",
+          "sctp.port": "45768",
+          "sctp.port": "38412",
+          "sctp.checksum": "0x00000000",
+          "sctp.checksum.status": "2",
+          "SHUTDOWN chunk (Cumulative TSN ack: 833708465)": {
+            "sctp.chunk_type": "7",
+            "sctp.chunk_type_tree": {
+              "sctp.chunk_bit_1": "0",
+              "sctp.chunk_bit_2": "0"
+            },
+            "sctp.chunk_flags": "0x00",
+            "sctp.chunk_length": "8",
+            "sctp.shutdown_cumulative_tsn_ack": "833708465"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_index": "packets-2024-05-14",
+    "_type": "doc",
+    "_score": null,
+    "_source": {
+      "layers": {
+        "frame": {
+          "frame.encap_type": "1",
+          "frame.time": "May 14, 2024 10:03:30.759111000 EDT",
+          "frame.offset_shift": "0.000000000",
+          "frame.time_epoch": "1715695410.759111000",
+          "frame.time_delta": "0.000036000",
+          "frame.time_delta_displayed": "0.000036000",
+          "frame.time_relative": "0.000036000",
+          "frame.number": "2",
+          "frame.len": "50",
+          "frame.cap_len": "50",
+          "frame.marked": "0",
+          "frame.ignored": "0",
+          "frame.protocols": "eth:ethertype:ip:sctp"
+        },
+        "eth": {
+          "eth.dst": "02:42:c0:a8:46:8a",
+          "eth.dst_tree": {
+            "eth.dst_resolved": "02:42:c0:a8:46:8a",
+            "eth.dst.oui": "148160",
+            "eth.addr": "02:42:c0:a8:46:8a",
+            "eth.addr_resolved": "02:42:c0:a8:46:8a",
+            "eth.addr.oui": "148160",
+            "eth.dst.lg": "1",
+            "eth.lg": "1",
+            "eth.dst.ig": "0",
+            "eth.ig": "0"
+          },
+          "eth.src": "02:42:c0:a8:46:99",
+          "eth.src_tree": {
+            "eth.src_resolved": "02:42:c0:a8:46:99",
+            "eth.src.oui": "148160",
+            "eth.addr": "02:42:c0:a8:46:99",
+            "eth.addr_resolved": "02:42:c0:a8:46:99",
+            "eth.addr.oui": "148160",
+            "eth.src.lg": "1",
+            "eth.lg": "1",
+            "eth.src.ig": "0",
+            "eth.ig": "0"
+          },
+          "eth.type": "0x0800"
+        },
+        "ip": {
+          "ip.version": "4",
+          "ip.hdr_len": "20",
+          "ip.dsfield": "0x02",
+          "ip.dsfield_tree": {
+            "ip.dsfield.dscp": "0",
+            "ip.dsfield.ecn": "2"
+          },
+          "ip.len": "36",
+          "ip.id": "0x0006",
+          "ip.flags": "0x02",
+          "ip.flags_tree": {
+            "ip.flags.rb": "0",
+            "ip.flags.df": "1",
+            "ip.flags.mf": "0"
+          },
+          "ip.frag_offset": "0",
+          "ip.ttl": "64",
+          "ip.proto": "132",
+          "ip.checksum": "0x2bda",
+          "ip.checksum.status": "2",
+          "ip.src": "192.168.70.153",
+          "ip.addr": "192.168.70.153",
+          "ip.src_host": "192.168.70.153",
+          "ip.host": "192.168.70.153",
+          "ip.dst": "192.168.70.138",
+          "ip.addr": "192.168.70.138",
+          "ip.dst_host": "192.168.70.138",
+          "ip.host": "192.168.70.138"
+        },
+        "sctp": {
+          "sctp.srcport": "45768",
+          "sctp.dstport": "38412",
+          "sctp.verification_tag": "0xf2aab49a",
+          "sctp.assoc_index": "65535",
+          "sctp.port": "45768",
+          "sctp.port": "38412",
+          "sctp.checksum": "0x00000000",
+          "sctp.checksum.status": "2",
+          "SHUTDOWN_COMPLETE chunk": {
+            "sctp.chunk_type": "14",
+            "sctp.chunk_type_tree": {
+              "sctp.chunk_bit_1": "0",
+              "sctp.chunk_bit_2": "0"
+            },
+            "sctp.chunk_flags": "0x00",
+            "sctp.chunk_flags_tree": {
+              "sctp.shutdown_complete_t_bit": "0"
+            },
+            "sctp.chunk_length": "4"
+          }
+        }
+      }
+    }
+  }
+]

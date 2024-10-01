@@ -1,0 +1,1584 @@
+==================================
+== Configuration file:
+Active_gNBs = ( "gnb-rfsim");
+# Asn1_verbosity, choice in: none, info, annoying
+Asn1_verbosity = "none";
+
+gNBs =
+(
+ {
+    ////////// Identification parameters:
+    gNB_ID = 0xe00;
+
+#     cell_type =  "CELL_MACRO_GNB";
+
+    gNB_name  =  "gnb-rfsim";
+
+    // Tracking area code, 0x0000 and 0xfffe are reserved values
+    tracking_area_code  =  40960;
+
+    plmn_list = ({ mcc = 208; mnc = 95; mnc_length = 2; snssaiList = ({ sst = 1, sd = 0xffffff }, { sst = 128, sd = 0x000080 }, { sst = 130, sd = 0x000082 }) });
+
+    nr_cellid = 12345678L
+    
+# Begin RIC-specific settings
+    RIC : {
+        remote_ipv4_addr = "192.168.84.37"; # TODO Replace it with the actual RIC e2t Address
+        remote_port = 36421;
+        enabled = "yes";
+    };
+
+
+#     tr_s_preference     = "local_mac"
+
+    ////////// Physical parameters:
+
+    #pusch_TargetSNRx10                                        = 200;
+    #pucch_TargetSNRx10                                        = 200;
+    ul_prbblacklist                                           = "51,52,53,54"
+    min_rxtxtime = 6;
+    do_SRS                                                    = 1;
+
+    pdcch_ConfigSIB1 = (
+      {
+        controlResourceSetZero = 11;
+        searchSpaceZero = 0;
+      }
+    );
+
+    servingCellConfigCommon = (
+    {
+ #spCellConfigCommon
+
+      physCellId                                                    = 0;
+
+#  downlinkConfigCommon
+    #frequencyInfoDL
+      # this is 3301.68 MHz + 22*12*30e-3 MHz = 3309.6
+      #absoluteFrequencySSB                                          = 620640;
+      # this is 3300.60 MHz + 53*12*30e-3 MHz = 3319.68
+      absoluteFrequencySSB                                          = 621312;
+      # this is 3503.28 MHz + 22*12*30e-3 MHz = 3511.2
+      #absoluteFrequencySSB                                          = 634080;
+      # this is 3600.48 MHz
+      #absoluteFrequencySSB                                          = 640032;
+      #dl_frequencyBand                                                 = 78;
+      # this is 3301.68 MHz
+      #dl_absoluteFrequencyPointA                                       = 620112;
+      # this is 3300.60 MHz
+      dl_absoluteFrequencyPointA                                       = 620040;
+      # this is 3502.56 MHz
+      #dl_absoluteFrequencyPointA                                       = 633552;
+      # this is 3600.48 MHz
+      #dl_absoluteFrequencyPointA                                       = 640032;
+      #scs-SpecificCarrierList
+        dl_offstToCarrier                                              = 0;
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        dl_subcarrierSpacing                                           = 1;
+        dl_carrierBandwidth                                            = 106;
+     #initialDownlinkBWP
+      #genericParameters
+        # this is RBstart=0,L=106 (275*(L-1))+RBstart
+        initialDLBWPlocationAndBandwidth                                        = 28875;
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialDLBWPsubcarrierSpacing                                           = 1;
+      #pdcch-ConfigCommon
+        initialDLBWPcontrolResourceSetZero                                      = 11;
+        initialDLBWPsearchSpaceZero                                             = 0;
+
+
+
+  #uplinkConfigCommon
+     #frequencyInfoUL
+      ul_frequencyBand                                                 = 78;
+      #scs-SpecificCarrierList
+      ul_offstToCarrier                                              = 0;
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+      ul_subcarrierSpacing                                           = 1;
+      ul_carrierBandwidth                                            = 106;
+      pMax                                                          = 20;
+     #initialUplinkBWP
+      #genericParameters
+        initialULBWPlocationAndBandwidth                                        = 28875;
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialULBWPsubcarrierSpacing                                           = 1;
+      #rach-ConfigCommon
+        #rach-ConfigGeneric
+          prach_ConfigurationIndex                                  = 98;
+#prach_msg1_FDM
+#0 = one, 1=two, 2=four, 3=eight
+          prach_msg1_FDM                                            = 0;
+          prach_msg1_FrequencyStart                                 = 0;
+          zeroCorrelationZoneConfig                                 = 12;
+          preambleReceivedTargetPower                               = -104;
+#preamblTransMax (0...10) = (3,4,5,6,7,8,10,20,50,100,200)
+          preambleTransMax                                          = 6;
+#powerRampingStep
+# 0=dB0,1=dB2,2=dB4,3=dB6
+        powerRampingStep                                            = 1;
+#ra_ReponseWindow
+#1,2,4,8,10,20,40,80
+        ra_ResponseWindow                                           = 4;
+#ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR
+#1=oneeighth,2=onefourth,3=half,4=one,5=two,6=four,7=eight,8=sixteen
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR                = 3;
+#oneHalf (0..15) 4,8,12,16,...60,64
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB                   = 15;
+#ra_ContentionResolutionTimer
+#(0..7) 8,16,24,32,40,48,56,64
+        ra_ContentionResolutionTimer                                = 7;
+        rsrp_ThresholdSSB                                           = 19;
+#prach-RootSequenceIndex_PR
+#1 = 839, 2 = 139
+        prach_RootSequenceIndex_PR                                  = 2;
+        prach_RootSequenceIndex                                     = 1;
+        # SCS for msg1, can only be 15 for 30 kHz < 6 GHz, takes precendence over the one derived from prach-ConfigIndex
+        #
+        msg1_SubcarrierSpacing                                      = 1,
+# restrictedSetConfig
+# 0=unrestricted, 1=restricted type A, 2=restricted type B
+        restrictedSetConfig                                         = 0,
+
+        msg3_DeltaPreamble                                          = 1;
+        p0_NominalWithGrant                                         =-90;
+
+# pucch-ConfigCommon setup :
+# pucchGroupHopping
+# 0 = neither, 1= group hopping, 2=sequence hopping
+        pucchGroupHopping                                           = 0;
+        hoppingId                                                   = 40;
+        p0_nominal                                                  = -90;
+# ssb_PositionsInBurs_BitmapPR
+# 1=short, 2=medium, 3=long
+      ssb_PositionsInBurst_PR                                       = 2;
+      ssb_PositionsInBurst_Bitmap                                   = 1;
+
+# ssb_periodicityServingCell
+# 0 = ms5, 1=ms10, 2=ms20, 3=ms40, 4=ms80, 5=ms160, 6=spare2, 7=spare1
+      ssb_periodicityServingCell                                    = 2;
+
+# dmrs_TypeA_position
+# 0 = pos2, 1 = pos3
+      dmrs_TypeA_Position                                           = 0;
+
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+      subcarrierSpacing                                             = 1;
+
+
+  #tdd-UL-DL-ConfigurationCommon
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+      referenceSubcarrierSpacing                                    = 1;
+      # pattern1
+      # dl_UL_TransmissionPeriodicity
+      # 0=ms0p5, 1=ms0p625, 2=ms1, 3=ms1p25, 4=ms2, 5=ms2p5, 6=ms5, 7=ms10
+      dl_UL_TransmissionPeriodicity                                 = 6;
+      nrofDownlinkSlots                                             = 7;
+      nrofDownlinkSymbols                                           = 6;
+      nrofUplinkSlots                                               = 2;
+      nrofUplinkSymbols                                             = 4;
+
+  ssPBCH_BlockPower                                             = -25;
+  }
+
+  );
+
+
+    # ------- SCTP definitions
+    SCTP :
+    {
+        # Number of streams to use in input/output
+        SCTP_INSTREAMS  = 2;
+        SCTP_OUTSTREAMS = 2;
+    };
+
+    ////////// AMF parameters:
+        amf_ip_address      = ( { ipv4       = "192.168.70.138";
+                                  ipv6       = "192:168:30::17";
+                                  active     = "yes";
+                                  preference = "ipv4";
+                                                                                                                              }
+                                                                                                                                          );
+
+        NETWORK_INTERFACES :
+        {
+
+           GNB_INTERFACE_NAME_FOR_NG_AMF            = "eth0";
+           GNB_IPV4_ADDRESS_FOR_NG_AMF              = "192.168.70.153";
+           GNB_INTERFACE_NAME_FOR_NGU               = "eth1";
+           GNB_IPV4_ADDRESS_FOR_NGU                 = "192.168.72.153";
+           GNB_PORT_FOR_S1U                         = 2152; # Spec 2152
+        };
+
+  }
+);
+
+MACRLCs = (
+  {
+    num_cc           = 1;
+    tr_s_preference  = "local_L1";
+    tr_n_preference  = "local_RRC";
+    pusch_TargetSNRx10 = 200;
+    pucch_TargetSNRx10 = 200;
+     ulsch_max_frame_inactivity = 1;
+  }
+);
+
+L1s = (
+{
+  num_cc = 1;
+  tr_n_preference = "local_mac";
+  prach_dtx_threshold = 200;
+#  pucch0_dtx_threshold = 150;
+}
+);
+
+RUs = (
+    {
+       local_rf       = "yes"
+         nb_tx          = 1
+         nb_rx          = 1
+         att_tx         = 0
+         att_rx         = 0;
+         bands          = [78];
+         max_pdschReferenceSignalPower = -27;
+         max_rxgain                    = 75;
+         eNB_instances  = [0];
+         ##beamforming 1x2 matrix: 1 layer x 2 antennas
+         bf_weights = [0x00007fff, 0x0000];
+         ##beamforming 1x4 matrix: 1 layer x 4 antennas
+         #bf_weights = [0x00007fff, 0x0000,0x0000, 0x0000];
+         ## beamforming 2x2 matrix:
+         # bf_weights = [0x00007fff, 0x00000000, 0x00000000, 0x00007fff];
+         ## beamforming 4x4 matrix:
+         #bf_weights = [0x00007fff, 0x0000, 0x0000, 0x0000, 0x00000000, 0x00007fff, 0x0000, 0x0000, 0x0000, 0x0000, 0x00007fff, 0x0000, 0x0000, 0x0000, 0x0000, 0x00007fff];
+         sf_extension = 0
+         sdr_addrs = "serial=XXXXXXX"
+    }
+);
+
+THREAD_STRUCT = (
+  {
+    #three config for level of parallelism "PARALLEL_SINGLE_THREAD", "PARALLEL_RU_L1_SPLIT", or "PARALLEL_RU_L1_TRX_SPLIT"
+    parallel_config    = "PARALLEL_SINGLE_THREAD";
+    #two option for worker "WORKER_DISABLE" or "WORKER_ENABLE"
+    worker_config      = "WORKER_ENABLE";
+  }
+);
+
+security = {
+  # preferred ciphering algorithms
+  # the first one of the list that an UE supports in chosen
+  # valid values: nea0, nea1, nea2, nea3
+  ciphering_algorithms = ( "nea0" );
+
+  # preferred integrity algorithms
+  # the first one of the list that an UE supports in chosen
+  # valid values: nia0, nia1, nia2, nia3
+  integrity_algorithms = ( "nia2", "nia0" );
+
+  # setting 'drb_ciphering' to "no" disables ciphering for DRBs, no matter
+  # what 'ciphering_algorithms' configures; same thing for 'drb_integrity'
+  drb_ciphering = "yes";
+  drb_integrity = "no";
+};
+
+     log_config :
+     {
+       global_log_level                      ="info";
+       hw_log_level                          ="info";
+       phy_log_level                         ="info";
+       mac_log_level                         ="info";
+       rlc_log_level                         ="info";
+       pdcp_log_level                        ="info";
+       rrc_log_level                         ="info";
+       f1ap_log_level                         ="debug";
+    };
+==================================
+== Load USRP binaries
+==================================
+== Starting gNB soft modem
+Additional option(s): --sa -E --rfsim --log_config.global_log_options level,nocolor,time --opt.type pcap --opt.path /home/pcap.pcap
+/opt/oai-gnb/bin/nr-softmodem -O /opt/oai-gnb/etc/gnb.conf --sa -E --rfsim --log_config.global_log_options level,nocolor,time --opt.type pcap --opt.path /home/pcap.pcap
+21888.350798 [HW] I # /dev/cpu_dma_latency set to 2 us
+21888.364246 [ENB_APP] I nfapi running mode: MONOLITHIC
+21888.364259 [GNB_APP] I Getting GNBSParams
+21889.364402 [ITTI] I Starting itti queue: TASK_UNKNOWN as task 0
+21889.364421 [ITTI] I Starting itti queue: TASK_TIMER as task 1
+21889.364425 [ITTI] I Starting itti queue: TASK_L2L1 as task 2
+21889.364429 [ITTI] I Starting itti queue: TASK_BM as task 3
+21889.364432 [ITTI] I Starting itti queue: TASK_PHY_ENB as task 4
+21889.364436 [ITTI] I Starting itti queue: TASK_MAC_GNB as task 5
+21889.364440 [ITTI] I Starting itti queue: TASK_RLC_ENB as task 6
+21889.364445 [ITTI] I Starting itti queue: TASK_RRC_ENB_NB_IoT as task 7
+21889.364448 [ITTI] I Starting itti queue: TASK_PDCP_ENB as task 8
+21889.364452 [ITTI] I Starting itti queue: TASK_PDCP_GNB as task 9
+21889.364456 [ITTI] I Starting itti queue: TASK_DATA_FORWARDING as task 10
+21889.364460 [ITTI] I Starting itti queue: TASK_END_MARKER as task 11
+21889.364464 [ITTI] I Starting itti queue: TASK_RRC_ENB as task 12
+21889.364469 [ITTI] I Starting itti queue: TASK_RRC_GNB as task 13
+21889.364472 [ITTI] I Starting itti queue: TASK_RAL_ENB as task 14
+21889.364479 [ITTI] I Starting itti queue: TASK_S1AP as task 15
+21889.364482 [ITTI] I Starting itti queue: TASK_NGAP as task 16
+21889.364486 [ITTI] I Starting itti queue: TASK_X2AP as task 17
+21889.364489 [ITTI] I Starting itti queue: TASK_M2AP_ENB as task 18
+21889.364493 [ITTI] I Starting itti queue: TASK_M2AP_MCE as task 19
+21889.364496 [ITTI] I Starting itti queue: TASK_M3AP as task 20
+21889.364499 [ITTI] I Starting itti queue: TASK_M3AP_MME as task 21
+21889.364503 [ITTI] I Starting itti queue: TASK_M3AP_MCE as task 22
+21889.364507 [ITTI] I Starting itti queue: TASK_SCTP as task 23
+21889.364510 [ITTI] I Starting itti queue: TASK_ENB_APP as task 24
+21889.364514 [ITTI] I Starting itti queue: TASK_GNB_APP as task 25
+21889.364517 [ITTI] I Starting itti queue: TASK_MCE_APP as task 26
+21889.364521 [ITTI] I Starting itti queue: TASK_MME_APP as task 27
+21889.364526 [ITTI] I Starting itti queue: TASK_PHY_UE as task 28
+21889.364529 [ITTI] I Starting itti queue: TASK_MAC_UE as task 29
+21889.364534 [ITTI] I Starting itti queue: TASK_RLC_UE as task 30
+21889.364539 [ITTI] I Starting itti queue: TASK_PDCP_UE as task 31
+21889.364542 [ITTI] I Starting itti queue: TASK_RRC_UE as task 32
+21889.364545 [ITTI] I Starting itti queue: TASK_RRC_NRUE as task 33
+21889.364549 [ITTI] I Starting itti queue: TASK_NAS_UE as task 34
+21889.364551 [ITTI] I Starting itti queue: TASK_RAL_UE as task 35
+21889.364555 [ITTI] I Starting itti queue: TASK_GTPV1_U as task 36
+21889.364559 [ITTI] I Starting itti queue: TASK_CU_F1 as task 37
+21889.364562 [ITTI] I Starting itti queue: TASK_DU_F1 as task 38
+21889.364566 [ITTI] I Starting itti queue: TASK_CUCP_E1 as task 39
+21889.364571 [ITTI] I Starting itti queue: TASK_CUUP_E1 as task 40
+21889.364575 [ITTI] I Starting itti queue: TASK_RRC_UE_SIM as task 41
+21889.364579 [ITTI] I Starting itti queue: TASK_RRC_GNB_SIM as task 42
+21889.364582 [ITTI] I Starting itti queue: TASK_RRC_NSA_UE as task 43
+21889.364587 [ITTI] I Starting itti queue: TASK_RRC_NSA_NRUE as task 44
+21889.364591 [ITTI] I Starting itti queue: TASK_NAS_NRUE as task 45
+21889.364612 [OPT] I mode PCAB : path is /home/pcap.pcap 
+21889.364708 [HW] I Version: Branch: HEAD Abrev. Hash: 790c3b999 Date: Tue Dec 12 12:39:04 2023 +0000
+21889.364712 [NR_PHY] I RC.gNB = 0x56262f677660
+21889.365246 [NR_PHY] I PRB blacklist 51,52,53,54
+21889.365249 [NR_PHY] I Blacklisting prb 51
+21889.365250 [NR_PHY] I Blacklisting prb 52
+21889.365252 [NR_PHY] I Blacklisting prb 53
+21889.365253 [NR_PHY] I Blacklisting prb 54
+21889.365254 [NR_PHY] I Copying 4 blacklisted PRB to L1 context
+21889.365288 [PHY] I L1_RX_THREAD_CORE -1 (16)
+21889.365291 [PHY] I TX_AMP = 519 (-36 dBFS)
+21889.365293 [PHY] I l1_north_init_gNB() RC.nb_nr_L1_inst:1
+21889.365295 [PHY] I Installing callbacks for IF_Module - UL_indication
+21889.365296 [MAC] I Allocating shared L1/L2 interface structure for instance 0 @ 0x56262f67d440
+21889.365298 [PHY] I l1_north_init_gNB() RC.gNB[0] installing callbacks
+21889.365415 [PHY] I create_gNB_tasks() Task ready initialize structures
+21889.365573 [NR_PHY] I PRB blacklist 51,52,53,54
+21889.365574 [NR_PHY] I Blacklisting prb 51
+21889.365575 [NR_PHY] I Blacklisting prb 52
+21889.365576 [NR_PHY] I Blacklisting prb 53
+21889.365577 [NR_PHY] I Blacklisting prb 54
+21889.365578 [NR_PHY] I Copying 4 blacklisted PRB to L1 context
+21889.365610 [PHY] I L1_RX_THREAD_CORE -1 (16)
+21889.365611 [PHY] I TX_AMP = 519 (-36 dBFS)
+21889.365613 [PHY] I l1_north_init_gNB() RC.nb_nr_L1_inst:1
+21889.365614 [PHY] I Installing callbacks for IF_Module - UL_indication
+21889.365615 [PHY] I l1_north_init_gNB() RC.gNB[0] installing callbacks
+21889.365617 [PHY] I No prs_config configuration found..!!
+21889.365735 [GNB_APP] I pdsch_AntennaPorts N1 1 N2 1 XP 1 pusch_AntennaPorts 1
+21889.365737 [GNB_APP] I minTXRXTIME 6
+21889.365738 [GNB_APP] I SIB1 TDA 1
+21889.365739 [GNB_APP] I CSI-RS 0, SRS 1, 256 QAM may be on
+21889.365915 [RRC] I Read in ServingCellConfigCommon (PhysCellId 0, ABSFREQSSB 621312, DLBand 78, ABSFREQPOINTA 620040, DLBW 106,RACH_TargetReceivedPower -104
+21889.365918 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+21889.365920 [RRC] I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
+21889.365922 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+21889.365924 [NR_MAC] I NR band 78, duplex mode TDD, duplex spacing = 0 KHz
+21889.365926 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+21889.365927 [NR_MAC] I NR band 78, duplex mode TDD, duplex spacing = 0 KHz
+21889.366048 [MAC] I [MAIN] Init function start:nb_nr_macrlc_inst=1
+21889.366066 [UTIL] I Creating thread MAC_STATS with affinity -1 and priority 2
+21889.374028 [PHY] I Installing callbacks for IF_Module - UL_indication
+21889.374039 [NR_MAC] I Configuring common parameters from NR ServingCellConfig
+21889.374041 [NR_MAC] I config_common() dl_BandwidthP:40
+21889.374044 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+21889.374046 [NR_MAC] I config_common() dl_BandwidthP:40
+21889.374048 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+21889.374050 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+21889.374051 [NR_MAC] I NR band 78, duplex mode TDD, duplex spacing = 0 KHz
+21889.374054 [NR_MAC] I ssb_OffsetPointA 86, ssb_SubcarrierOffset 0
+21889.374056 [NR_MAC] I Set RX antenna number to 1, Set TX antenna number to 1 (num ssb 1: 80000000,0)
+21889.374058 [NR_MAC] I Setting TDD configuration period to 6
+21889.374064 [NR_MAC] I TDD has been properly configurated
+21889.374069 [PHY] I DL frequency 3319680000 Hz, UL frequency 3319680000 Hz: band 78, uldl offset 0 Hz
+21889.374070 [PHY] A Configuring MIB for instance 0, : (Nid_cell 0,DL freq 3319680000, UL freq 3319680000)
+21889.374072 [PHY] I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+21889.374075 [PHY] W Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+21889.374183 [PHY] I gNB 0 configured
+21889.374198 [NR_MAC] I PUSCH Target 200, PUCCH Target 200, PUCCH Failure 10, PUSCH Failure 10
+21889.374314 [GNB_APP] W no slices transported via F1 Setup Request!
+21889.374318 [NR_RRC] I SIB1 freq: offsetToPointA 86
+21889.374341 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+21889.374343 [NR_MAC] I NR band 78, duplex mode TDD, duplex spacing = 0 KHz
+21889.374383 [GNB_APP] I F1AP: gNB idx 0 gNB_DU_id 3584, gNB_DU_name gnb-rfsim, TAC 40960 MCC/MNC/length 208/95/2 cellID 12345678
+21889.374386 [GNB_APP] I ngran_DU: Configuring Cell 0 for TDD
+21889.374404 [PHY] I create_gNB_tasks() RC.nb_nr_L1_inst:1
+21889.374406 [PHY] I l1_north_init_gNB() RC.nb_nr_L1_inst:1
+21889.374408 [PHY] I Installing callbacks for IF_Module - UL_indication
+21889.374409 [PHY] I l1_north_init_gNB() RC.gNB[0] installing callbacks
+21889.374410 [GNB_APP] I Allocating gNB_RRC_INST for 1 instances
+CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.conf" "--sa" "-E" "--rfsim" "--log_config.global_log_options" "level,nocolor,time" "--opt.type" "pcap" "--opt.path" "/home/pcap.pcap" 
+[CONFIG] get parameters from libconfig /opt/oai-gnb/etc/gnb.conf [LIBCONFIG] Path for include directive set to: /opt/oai-gnb/etc
+[CONFIG] function config_libconfig_init returned 0
+[CONFIG] config module libconfig loaded
+[LIBCONFIG] config: 2/2 parameters successfully set, (2 to default value)
+[CONFIG] debug flags: 0x00000000
+[LIBCONFIG] log_config: 3/3 parameters successfully set, (1 to default value)
+[LIBCONFIG] log_config: 53/53 parameters successfully set, (46 to default value)
+[LIBCONFIG] log_config: 53/53 parameters successfully set, (53 to default value)
+[LIBCONFIG] log_config: 16/16 parameters successfully set, (16 to default value)
+[LIBCONFIG] log_config: 16/16 parameters successfully set, (16 to default value)
+log init done
+Reading in command-line options
+[LIBCONFIG] (root): 41/41 parameters successfully set, (38 to default value)
+[LIBCONFIG] (root): 6/6 parameters successfully set, (5 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] THREAD_STRUCT.[0]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] THREAD_STRUCT.[0]: 2/2 parameters successfully set, (0 to default value)
+[CONFIG] parallel_conf is set to 0
+[CONFIG] worker_conf is set to 1
+Configuration: nb_rrc_inst 1, nb_nr_L1_inst 1, nb_ru 1
+[LIBCONFIG] TTracer: 3/3 parameters successfully set, (3 to default value)
+configuring for RAU/RRU
+[LIBCONFIG] opt: 3/3 parameters successfully set, (3 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] L1s.[0]: 19/19 parameters successfully set, (16 to default value)
+Initializing northbound interface for L1
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] L1s.[0]: 19/19 parameters successfully set, (16 to default value)
+Initializing northbound interface for L1
+[LIBCONFIG] list prs_config not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] gNBs.[0].servingCellConfigCommon.[0]: 60/60 parameters successfully set, (10 to default value)
+[LIBCONFIG] list gNBs.[0].servingCellConfigDedicated not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+DL frequency 3319680000: band 78, UL frequency 3319680000
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully set, (0 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default val21889.374584 [GNB_APP] I SDAP layer is disabled
+21889.374586 [GNB_APP] I Data Radio Bearer count 1
+21889.374594 [NR_RRC] I do_SIB23_NR, size 9 
+ 21889.374939 [PDCP] I pdcp init,usegtp 
+21889.375078 [GNB_APP] I default drx 0
+21889.375083 [GNB_APP] I [gNB 0] gNB_app_register for instance 0
+21889.375086 [UTIL] I Creating thread TASK_SCTP with affinity -1 and priority 50
+21889.377749 [ITTI] I Created Posix thread TASK_SCTP
+21889.377756 [X2AP] I X2AP is disabled.
+21889.377823 [UTIL] I Creating thread TASK_NGAP with affinity -1 and priority 50
+21889.380446 [NGAP] I Starting NGAP layer
+21889.380463 [ITTI] I Created Posix thread TASK_NGAP
+21889.380467 [UTIL] I Creating thread TASK_GNB_APP with affinity -1 and priority 50
+21889.380768 [NGAP] I Registered new gNB[0] and macro gNB id 3584
+21889.380773 [NGAP] I [gNB 0] check the amf registration state
+21889.381100 [NGAP] I 3584 -> 0000e000
+21889.381489 [NGAP] I servedGUAMIs.list.count 2
+21889.381492 [NGAP] I PLMNSupportList.list.count 1
+21889.381493 [NGAP] I PLMNSupportList.list.count 6
+21889.383348 [ITTI] I Created Posix thread TASK_GNB_APP
+21889.383354 [UTIL] I Creating thread TASK_RRC_GNB with affinity -1 and priority 50
+21889.383709 [GNB_APP] I [gNB 0] Received NGAP_REGISTER_GNB_CNF: associated AMF 1
+21889.386104 [ITTI] I Created Posix thread TASK_RRC_GNB
+21889.386209 [GTPU] I Configuring GTPu
+21889.386247 [GTPU] I SA mode 
+21889.386250 [GTPU] I Configuring GTPu address : 192.168.72.153, port : 2152
+21889.386253 [GTPU] I Initializing UDP for local address 192.168.72.153 with port 2152
+21889.386272 [GTPU] I Created gtpu instance id: 101
+21889.386321 [NR_RRC] I Entering main loop of NR_RRC message task
+21889.386331 [UTIL] I Creating thread TASK_GTPV1_U with affinity -1 and priority 50
+21889.386333 [NR_RRC] I Received F1 Setup Request from gNB_DU 3584 (gnb-rfsim) on assoc_id -1
+21889.386372 [RRC] I Accepting DU 3584 (gnb-rfsim), sending F1 Setup Response
+21889.386376 [MAC] I received F1 Setup Response from CU (null)
+21889.386379 [RRC] I Accepting new CU-UP ID 3584 name gnb-rfsim (assoc_id -1)
+21889.388911 [ITTI] I Created Posix thread TASK_GTPV1_U
+21889.394841 [PHY] I Initializing gNB 0 single_thread_flag:1
+21889.394844 [PHY] I Initializing gNB 0
+21889.394846 [PHY] I Registering with MAC interface module (before 0x56262f67d440)
+21889.394848 [PHY] I Installing callbacks for IF_Module - UL_indication
+21889.394850 [PHY] I Registering with MAC interface module (after 0x56262f67d440)
+21889.394851 [PHY] I Setting indication lists
+21889.394852 [PHY] I [nr-gnb.c] gNB structure allocated
+21889.445204 [PHY] I RU GPIO control set as 'generic'
+21889.445208 [PHY] I Setting clock source to internal
+21889.445209 [PHY] I Setting time source to internal
+21889.445226 [PHY] I number of L1 instances 1, number of RU 1, number of CPU cores 12
+21889.445229 [PHY] E DJP - delete code above this ../../../executables/nr-ru.c:1822
+21889.445230 [PHY] I Copying frame parms from gNB in RC to gNB 0 in ru 0 and frame_parms in ru
+21889.445393 [PHY] I Starting ru_thread 0
+21889.445397 [PHY] I Initialized RU proc 0 (,synch_to_ext_device),
+21889.445398 [PHY] I RU Thread pool size 2
+21889.445400 [PHY] I RU thread-pool core string -1,-1
+21889.445404 [UTIL] I Creating thread Tpool0_-1 with affinity -1 and priority 50
+ue)
+NRRRC 0: Southbound Transport local_mac
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully set, (0 to default value)
+[LIBCONFIG] security: 4/4 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] eNBs.[0]: 1/1 parameters successfully set, (1 to default value)
+[LIBCONFIG] gNBs.[0]: 1/1 parameters successfully set, (1 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[0]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[1]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[2]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].amf_ip_address.[0]: 4/4 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].SCTP: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].NETWORK_INTERFACES: 10/10 parameters successfully set, (3 to default value)
+[LIBCONFIG] gNBs.[0].NETWORK_INTERFACES: 10/10 parameters successfully set, (3 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[0]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[1]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[2]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].NETWORK_INTERFACES: 10/10 parameters successfully set, (3 to default value)
+START MAIN THREADS
+RC.nb_nr_L1_inst:1
+Initializing gNB threads single_thread_flag:1 wait_for_sync:0
+wait_gNBs()
+Waiting for gNB L1 instances to all get configured ... sleeping 50ms (nb_nr_sL1_inst 1)
+gNB L1 are configured
+About to Init RU threads RC.nb_RU:1
+Initializing RU threads
+configuring RU from file
+[LIBCONFIG] RUs.[0]: 43/43 parameters successfully set, (31 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+Set RU mask to 1
+Creating RC.ru[0]:0x56262f6d5c60
+Setting function for RU 0 to gNodeB_3GPP
+[RU 0] Setting nr_flag 0, nr_band 78, nr_scs_for_raster 1
+[RU 0] Setting half-slot parallelization to 1
+configuring ru_id 0 (start_rf 0x56262abf65d0)
+create a thread for core -1
+create a t21889.447573 [UTIL] I Creating thread Tpool1_-1 with affinity -1 and priority 50
+21889.449725 [GNB_APP] W E2 agent is DISABLED (for activation, define .e2_agent.{near_ric_ip_addr,sm_dir} parameters)
+21889.449731 [UTIL] I Creating thread ru_thread with affinity -1 and priority 97
+21889.452139 [PHY] I Starting RU 0 (,synch_to_ext_device) on cpu 6
+21889.452145 [PHY] I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+21889.452147 [PHY] W Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+21889.452149 [PHY] I fp->scs=30000
+21889.452150 [PHY] I fp->ofdm_symbol_size=1536
+21889.452151 [PHY] I fp->nb_prefix_samples0=132
+21889.452152 [PHY] I fp->nb_prefix_samples=108
+21889.452153 [PHY] I fp->slots_per_subframe=2
+21889.452154 [PHY] I fp->samples_per_subframe_wCP=43008
+21889.452155 [PHY] I fp->samples_per_frame_wCP=430080
+21889.452156 [PHY] I fp->samples_per_subframe=46080
+21889.452157 [PHY] I fp->samples_per_frame=460800
+21889.452157 [PHY] I Waiting for RUs to be configured ... RC.ru_mask:01
+21889.452158 [PHY] I fp->dl_CarrierFreq=3319680000
+21889.452159 [PHY] I fp->ul_CarrierFreq=3319680000
+21889.452161 [PHY] I Setting RF config for N_RB 106, NB_RX 1, NB_TX 1
+21889.452162 [PHY] I Channel 0: setting tx_gain offset 0, rx_gain offset 75, tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0 Hz, sample_rate 46080000 Hz
+21889.452169 [PHY] I Initializing RU signal buffers (if_south local RF) nb_tx 1, nb_rx 1
+21889.452518 [PHY] I [INIT] common.txdata[0] = 0x7f3184ce6040 (1843200 bytes,sf_extension 0)
+21889.452521 [PHY] I [INIT] common.txdata[0] = 0x7f3184ce6040 
+21889.452823 [PHY] I nb_tx 1
+21889.452970 [PHY] I rxdata_7_5kHz[0] 0x7f3194059040 for RU 0
+21889.453261 [PHY] I [INIT] common.txdata_BF= 0x7f317c000b00 (8 bytes)
+21889.453303 [PHY] I txdataF_BF[0] 0x7f319402e040 for RU 0
+21889.453370 [PHY] I rxdataF[0] 0x7f3184929040 for RU 0
+21889.456565 [PHY] I [INIT] nr_phy_init_RU() ru->num_gNB:1 
+21889.457049 [HW] W The RFSIMULATOR environment variable is deprecated and support will be removed in the future. Instead, add parameter --rfsimulator.serveraddr server to set the server address. Note: the default is "server"; for the gNB/eNB, you don't have to set any configuration.
+21889.457052 [HW] I Remove RFSIMULATOR environment variable to get rid of this message and the sleep.
+21899.457064 [HW] W sample_rate 46080000.000000
+21899.457074 [HW] I Running as server waiting opposite rfsimulators to connect
+21899.457149 [HW] I [RAU] has loaded RFSIMULATOR device.
+21899.457153 [PHY] I RU 0 Setting N_TA_offset to 600 samples (factor 1.500000, UL Freq 3300600, N_RB 106, mu 1)
+21899.457155 [PHY] I Signaling main thread that RU 0 is ready, sl_ahead 6
+21899.457166 [PHY] I RUs configured
+21899.457172 [PHY] I init_eNB_afterRU() RC.nb_nr_inst:1
+21899.457174 [PHY] I RC.nb_nr_CC[inst:0]:0x7f3197114010
+21899.457177 [PHY] I [gNB 0] phy_init_nr_gNB() About to wait for gNB to be configured
+21899.622056 [PHY] I Initialise nr transport
+21899.787540 [PHY] I Mapping RX ports from 1 RUs to gNB 0
+21899.787550 [PHY] I gNB->num_RU:1
+21899.787552 [PHY] I Attaching RU 0 antenna 0 to gNB antenna 0
+21899.787559 [UTIL] I Creating thread Tpool0_-1 with affinity -1 and priority 50
+21899.789891 [UTIL] I Creating thread Tpool1_-1 with affinity -1 and priority 50
+21899.792171 [UTIL] I Creating thread Tpool2_-1 with affinity -1 and priority 50
+21899.794394 [UTIL] I Creating thread Tpool3_-1 with affinity -1 and priority 50
+21899.796568 [UTIL] I Creating thread Tpool4_-1 with affinity -1 and priority 50
+21899.798653 [UTIL] I Creating thread Tpool5_-1 with affinity -1 and priority 50
+21899.800740 [UTIL] I Creating thread Tpool6_-1 with affinity -1 and priority 50
+21899.802839 [UTIL] I Creating thread Tpool7_-1 with affinity -1 and priority 50
+21899.815696 [PHY] I Creating thread for TX reordering and dispatching to RU
+21899.815704 [UTIL] I Creating thread thread_tx_reorder with affinity -1 and priority 97
+21899.817952 [UTIL] I Creating thread L1_stats with affinity -1 and priority 1
+hread for core -1
+[LIBCONFIG] e2_agent: 2/2 parameters successfully set, (2 to default value)
+wait RUs
+[LIBCONFIG] device.recplay: 8/8 parameters successfully set, (8 to default value)
+[LIBCONFIG] device: 1/1 parameters successfully set, (1 to default value)
+[LIBCONFIG] loader: 2/2 parameters successfully set, (2 to default value)
+[LIBCONFIG] loader.rfsimulator: 2/2 parameters successfully set, (1 to default value)
+shlib_path librfsimulator.so
+[LOADER] library librfsimulator.so successfully loaded
+[LIBCONFIG] rfsimulator: 9/9 parameters successfully set, (8 to default value)
+Initializing random number generator, seed 5568914418906873063
+setup_RU_buffers: frame_parms = 0x7f31866ac010
+waiting for sync (ru_thread,-1/0x56262b8160b4,0x56262d1183a0,0x56262d1175e0)
+RC.ru_mask:00
+ALL RUs READY!
+RC.nb_RU:1
+ALL RUs ready - init gNBs
+Not NFAPI mode - call init_eNB_afterRU()
+[LIBCONFIG] loader.dfts: 2/2 parameters successfully set, (1 to default value)
+shlib_path libdfts.so
+[LOADER] library libdfts.so successfully loaded
+[LIBCONFIG] loader.ldpc: 2/2 parameters successfully set, (1 to default value)
+shlib_path libldpc.so
+[LOADER] library libldpc.so successfully loaded
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+waiting for sync (L1_stats_thread,-1/0x56262b8160b4,0x56262d1183a0,0x56262d1175e0)
+ALL RUs ready - ALL gNBs ready
+Sending sync to all threads
+Entering ITTI signals handler
+TYPE <CTRL-C> TO TERMINATE
+got sync (L1_stats_thread)
+got sync (ru_thread)
+21899.820150 [HW] W running command "/sbin/sysctl -n -e -q -w net.core.rmem_default=134217728" to increase RFsim performance
+21899.821262 [HW] W running command "/sbin/sysctl -n -e -q -w net.core.rmem_max=134217728" to increase RFsim performance
+21899.821861 [HW] W running command "/sbin/sysctl -n -e -q -w net.core.wmem_default=134217728" to increase RFsim performance
+21899.822434 [HW] W running command "/sbin/sysctl -n -e -q -w net.core.wmem_max=134217728" to increase RFsim performance
+21899.823037 [PHY] I RU 0 rf device ready
+21899.823041 [PHY] I RU 0 RF started opp_enabled 0
+21899.823045 [HW] W No connected device, generating void samples...
+21899.824574 [PHY] I tx_reorder_thread started
+21902.437706 [NR_MAC] I Frame.Slot 128.0
+
+21905.060687 [NR_MAC] I Frame.Slot 256.0
+
+21907.685084 [NR_MAC] I Frame.Slot 384.0
+
+21908.576487 [HW] I A client connects, sending the current time
+21909.756281 [NR_MAC] I Frame.Slot 512.0
+
+21909.881209 [NR_PHY] I [gNB 0][RAPROC] Frame 567, slot 19 Initiating RA procedure with preamble 7, energy 54.9 dB (I0 0, thres 200), delay 0 start symbol 0 freq index 0
+21909.881305 [MAC] A UL_info[Frame 567, Slot 19] Calling initiate_ra_proc RACH:SFN/SLOT:567/19
+21909.881312 [NR_MAC] I [gNB 0][RAPROC] CC_id 0 Frame 567 Activating Msg2 generation in frame 568, slot 7 using RA rnti 10b SSB, new rnti 7ecb index 0 RA index 0
+21909.881358 [NR_MAC] A [gNB 0][RAPROC] CC_id 0 Frame 568, slotP 7: Generating RA-Msg2 DCI, rnti 0x10b, state 1, CoreSetType 2
+21909.881364 [NR_MAC] I [RAPROC] Msg3 slot 17: current slot 7 Msg3 frame 568 k2 7 Msg3_tda_id 3
+21909.881383 [NR_MAC] W [gNB 0][RAPROC] Frame 568, Subframe 7: rnti 7ecb RA state 2
+21909.883627 [NR_MAC] I Adding UE with rnti 0x7ecb
+21909.884112 [NR_MAC] I [gNB 0][RAPROC] PUSCH with TC_RNTI 0x7ecb received correctly, adding UE MAC Context RNTI 0x7ecb
+21909.884117 [NR_MAC] A [RAPROC] RA-Msg3 received (sdu_lenP 7)
+21909.884130 [MAC] W [RAPROC] Received SDU for CCCH length 6 for UE 7ecb
+21909.884149 [RLC] I activated srb0 for UE with RNTI 0x7ecb
+21909.884154 [RLC] I Added srb 1 to UE with RNTI 0x7ecb
+21909.884223 [NR_MAC] I Activating scheduling RA-Msg4 for TC_RNTI 0x7ecb (state 2)
+21909.884226 [NR_MAC] W Unexpected ULSCH HARQ PID 0 (have -1) for RNTI 0x7ecb (ignore this warning for RA)
+21909.884229 [NR_RRC] I Decoding CCCH: RNTI 7ecb, payload_size 6
+21909.884238 [NR_RRC] I UE 7ecb 5G-S-TMSI-Part1 doesn't exist, setting ng_5G_S_TMSI_Part1 => 12345
+21909.884401 [NR_RRC] I Returning new RRC UE context RRC ue id: 1
+21909.884408 [NR_RRC] I Created new UE context: CU UE ID 1 DU UE ID 32459 (rnti: 7ecb, random ue id 3039)
+21909.884410 [NR_RRC] I rrc_gNB_generate_RRCSetup for RNTI 7ecb
+21909.884432 [NR_MAC] I No CU UE ID stored for UE RNTI 7ecb, adding CU UE ID 1
+21909.884471 [NR_MAC] I ( 569. 7) SRB0 has 137 bytes
+21909.884619 [NR_MAC] I ( 569.10) SRB0 has 137 bytes
+21909.884633 [NR_MAC] I UE 7ecb Generate msg4: feedback at  569.17, payload 149 bytes, next state WAIT_Msg4_ACK
+21909.887388 [NR_MAC] A (UE RNTI 0x7ecb) Received Ack of RA-Msg4. CBRA procedure succeeded!
+21909.887406 [NR_MAC] I  570. 3 UE 7ecb: Activate RRC processing timer (10 ms)
+21909.892711 [NR_MAC] I  571. 9 RNTI 7ecb: RRC processing timer expired
+21909.898081 [NR_RRC] I Received rrcSetupComplete, 5g_s_TMSI: 0x3039, amf_set_id: 0x0(0), amf_pointer: 0x0(0), 5g TMSI: 0x3039 
+21909.898094 [NR_RRC] A [FRAME 00000][gNB][MOD 00][RNTI 1] [RAPROC] Logical Channel UL-DCCH, processing NR_RRCSetupComplete from UE (SRB1 Active)
+21909.898102 [NR_RRC] I [FRAME 00000][gNB][MOD 00][RNTI 1] UE State = NR_RRC_CONNECTED 
+21909.898112 [NGAP] I [gNB 0] Chose AMF 'OAI-AMF' (assoc_id 13) through selected PLMN Identity index 0 MCC 208 MNC 95
+21910.073755 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (8 meas)
+UE 7ecb: dlsch_rounds 10/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.05314 MCS 9
+UE 7ecb: dlsch_total_bytes 1107
+UE 7ecb: ulsch_rounds 72/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.05314 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 8260, ulsch_total_bytes_received 8260
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21910.422758 [NR_MAC] I Frame.Slot 768.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 22/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.01501 MCS 9
+UE 7ecb: dlsch_total_bytes 2583
+UE 7ecb: ulsch_rounds 200/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.01351 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 23108, ulsch_total_bytes_received 23108
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21910.752890 [NR_MAC] I Frame.Slot 896.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 35/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00382 MCS 9
+UE 7ecb: dlsch_total_bytes 4182
+UE 7ecb: ulsch_rounds 328/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00343 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 37956, ulsch_total_bytes_received 37956
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21911.075439 [NR_MAC] I Frame.Slot 0.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 48/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00097 MCS 9
+UE 7ecb: dlsch_total_bytes 5781
+UE 7ecb: ulsch_rounds 456/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00087 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 52804, ulsch_total_bytes_received 52804
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21911.409948 [NR_MAC] I Frame.Slot 128.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 61/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00025 MCS 9
+UE 7ecb: dlsch_total_bytes 7380
+UE 7ecb: ulsch_rounds 584/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00022 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 67652, ulsch_total_bytes_received 67652
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21911.753082 [NR_MAC] I Frame.Slot 256.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 74/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00006 MCS 9
+UE 7ecb: dlsch_total_bytes 8979
+UE 7ecb: ulsch_rounds 712/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00006 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 82500, ulsch_total_bytes_received 82500
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21912.098136 [NR_MAC] I Frame.Slot 384.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 86/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00002 MCS 9
+UE 7ecb: dlsch_total_bytes 10455
+UE 7ecb: ulsch_rounds 840/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00002 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 97348, ulsch_total_bytes_received 97348
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21912.439886 [NR_MAC] I Frame.Slot 512.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 99/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 12054
+UE 7ecb: ulsch_rounds 968/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 112196, ulsch_total_bytes_received 112196
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21912.787986 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 112/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 13653
+UE 7ecb: ulsch_rounds 1096/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 127044, ulsch_total_bytes_received 127044
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21913.130522 [NR_MAC] I Frame.Slot 768.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 125/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 15252
+UE 7ecb: ulsch_rounds 1224/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 141892, ulsch_total_bytes_received 141892
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21913.473735 [NR_MAC] I Frame.Slot 896.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 138/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 16851
+UE 7ecb: ulsch_rounds 1352/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 156740, ulsch_total_bytes_received 156740
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21913.877929 [NR_MAC] I Frame.Slot 0.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 150/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 18327
+UE 7ecb: ulsch_rounds 1480/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 171588, ulsch_total_bytes_received 171588
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21914.221175 [NR_MAC] I Frame.Slot 128.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 163/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 19926
+UE 7ecb: ulsch_rounds 1608/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 186436, ulsch_total_bytes_received 186436
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21914.547140 [NR_MAC] I Frame.Slot 256.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 176/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 21525
+UE 7ecb: ulsch_rounds 1736/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 201284, ulsch_total_bytes_received 201284
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21914.903857 [NR_MAC] I Frame.Slot 384.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 189/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 23124
+UE 7ecb: ulsch_rounds 1864/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 216132, ulsch_total_bytes_received 216132
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21915.266491 [NR_MAC] I Frame.Slot 512.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 202/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 24723
+UE 7ecb: ulsch_rounds 1992/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 230980, ulsch_total_bytes_received 230980
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21915.609140 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 214/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 26199
+UE 7ecb: ulsch_rounds 2120/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 245828, ulsch_total_bytes_received 245828
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21915.973170 [NR_MAC] I Frame.Slot 768.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 227/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 27798
+UE 7ecb: ulsch_rounds 2248/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 260676, ulsch_total_bytes_received 260676
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21916.321397 [NR_MAC] I Frame.Slot 896.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 240/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 29397
+UE 7ecb: ulsch_rounds 2376/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 275524, ulsch_total_bytes_received 275524
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21916.672964 [NR_MAC] I Frame.Slot 0.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 253/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 30996
+UE 7ecb: ulsch_rounds 2504/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 290372, ulsch_total_bytes_received 290372
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21917.042566 [NR_MAC] I Frame.Slot 128.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 266/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 32595
+UE 7ecb: ulsch_rounds 2632/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 305220, ulsch_total_bytes_received 305220
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21917.427274 [NR_MAC] I Frame.Slot 256.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 278/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 34071
+UE 7ecb: ulsch_rounds 2760/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 320068, ulsch_total_bytes_received 320068
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21917.787169 [NR_MAC] I Frame.Slot 384.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 291/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 35670
+UE 7ecb: ulsch_rounds 2888/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 334916, ulsch_total_bytes_received 334916
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21918.146127 [NR_MAC] I Frame.Slot 512.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 304/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 37269
+UE 7ecb: ulsch_rounds 3016/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 349764, ulsch_total_bytes_received 349764
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21918.507546 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 317/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 38868
+UE 7ecb: ulsch_rounds 3144/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 364612, ulsch_total_bytes_received 364612
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21918.892953 [NR_MAC] I Frame.Slot 768.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 330/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 40467
+UE 7ecb: ulsch_rounds 3272/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 379460, ulsch_total_bytes_received 379460
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21919.259882 [NR_MAC] I Frame.Slot 896.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 342/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 41943
+UE 7ecb: ulsch_rounds 3400/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 394308, ulsch_total_bytes_received 394308
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21919.631224 [NR_MAC] I Frame.Slot 0.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 355/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 43542
+UE 7ecb: ulsch_rounds 3528/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 409156, ulsch_total_bytes_received 409156
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21919.974233 [NR_MAC] I Frame.Slot 128.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 368/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 45141
+UE 7ecb: ulsch_rounds 3656/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 424004, ulsch_total_bytes_received 424004
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21920.326126 [NR_MAC] I Frame.Slot 256.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 381/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 46740
+UE 7ecb: ulsch_rounds 3784/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 438852, ulsch_total_bytes_received 438852
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21920.667106 [NR_MAC] I Frame.Slot 384.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 394/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 48339
+UE 7ecb: ulsch_rounds 3912/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 453700, ulsch_total_bytes_received 453700
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21921.014019 [NR_MAC] I Frame.Slot 512.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 406/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 49815
+UE 7ecb: ulsch_rounds 4040/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 468548, ulsch_total_bytes_received 468548
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21921.355355 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 419/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 51414
+UE 7ecb: ulsch_rounds 4168/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 483396, ulsch_total_bytes_received 483396
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21921.730037 [NR_MAC] I Frame.Slot 768.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 432/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 53013
+UE 7ecb: ulsch_rounds 4296/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 498244, ulsch_total_bytes_received 498244
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21922.093161 [NR_MAC] I Frame.Slot 896.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 445/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 54612
+UE 7ecb: ulsch_rounds 4424/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 513092, ulsch_total_bytes_received 513092
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21922.440584 [NR_MAC] I Frame.Slot 0.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 458/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 56211
+UE 7ecb: ulsch_rounds 4552/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 527940, ulsch_total_bytes_received 527940
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21922.782038 [NR_MAC] I Frame.Slot 128.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 470/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 57687
+UE 7ecb: ulsch_rounds 4680/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 542788, ulsch_total_bytes_received 542788
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21923.166979 [NR_MAC] I Frame.Slot 256.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 483/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 59286
+UE 7ecb: ulsch_rounds 4808/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 557636, ulsch_total_bytes_received 557636
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21923.560416 [NR_MAC] I Frame.Slot 384.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 496/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 60885
+UE 7ecb: ulsch_rounds 4936/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 572484, ulsch_total_bytes_received 572484
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21923.918521 [NR_MAC] I Frame.Slot 512.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 509/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 62484
+UE 7ecb: ulsch_rounds 5064/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 587332, ulsch_total_bytes_received 587332
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21924.276547 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 522/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 64083
+UE 7ecb: ulsch_rounds 5192/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 602180, ulsch_total_bytes_received 602180
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21924.621625 [NR_MAC] I Frame.Slot 768.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 534/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 65559
+UE 7ecb: ulsch_rounds 5320/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 617028, ulsch_total_bytes_received 617028
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21924.993404 [NR_MAC] I Frame.Slot 896.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 547/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 67158
+UE 7ecb: ulsch_rounds 5448/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 631876, ulsch_total_bytes_received 631876
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21925.410430 [NR_MAC] I Frame.Slot 0.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 560/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 68757
+UE 7ecb: ulsch_rounds 5576/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 646724, ulsch_total_bytes_received 646724
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21925.785845 [NR_MAC] I Frame.Slot 128.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 573/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 70356
+UE 7ecb: ulsch_rounds 5704/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 661572, ulsch_total_bytes_received 661572
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21926.151531 [NR_MAC] I Frame.Slot 256.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 586/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 71955
+UE 7ecb: ulsch_rounds 5832/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 676420, ulsch_total_bytes_received 676420
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21926.504995 [NR_MAC] I Frame.Slot 384.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 598/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 73431
+UE 7ecb: ulsch_rounds 5960/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 691268, ulsch_total_bytes_received 691268
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21926.863343 [NR_MAC] I Frame.Slot 512.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 611/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 75030
+UE 7ecb: ulsch_rounds 6088/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 706116, ulsch_total_bytes_received 706116
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21927.222246 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 624/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 76629
+UE 7ecb: ulsch_rounds 6216/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 720964, ulsch_total_bytes_received 720964
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21927.594406 [NR_MAC] I Frame.Slot 768.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 637/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 78228
+UE 7ecb: ulsch_rounds 6344/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 735812, ulsch_total_bytes_received 735812
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21927.960444 [NR_MAC] I Frame.Slot 896.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 650/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 79827
+UE 7ecb: ulsch_rounds 6472/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 750660, ulsch_total_bytes_received 750660
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21928.322260 [NR_MAC] I Frame.Slot 0.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 662/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 81303
+UE 7ecb: ulsch_rounds 6600/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 765508, ulsch_total_bytes_received 765508
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21928.680295 [NR_MAC] I Frame.Slot 128.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 675/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 82902
+UE 7ecb: ulsch_rounds 6728/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 780356, ulsch_total_bytes_received 780356
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21929.049699 [NR_MAC] I Frame.Slot 256.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 688/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 84501
+UE 7ecb: ulsch_rounds 6856/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 795204, ulsch_total_bytes_received 795204
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21929.407882 [NR_MAC] I Frame.Slot 384.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 701/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 86100
+UE 7ecb: ulsch_rounds 6984/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 810052, ulsch_total_bytes_received 810052
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21929.751927 [NR_MAC] I Frame.Slot 512.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 714/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 87699
+UE 7ecb: ulsch_rounds 7112/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 824900, ulsch_total_bytes_received 824900
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21930.103779 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 726/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 89175
+UE 7ecb: ulsch_rounds 7240/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 839748, ulsch_total_bytes_received 839748
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21930.445544 [NR_MAC] I Frame.Slot 768.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -44 (16 meas)
+UE 7ecb: dlsch_rounds 739/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 90774
+UE 7ecb: ulsch_rounds 7368/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 854596, ulsch_total_bytes_received 854596
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21930.494436 [NR_MAC] W Detected UL Failure on PUSCH after 10 PUSCH DTX, stopping scheduling
+21930.697493 [NR_MAC] I Frame.Slot 896.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP -92 (2 meas)
+UE 7ecb: dlsch_rounds 741/1/1/1, dlsch_errors 1, pucch0_DTX 4, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 91020
+UE 7ecb: ulsch_rounds 7380/4/3/3, ulsch_DTX 10, ulsch_errors 3, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 855988, ulsch_total_bytes_received 855524
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21930.915430 [NR_MAC] I Frame.Slot 0.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP 0 (0 meas)
+UE 7ecb: dlsch_rounds 741/1/1/1, dlsch_errors 1, pucch0_DTX 4, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 91020
+UE 7ecb: ulsch_rounds 7380/4/3/3, ulsch_DTX 10, ulsch_errors 3, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 855988, ulsch_total_bytes_received 855524
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21931.133686 [NR_MAC] I Frame.Slot 128.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP 0 (0 meas)
+UE 7ecb: dlsch_rounds 741/1/1/1, dlsch_errors 1, pucch0_DTX 4, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 91020
+UE 7ecb: ulsch_rounds 7380/4/3/3, ulsch_DTX 10, ulsch_errors 3, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 855988, ulsch_total_bytes_received 855524
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21931.272750 [HW] W Lost socket
+21932.239056 [NR_MAC] I Frame.Slot 256.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP 0 (0 meas)
+UE 7ecb: dlsch_rounds 741/1/1/1, dlsch_errors 1, pucch0_DTX 4, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 91020
+UE 7ecb: ulsch_rounds 7380/4/3/3, ulsch_DTX 10, ulsch_errors 3, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 855988, ulsch_total_bytes_received 855524
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21934.856743 [NR_MAC] I Frame.Slot 384.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP 0 (0 meas)
+UE 7ecb: dlsch_rounds 741/1/1/1, dlsch_errors 1, pucch0_DTX 4, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 91020
+UE 7ecb: ulsch_rounds 7380/4/3/3, ulsch_DTX 10, ulsch_errors 3, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 855988, ulsch_total_bytes_received 855524
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21936.916327 [HW] I A client connects, sending the current time
+21937.971881 [NR_MAC] I Frame.Slot 512.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP 0 (0 meas)
+UE 7ecb: dlsch_rounds 741/1/1/1, dlsch_errors 1, pucch0_DTX 4, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 91020
+UE 7ecb: ulsch_rounds 7380/4/3/3, ulsch_DTX 10, ulsch_errors 3, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 855988, ulsch_total_bytes_received 855524
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+
+21938.196643 [NR_PHY] I [gNB 0][RAPROC] Frame 615, slot 19 Initiating RA procedure with preamble 34, energy 56.4 dB (I0 0, thres 200), delay 0 start symbol 0 freq index 0
+21938.196740 [MAC] A UL_info[Frame 615, Slot 19] Calling initiate_ra_proc RACH:SFN/SLOT:615/19
+21938.196747 [NR_MAC] I [gNB 0][RAPROC] CC_id 0 Frame 615 Activating Msg2 generation in frame 616, slot 7 using RA rnti 10b SSB, new rnti b6f0 index 0 RA index 0
+21938.196796 [NR_MAC] A [gNB 0][RAPROC] CC_id 0 Frame 616, slotP 7: Generating RA-Msg2 DCI, rnti 0x10b, state 1, CoreSetType 2
+21938.196803 [NR_MAC] I [RAPROC] Msg3 slot 17: current slot 7 Msg3 frame 616 k2 7 Msg3_tda_id 3
+21938.196807 [NR_MAC] W [gNB 0][RAPROC] Frame 616, Subframe 7: rnti b6f0 RA state 2
+21938.198804 [NR_MAC] I Adding UE with rnti 0xb6f0
+21938.199259 [NR_MAC] I [gNB 0][RAPROC] PUSCH with TC_RNTI 0xb6f0 received correctly, adding UE MAC Context RNTI 0xb6f0
+21938.199264 [NR_MAC] A [RAPROC] RA-Msg3 received (sdu_lenP 7)
+21938.199276 [MAC] W [RAPROC] Received SDU for CCCH length 6 for UE b6f0
+21938.199292 [RLC] I activated srb0 for UE with RNTI 0xb6f0
+21938.199297 [RLC] I Added srb 1 to UE with RNTI 0xb6f0
+21938.199352 [NR_MAC] I Activating scheduling RA-Msg4 for TC_RNTI 0xb6f0 (state 2)
+21938.199355 [NR_MAC] W Unexpected ULSCH HARQ PID 0 (have -1) for RNTI 0xb6f0 (ignore this warning for RA)
+21938.199363 [NR_RRC] I Decoding CCCH: RNTI b6f0, payload_size 6
+21938.199373 [NR_RRC] I Checking for UE 5G S-TMSI 12345: RNTI 7ecb
+21938.199376 [NR_RRC] I  5G-S-TMSI-Part1 exists, old rnti 7ecb => b6f0
+
+Assertion (0) failed!
+In rrc_handle_RRCSetupRequest() ../../../openair2/RRC/NR/rrc_gNB.c:1227
+not implemented
+21938.217010 [NR_PHY] I [gNB 0][RAPROC] Frame 623, slot 19 Initiating RA procedure with preamble 36, energy 54.9 dB (I0 13, thres 200), delay 0 start symbol 0 freq index 0
+21938.217136 [MAC] A UL_info[Frame 623, Slot 19] Calling initiate_ra_proc RACH:SFN/SLOT:623/19
+21938.217148 [NR_MAC] I [gNB 0][RAPROC] CC_id 0 Frame 623 Activating Msg2 generation in frame 624, slot 7 using RA rnti 10b SSB, new rnti 3400 index 0 RA index 1
+21938.217219 [NR_MAC] A [gNB 0][RAPROC] CC_id 0 Frame 624, slotP 7: Generating RA-Msg2 DCI, rnti 0x10b, state 1, CoreSetType 2
+21938.217233 [NR_MAC] I [RAPROC] Msg3 slot 17: current slot 7 Msg3 frame 624 k2 7 Msg3_tda_id 3
+21938.217239 [NR_MAC] W [gNB 0][RAPROC] Frame 624, Subframe 7: rnti 3400 RA state 2
+21938.219296 [NR_MAC] I Adding UE with rnti 0x3400
+21938.219847 [NR_MAC] I [gNB 0][RAPROC] PUSCH with TC_RNTI 0x3400 received correctly, adding UE MAC Context RNTI 0x3400
+21938.219853 [NR_MAC] A [RAPROC] RA-Msg3 received (sdu_lenP 7)
+21938.219866 [MAC] W [RAPROC] Received SDU for CCCH length 6 for UE 3400
+21938.219889 [RLC] I activated srb0 for UE with RNTI 0x3400
+21938.219894 [RLC] I Added srb 1 to UE with RNTI 0x3400
+21938.219950 [NR_MAC] I Activating scheduling RA-Msg4 for TC_RNTI 0x3400 (state 2)
+21938.219952 [NR_MAC] W Unexpected ULSCH HARQ PID 0 (have -1) for RNTI 0x3400 (ignore this warning for RA)
+21938.238132 [NR_PHY] I [gNB 0][RAPROC] Frame 631, slot 19 Initiating RA procedure with preamble 5, energy 56.4 dB (I0 13, thres 200), delay 0 start symbol 4 freq index 0
+21938.238196 [MAC] A UL_info[Frame 631, Slot 19] Calling initiate_ra_proc RACH:SFN/SLOT:631/19
+21938.238203 [NR_MAC] I [gNB 0][RAPROC] CC_id 0 Frame 631 Activating Msg2 generation in frame 632, slot 7 using RA rnti 10f SSB, new rnti 2bfa index 0 RA index 2
+21938.238265 [NR_MAC] A [gNB 0][RAPROC] CC_id 0 Frame 632, slotP 7: Generating RA-Msg2 DCI, rnti 0x10f, state 1, CoreSetType 2
+21938.238274 [NR_MAC] I [RAPROC] Msg3 slot 17: current slot 7 Msg3 frame 632 k2 7 Msg3_tda_id 3
+21938.238279 [NR_MAC] W [gNB 0][RAPROC] Frame 632, Subframe 7: rnti 2bfa RA state 2
+21938.240432 [NR_MAC] W No signal
+21938.240443 [NR_MAC] W handle harq for rnti 2bfa, in RA process
+21938.240446 [NR_MAC] E handle_nr_ul_harq(): unknown RNTI 0x2bfa in PUSCH
+GNU gdb (Ubuntu 9.2-0ubuntu1~20.04.1) 9.2
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Attaching to process 1
+[New LWP 24]
+[New LWP 25]
+[New LWP 26]
+[New LWP 27]
+[New LWP 30]
+[New LWP 33]
+[New LWP 36]
+[New LWP 39]
+[New LWP 42]
+[New LWP 45]
+[New LWP 48]
+[New LWP 51]
+[New LWP 60]
+[New LWP 63]
+[New LWP 66]
+[New LWP 69]
+[New LWP 72]
+[New LWP 75]
+[New LWP 78]
+[New LWP 81]
+[New LWP 84]
+[New LWP 87]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+320	../sysdeps/nptl/futex-internal.h: No such file or directory.
+futex_abstimed_wait_cancelable (private=0, abstime=0x0, clockid=0, 
+    expected=0, futex_word=0x56262c0d67e0 <itti_sem_block>)
+    at ../sysdeps/nptl/futex-internal.h:320
+
+Thread 23 (Thread 0x7f3144930700 (LWP 87)):
+#0  0x00007f319756f23f in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7f314492ba00, rem=rem@entry=0x7f314492ba00) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:78
+#1  0x00007f3197574ec7 in __GI___nanosleep (requested_time=requested_time@entry=0x7f314492ba00, remaining=remaining@entry=0x7f314492ba00) at nanosleep.c:27
+#2  0x00007f3197574dfe in __sleep (seconds=0, seconds@entry=1) at ../sysdeps/posix/sleep.c:55
+#3  0x000056262abf1062 in nrL1_stats_thread (param=0x7f3197114010) at ../../../executables/nr-gnb.c:405
+#4  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#5  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 22 (Thread 0x7f3145131700 (LWP 84)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x56262f6dbf84) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x56262f6dbf30, cond=0x56262f6dbf58) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x56262f6dbf58, mutex=mutex@entry=0x56262f6dbf30) at pthread_cond_wait.c:647
+#3  0x000056262ac35cf3 in pullNotifiedFIFO (nf=0x56262f6dbf20) at ../../../common/utils/threadPool/thread-pool.h:170
+#4  pullTpool (responseFifo=responseFifo@entry=0x56262f6dbf20, t=<optimized out>, t=<optimized out>) at ../../../common/utils/threadPool/thread-pool.h:269
+#5  0x000056262ac3842a in nr_feptx_tp (ru=ru@entry=0x56262f6d5c60, frame_tx=frame_tx@entry=638, slot=slot@entry=4) at ../../../openair1/SCHED_NR/nr_ru_procedures.c:361
+#6  0x000056262ac03475 in ru_tx_func (param=param@entry=0x7f3145130ab0) at ../../../executables/nr-ru.c:1079
+#7  0x000056262abf2906 in tx_reorder_thread (param=0x7f3197114010) at ../../../executables/nr-gnb.c:467
+#8  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#9  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 21 (Thread 0x7f3146ab2700 (LWP 81)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x7f319734bc4c) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7f319734bbf8, cond=0x7f319734bc20) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x7f319734bc20, mutex=mutex@entry=0x7f319734bbf8) at pthread_cond_wait.c:647
+#3  0x000056262ac2233b in pullNotifiedFifoRemember (thr=<optimized out>, nf=<optimized out>) at ../../../common/utils/threadPool/thread-pool.c:52
+#4  one_thread (arg=0x56263cd3afa0) at ../../../common/utils/threadPool/thread-pool.c:78
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 20 (Thread 0x7f31472b3700 (LWP 78)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x7f319734bc4c) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7f319734bbf8, cond=0x7f319734bc20) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x7f319734bc20, mutex=mutex@entry=0x7f319734bbf8) at pthread_cond_wait.c:647
+#3  0x000056262ac2233b in pullNotifiedFifoRemember (thr=<optimized out>, nf=<optimized out>) at ../../../common/utils/threadPool/thread-pool.c:52
+#4  one_thread (arg=0x56263cd3ad30) at ../../../common/utils/threadPool/thread-pool.c:78
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 19 (Thread 0x7f3147ab4700 (LWP 75)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x7f319734bc4c) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7f319734bbf8, cond=0x7f319734bc20) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x7f319734bc20, mutex=mutex@entry=0x7f319734bbf8) at pthread_cond_wait.c:647
+#3  0x000056262ac2233b in pullNotifiedFifoRemember (thr=<optimized out>, nf=<optimized out>) at ../../../common/utils/threadPool/thread-pool.c:52
+#4  one_thread (arg=0x56263cd3aac0) at ../../../common/utils/threadPool/thread-pool.c:78
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 18 (Thread 0x7f31482b5700 (LWP 72)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x7f319734bc4c) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7f319734bbf8, cond=0x7f319734bc20) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x7f319734bc20, mutex=mutex@entry=0x7f319734bbf8) at pthread_cond_wait.c:647
+#3  0x000056262ac2233b in pullNotifiedFifoRemember (thr=<optimized out>, nf=<optimized out>) at ../../../common/utils/threadPool/thread-pool.c:52
+#4  one_thread (arg=0x56263cd3a850) at ../../../common/utils/threadPool/thread-pool.c:78
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 17 (Thread 0x7f3148ab6700 (LWP 69)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x7f319734bc4c) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7f319734bbf8, cond=0x7f319734bc20) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x7f319734bc20, mutex=mutex@entry=0x7f319734bbf8) at pthread_cond_wait.c:647
+#3  0x000056262ac2233b in pullNotifiedFifoRemember (thr=<optimized out>, nf=<optimized out>) at ../../../common/utils/threadPool/thread-pool.c:52
+#4  one_thread (arg=0x56263cd3a5e0) at ../../../common/utils/threadPool/thread-pool.c:78
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 16 (Thread 0x7f31492b7700 (LWP 66)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x7f319734bc4c) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7f319734bbf8, cond=0x7f319734bc20) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x7f319734bc20, mutex=mutex@entry=0x7f319734bbf8) at pthread_cond_wait.c:647
+#3  0x000056262ac2233b in pullNotifiedFifoRemember (thr=<optimized out>, nf=<optimized out>) at ../../../common/utils/threadPool/thread-pool.c:52
+#4  one_thread (arg=0x56263cd3a370) at ../../../common/utils/threadPool/thread-pool.c:78
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 15 (Thread 0x7f3149ab8700 (LWP 63)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x7f319734bc4c) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7f319734bbf8, cond=0x7f319734bc20) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x7f319734bc20, mutex=mutex@entry=0x7f319734bbf8) at pthread_cond_wait.c:647
+#3  0x000056262ac2233b in pullNotifiedFifoRemember (thr=<optimized out>, nf=<optimized out>) at ../../../common/utils/threadPool/thread-pool.c:52
+#4  one_thread (arg=0x56263cd3a100) at ../../../common/utils/threadPool/thread-pool.c:78
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 14 (Thread 0x7f314a2b9700 (LWP 60)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x7f319734bc4c) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7f319734bbf8, cond=0x7f319734bc20) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x7f319734bc20, mutex=mutex@entry=0x7f319734bbf8) at pthread_cond_wait.c:647
+#3  0x000056262ac2233b in pullNotifiedFifoRemember (thr=<optimized out>, nf=<optimized out>) at ../../../common/utils/threadPool/thread-pool.c:52
+#4  one_thread (arg=0x56263cd39e90) at ../../../common/utils/threadPool/thread-pool.c:78
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 13 (Thread 0x7f31856a9700 (LWP 51)):
+#0  0x00007f31975b168e in epoll_wait (epfd=102, events=0x7f31856a76a0, maxevents=maxevents@entry=250, timeout=timeout@entry=3) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+#1  0x00007f319400e756 in flushInput (t=0x7f317c001de0, timeout=3, nsamps_for_initial=23040) at ../../../radio/rfsimulator/simulator.c:766
+#2  0x00007f3194011109 in rfsimulator_read (device=<optimized out>, ptimestamp=0x7f31856a8458, samplesVoid=0x7f31856a8410, nsamps=23040, nbAnt=1) at ../../../radio/rfsimulator/simulator.c:961
+#3  0x000056262abffdf4 in rx_rf (ru=0x56262f6d5c60, frame=<optimized out>, slot=<optimized out>) at ../../../executables/nr-ru.c:653
+#4  0x000056262ac07b96 in ru_thread (param=0x56262f6d5c60) at ../../../executables/nr-ru.c:1255
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 12 (Thread 0x7f3185eaa700 (LWP 48)):
+#0  _mm256_unpackhi_epi32 (__B=..., __A=...) at /usr/lib/gcc/x86_64-linux-gnu/9/include/avx2intrin.h:873
+#1  simde_mm256_unpackhi_epi32 (b=..., a=...) at /usr/include/simde/x86/avx2.h:5660
+#2  idft16_simd256 (y=<synthetic pointer>, x=<synthetic pointer>) at ../../../openair1/PHY/TOOLS/oai_dfts.c:1423
+#3  idft64 (x=x@entry=0x7f3185e74980, y=y@entry=0x7f3185e74d80, scale=scale@entry=1 '\001') at ../../../openair1/PHY/TOOLS/oai_dfts.c:1716
+#4  0x00007f317736386d in idft256 (x=x@entry=0x7f3185e753c0, y=y@entry=0x7f3185e75bc0, scale=scale@entry=1 '\001') at ../../../openair1/PHY/TOOLS/oai_dfts.c:2024
+#5  0x00007f317736866d in idft512 (x=x@entry=0x7f3185e76820, y=y@entry=0x7f3185e78020, scale=scale@entry=1 '\001') at ../../../openair1/PHY/TOOLS/oai_dfts.c:2221
+#6  0x00007f317736d46f in idft1536 (input=<optimized out>, output=0x7f3185e79560, scale=<optimized out>) at ../../../openair1/PHY/TOOLS/oai_dfts.c:3271
+#7  0x00007f317738d0f5 in idft (sizeidx=<optimized out>, input=0x7f3194031040, output=0x7f3185e79560, scale_flag=<optimized out>) at ../../../openair1/PHY/TOOLS/oai_dfts.c:7941
+#8  0x000056262acc0017 in PHY_ofdm_mod (input=<optimized out>, output=output@entry=0x7f3184d41a50, fftsize=1536, nb_symbols=6 '\006', nb_prefix_samples=108, etype=etype@entry=CYCLIC_PREFIX) at ../../../openair1/PHY/MODULATION/ofdm_mod.c:212
+#9  0x000056262acc04e4 in PHY_ofdm_mod (input=<optimized out>, output=output@entry=0x7f3184d41a50, fftsize=<optimized out>, nb_symbols=<optimized out>, nb_prefix_samples=<optimized out>, etype=etype@entry=CYCLIC_PREFIX) at ../../../openair1/PHY/MODULATION/ofdm_mod.c:134
+#10 0x000056262ac3662e in nr_feptx0 (ru=0x56262f6d5c60, tti_tx=4, first_symbol=<optimized out>, num_symbols=7, aa=0) at ../../../openair1/SCHED_NR/nr_ru_procedures.c:96
+#11 0x000056262ac36b95 in nr_feptx (arg=<optimized out>) at ../../../openair1/SCHED_NR/nr_ru_procedures.c:325
+#12 0x000056262ac223a9 in one_thread (arg=0x56262f6dbcb0) at ../../../common/utils/threadPool/thread-pool.h:102
+#13 0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#14 0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 11 (Thread 0x7f31866ab700 (LWP 45)):
+#0  0x00007f3177364687 in idft256 (x=x@entry=0x7f3186675fc0, y=y@entry=0x7f31866767c0, scale=scale@entry=1 '\001') at /usr/lib/gcc/x86_64-linux-gnu/9/include/mmintrin.h:58
+#1  0x00007f3177368653 in idft512 (x=x@entry=0x7f3186677820, y=y@entry=0x7f3186679020, scale=scale@entry=1 '\001') at ../../../openair1/PHY/TOOLS/oai_dfts.c:2220
+#2  0x00007f317736d46f in idft1536 (input=<optimized out>, output=0x7f318667a560, scale=<optimized out>) at ../../../openair1/PHY/TOOLS/oai_dfts.c:3271
+#3  0x00007f317738d0f5 in idft (sizeidx=<optimized out>, input=0x7f3194038840, output=0x7f318667a560, scale_flag=<optimized out>) at ../../../openair1/PHY/TOOLS/oai_dfts.c:7941
+#4  0x000056262acc0017 in PHY_ofdm_mod (input=<optimized out>, output=0x7f3184d4b470, fftsize=fftsize@entry=1536, nb_symbols=nb_symbols@entry=7 '\a', nb_prefix_samples=108, etype=CYCLIC_PREFIX) at ../../../openair1/PHY/MODULATION/ofdm_mod.c:212
+#5  0x000056262acc04e4 in PHY_ofdm_mod (input=<optimized out>, output=<optimized out>, fftsize=fftsize@entry=1536, nb_symbols=nb_symbols@entry=7 '\a', nb_prefix_samples=<optimized out>, etype=<optimized out>) at ../../../openair1/PHY/MODULATION/ofdm_mod.c:134
+#6  0x000056262ac36692 in nr_feptx0 (ru=0x56262f6d5c60, tti_tx=4, first_symbol=<optimized out>, num_symbols=7, aa=0) at ../../../openair1/SCHED_NR/nr_ru_procedures.c:104
+#7  0x000056262ac36b95 in nr_feptx (arg=<optimized out>) at ../../../openair1/SCHED_NR/nr_ru_procedures.c:325
+#8  0x000056262ac223a9 in one_thread (arg=0x56262f675c70) at ../../../common/utils/threadPool/thread-pool.h:102
+#9  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#10 0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 10 (Thread 0x7f3186ffd700 (LWP 42)):
+#0  0x00007f31975b168e in epoll_wait (epfd=78, events=events@entry=0x7f3186ffc760, maxevents=maxevents@entry=2, timeout=timeout@entry=-1) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+#1  0x000056262ace7440 in itti_get_events_locked (task_id=<optimized out>, events=<optimized out>, max_events=2) at ../../../common/utils/ocp_itti/intertask_interface.cpp:251
+#2  0x000056262ace7f1b in itti_receive_msg (task_id=task_id@entry=TASK_GTPV1_U, received_msg=received_msg@entry=0x7f3186ffc860) at ../../../common/utils/ocp_itti/intertask_interface.cpp:297
+#3  0x000056262ace019d in gtpv1uTask (args=<optimized out>) at ../../../openair3/ocp-gtpu/gtp_itf.cpp:1280
+#4  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#5  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 9 (Thread 0x7f31877fe700 (LWP 39)):
+#0  0x00007f3197574c7f in __GI___wait4 (pid=117, stat_loc=stat_loc@entry=0x7f31877f3838, options=options@entry=0, usage=usage@entry=0x0) at ../sysdeps/unix/sysv/linux/wait4.c:27
+#1  0x00007f3197574bfb in __GI___waitpid (pid=<optimized out>, stat_loc=stat_loc@entry=0x7f31877f3838, options=options@entry=0) at waitpid.c:38
+#2  0x00007f31974e3f67 in do_system (line=line@entry=0x7f31877f40a0 "gdb -ex='set confirm off' -ex 'thread apply all bt' -ex q -p 1 < /dev/null") at ../sysdeps/posix/system.c:172
+#3  0x00007f31974e429e in __libc_system (line=line@entry=0x7f31877f40a0 "gdb -ex='set confirm off' -ex 'thread apply all bt' -ex q -p 1 < /dev/null") at ../sysdeps/posix/system.c:204
+#4  0x000056262ae72d03 in rrc_handle_RRCSetupRequest (rrc=<optimized out>, assoc_id=<optimized out>, rrcSetupRequest=<optimized out>, msg=<optimized out>) at ../../../openair2/RRC/NR/rrc_gNB.c:1227
+#5  0x000056262ae766d8 in rrc_gNB_process_initial_ul_rrc_message (assoc_id=-1, ul_rrc=0x7f3128019d00) at ../../../openair2/RRC/NR/rrc_gNB.c:1791
+#6  0x000056262ae7dab9 in rrc_gnb_task (args_p=<optimized out>) at ../../../openair2/RRC/NR/rrc_gNB.c:2329
+#7  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#8  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 8 (Thread 0x7f3187fff700 (LWP 36)):
+#0  0x00007f31975b168e in epoll_wait (epfd=56, events=events@entry=0x7f3187ffe990, maxevents=maxevents@entry=1, timeout=timeout@entry=-1) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+#1  0x000056262ace7440 in itti_get_events_locked (task_id=<optimized out>, events=<optimized out>, max_events=1) at ../../../common/utils/ocp_itti/intertask_interface.cpp:251
+#2  0x000056262ace7f1b in itti_receive_msg (task_id=task_id@entry=TASK_GNB_APP, received_msg=received_msg@entry=0x7f3187ffea38) at ../../../common/utils/ocp_itti/intertask_interface.cpp:297
+#3  0x000056262af03a4d in gNB_app_task (args_p=<optimized out>) at ../../../openair2/GNB_APP/gnb_app.c:174
+#4  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#5  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 7 (Thread 0x7f319490e700 (LWP 33)):
+#0  0x00007f31975b168e in epoll_wait (epfd=38, events=events@entry=0x7f319490d9f0, maxevents=maxevents@entry=1, timeout=timeout@entry=-1) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+#1  0x000056262ace7440 in itti_get_events_locked (task_id=<optimized out>, events=<optimized out>, max_events=1) at ../../../common/utils/ocp_itti/intertask_interface.cpp:251
+#2  0x000056262ace7f1b in itti_receive_msg (task_id=task_id@entry=TASK_NGAP, received_msg=received_msg@entry=0x7f319490da88) at ../../../common/utils/ocp_itti/intertask_interface.cpp:297
+#3  0x000056262acebd40 in ngap_gNB_process_itti_msg (notUsed=<optimized out>) at ../../../openair3/NGAP/ngap_gNB.c:284
+#4  0x000056262acec687 in ngap_gNB_task (arg=<optimized out>) at ../../../openair3/NGAP/ngap_gNB.c:375
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 6 (Thread 0x7f319510f700 (LWP 30)):
+#0  0x00007f31975b168e in epoll_wait (epfd=52, events=events@entry=0x7f319510cb20, maxevents=maxevents@entry=2, timeout=timeout@entry=-1) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+#1  0x000056262ace7440 in itti_get_events_locked (task_id=<optimized out>, events=<optimized out>, max_events=2) at ../../../common/utils/ocp_itti/intertask_interface.cpp:251
+#2  0x000056262ace7f1b in itti_receive_msg (task_id=task_id@entry=TASK_SCTP, received_msg=received_msg@entry=0x7f319510cbe8) at ../../../common/utils/ocp_itti/intertask_interface.cpp:297
+#3  0x000056262ac2eee4 in sctp_eNB_process_itti_msg () at ../../../openair3/SCTP/sctp_eNB_task.c:1099
+#4  0x000056262ac31977 in sctp_eNB_task (arg=<optimized out>) at ../../../openair3/SCTP/sctp_eNB_task.c:1186
+#5  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#6  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 5 (Thread 0x7f3195910700 (LWP 27)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x56262c24b5ec <timer_thread_cond+44>) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x56262c24b600 <timer_thread_mutex>, cond=0x56262c24b5c0 <timer_thread_cond>) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x56262c24b5c0 <timer_thread_cond>, mutex=mutex@entry=0x56262c24b600 <timer_thread_mutex>) at pthread_cond_wait.c:647
+#3  0x000056262ae620af in nr_pdcp_timer_thread (_nr_pdcp_ue_manager=0x56262f699760) at ../../../openair2/LAYER2/nr_pdcp/nr_pdcp_timer_thread.c:48
+#4  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#5  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 4 (Thread 0x7f3196111700 (LWP 26)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x56262c187ffc <pq+720092>) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x56262c187fa8 <pq+720008>, cond=0x56262c187fd0 <pq+720048>) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x56262c187fd0 <pq+720048>, mutex=mutex@entry=0x56262c187fa8 <pq+720008>) at pthread_cond_wait.c:647
+#3  0x000056262ae59039 in pdcp_data_ind_thread (_=<optimized out>) at ../../../openair2/LAYER2/nr_pdcp/nr_pdcp_oai_api.c:306
+#4  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#5  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 3 (Thread 0x7f3196912700 (LWP 25)):
+#0  futex_wait_cancelable (private=<optimized out>, expected=0, futex_word=0x56262c24b558 <q+800088>) at ../sysdeps/nptl/futex-internal.h:183
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x56262c24b508 <q+800008>, cond=0x56262c24b530 <q+800048>) at pthread_cond_wait.c:508
+#2  __pthread_cond_wait (cond=cond@entry=0x56262c24b530 <q+800048>, mutex=mutex@entry=0x56262c24b508 <q+800008>) at pthread_cond_wait.c:647
+#3  0x000056262ae573c7 in rlc_data_req_thread (_=<optimized out>) at ../../../openair2/LAYER2/nr_pdcp/nr_pdcp_oai_api.c:137
+#4  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#5  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 2 (Thread 0x7f3197113700 (LWP 24)):
+#0  0x00007f319756f23f in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7f319710ec00, rem=rem@entry=0x7f319710ec00) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:78
+#1  0x00007f3197574ec7 in __GI___nanosleep (requested_time=requested_time@entry=0x7f319710ec00, remaining=remaining@entry=0x7f319710ec00) at nanosleep.c:27
+#2  0x00007f3197574dfe in __sleep (seconds=0, seconds@entry=1) at ../sysdeps/posix/sleep.c:55
+#3  0x000056262af38b1a in nrmac_stats_thread (arg=0x56262f696840) at ../../../openair2/LAYER2/NR_MAC_gNB/main.c:73
+#4  0x00007f3197cb6609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#5  0x00007f31975b1353 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+Thread 1 (Thread 0x7f319748d740 (LWP 1)):
+#0  futex_abstimed_wait_cancelable (private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x56262c0d67e0 <itti_sem_block>) at ../sysdeps/nptl/futex-internal.h:320
+#1  do_futex_wait (sem=sem@entry=0x56262c0d67e0 <itti_sem_block>, abstime=0x0, clockid=0) at sem_waitcommon.c:112
+#2  0x00007f3197cc0548 in __new_sem_wait_slow (sem=sem@entry=0x56262c0d67e0 <itti_sem_block>, abstime=0x0, clockid=0) at sem_waitcommon.c:184
+#3  0x00007f3197cc05c1 in __new_sem_wait (sem=sem@entry=0x56262c0d67e0 <itti_sem_block>) at sem_wait.c:42
+#4  0x000056262ace5acb in itti_wait_tasks_end (handler=0x56262ace5a30 <catch_sigterm(int)>) at ../../../common/utils/ocp_itti/intertask_interface.cpp:484
+#5  0x000056262abec3ab in main (argc=<optimized out>, argv=<optimized out>) at ../../../executables/nr-softmodem.c:813
+Detaching from program: /opt/oai-gnb/bin/nr-softmodem, process 1
+[Inferior 1 (process 1) detached]
+21941.158978 [NR_MAC] I Frame.Slot 640.0
+UE RNTI 7ecb (1) PH 0 dB PCMAX 0 dBm, average RSRP 0 (0 meas)
+UE 7ecb: dlsch_rounds 741/1/1/1, dlsch_errors 1, pucch0_DTX 4, BLER 0.00000 MCS 9
+UE 7ecb: dlsch_total_bytes 91020
+UE 7ecb: ulsch_rounds 7380/4/3/3, ulsch_DTX 10, ulsch_errors 3, BLER 0.00000 MCS 9
+UE 7ecb: ulsch_total_bytes_scheduled 855988, ulsch_total_bytes_received 855524
+UE 7ecb: LCID 1: TX             62 RX             49 bytes
+UE RNTI b6f0 (2) PH 0 dB PCMAX 0 dBm, average RSRP 0 (0 meas)
+UE b6f0: dlsch_rounds 0/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 0
+UE b6f0: dlsch_total_bytes 0
+UE b6f0: ulsch_rounds 0/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 0
+UE b6f0: ulsch_total_bytes_scheduled 0, ulsch_total_bytes_received 0
+UE b6f0: LCID 1: TX              0 RX              0 bytes
+UE RNTI 3400 (3) PH 0 dB PCMAX 0 dBm, average RSRP 0 (0 meas)
+UE 3400: dlsch_rounds 0/0/0/0, dlsch_errors 0, pucch0_DTX 0, BLER 0.00000 MCS 0
+UE 3400: dlsch_total_bytes 0
+UE 3400: ulsch_rounds 0/0/0/0, ulsch_DTX 0, ulsch_errors 0, BLER 0.00000 MCS 0
+UE 3400: ulsch_total_bytes_scheduled 0, ulsch_total_bytes_received 0
+UE 3400: LCID 1: TX              0 RX              0 bytes
+
+21941.160080 [NR_PHY] I [gNB 0][RAPROC] Frame 639, slot 19 Initiating RA procedure with preamble 23, energy 55.7 dB (I0 18, thres 200), delay 0 start symbol 0 freq index 0
+21941.160177 [MAC] A UL_info[Frame 639, Slot 19] Calling initiate_ra_proc RACH:SFN/SLOT:639/19
+21941.160185 [NR_MAC] I [gNB 0][RAPROC] CC_id 0 Frame 639 Activating Msg2 generation in frame 640, slot 7 using RA rnti 10b SSB, new rnti a93a index 0 RA index 2
+21941.160249 [NR_MAC] A [gNB 0][RAPROC] CC_id 0 Frame 640, slotP 7: Generating RA-Msg2 DCI, rnti 0x10b, state 1, CoreSetType 2
+21941.160262 [NR_MAC] I [RAPROC] Msg3 slot 17: current slot 7 Msg3 frame 640 k2 7 Msg3_tda_id 3
+21941.160267 [NR_MAC] W [gNB 0][RAPROC] Frame 640, Subframe 7: rnti a93a RA state 2
+21941.162357 [NR_MAC] W No signal
+21941.162369 [NR_MAC] W handle harq for rnti a93a, in RA process
+21941.162371 [NR_MAC] E handle_nr_ul_harq(): unknown RNTI 0xa93a in PUSCH
+
+Exiting execution

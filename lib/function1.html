@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5G Network Visualization</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        #network {
+            border: 1px solid #ccc;
+        }
+        .group {
+            stroke: black;
+            stroke-width: 2;
+        }
+        .module {
+            stroke: black;
+            stroke-width: 1;
+        }
+        .link {
+            stroke: black;
+            stroke-width: 4;
+        }
+    </style>
+</head>
+<body>
+    <svg id="network" width="1250" height="500"></svg>
+    <button id="checkStatus" style="position: absolute; top: 420px; left: 110px; width: 150px;">Check Status</button>
+    <button id="checkDN" style="position: absolute; top: 450px; left: 110px; width: 150px;">Check Data Network</button>
+
+    <script>
+        const svg = d3.select("#network");
+        const width = +svg.attr("width");
+        const height = +svg.attr("height");
+        const groups = [
+            {name: "UE", color: "rgba(173, 216, 230, 0.5)", x: 50, y: 50, width: 200, height: 200},
+            {name: "Base Station", color: "rgba(144, 238, 144, 0.5)", x: 300, y: 50, width: 200, height: 200},
+            {name: "Core Network", color: "rgba(255, 255, 224, 0.5)", x: 550, y: 50, width: 400, height: 400},
+            {name: "Data Network", color:" rgba(0, 0, 139, 0.9)", image: "templates/cloud.png", x: 1000, y: 75, width: 150, height: 150}
+        ];
+        // Draw groups
+        svg.selectAll(".group")
+           .data(groups)
+           .enter()
+           .append("rect")
+           .attr("class", "group")
+           .attr("x", d => d.x)
+           .attr("y", d => d.y)
+           .attr("width", d => d.width)
+           .attr("height", d => d.height)
+           .attr("fill", d => d.color);
+
+        // Add group labels
+        svg.selectAll(".group-label")
+           .data(groups)
+           .enter()
+           .append("text")
+           .attr("x", d => d.x + d.width / 2)
+           .attr("y", d => d.y + d.height + 20)
+           .attr("text-anchor", "middle")
+           .text(d => d.name);
+
+        // Draw connections
+        svg.append("line")
+           .attr("class", "link")
+           .attr("x1", 250)
+           .attr("y1", 150)
+           .attr("x2", 300)
+           .attr("y2", 150);
+
+        svg.append("line")
+           .attr("class", "link")
+           .attr("x1", 500)
+           .attr("y1", 150)
+           .attr("x2", 550)
+           .attr("y2", 150);
+
+        svg.append("line")
+           .attr("class", "link")
+           .attr("x1", 950)
+           .attr("y1", 150)
+           .attr("x2", 1000)
+           .attr("y2", 150);
+
+        function updateStatus() {
+            fetch('/function1/check_status')
+                .then(response => response.json())
+                .then(data => {
+                    // Remove existing modules
+                    svg.selectAll(".module").remove();
+
+                    // Group containers by their group
+                    const groupedData = d3.group(data, d => d.group);
+
+                    // Add new modules based on the data
+                    groups.forEach(groupData => {
+                        const containers = groupedData.get(groupData.name) || [];
+                        const containerSize = 80;
+                        const columns = Math.floor(groupData.width / (containerSize + 10));
+                        const rows = Math.ceil(containers.length / columns);
+
+                        containers.forEach((container, i) => {
+                            const x = groupData.x + (groupData.width - Math.min(containers.length, columns) * (containerSize + 10) + 10) / 2 + (i % columns) * (containerSize + 10);
+                            const y = groupData.y + (groupData.height - rows * (containerSize + 10) + 10) / 2 + Math.floor(i / columns) * (containerSize + 10);
+
+                            // Determine outline color based on status
+                            const statusColor = container.status === 'healthy' ? "green" : "red";
+
+                            svg.append("rect")
+                               .attr("class", "module")
+                               .attr("x", x)
+                               .attr("y", y)
+                               .attr("width", containerSize)
+                               .attr("height", containerSize)
+                               .attr("fill", container.status === 'healthy' ? "green" : "red")
+
+                            const words = container.name.split('-');
+                            const textGroup = svg.append("g")
+                                .attr("transform", `translate(${x + containerSize/2}, ${y + containerSize/2})`);
+                            
+                            textGroup.selectAll("text")
+                               .data(words)
+                               .enter()
+                               .append("text")
+                               .attr("x", 0)
+                               .attr("y", (d, i) => (i - (words.length - 1) / 2) * 1.2 + "em")
+                               .attr("text-anchor", "middle")
+                               .attr("dominant-baseline", "central")
+                               .attr("font-size", "15px")
+                               .attr("font-weight", "bold")
+                               .text(d => d);
+                        });
+                    });
+                });
+        }
+
+        function checkDN() {
+            fetch('/function1/check_dn')
+                .then(response => response.json())
+                .then(data => {
+                    const dnGroup = svg.select(".group").filter(d => d.name === "Data Network");
+                    
+
+                    alert(data.status ? "5G Network is connected to Data Network" : "5G Network is not connected to Data Network");
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        document.getElementById('checkStatus').addEventListener('click', updateStatus);
+        document.getElementById('checkDN').addEventListener('click', checkDN);
+    </script>
+</body>
+</html>

@@ -1,0 +1,3001 @@
+==================================
+== Configuration file:
+Active_gNBs = ( "gnb-rfsim");
+# Asn1_verbosity, choice in: none, info, annoying
+Asn1_verbosity = "none";
+
+gNBs =
+(
+ {
+    ////////// Identification parameters:
+    gNB_ID = 0xe00;
+
+#     cell_type =  "CELL_MACRO_GNB";
+
+    gNB_name  =  "gnb-rfsim";
+
+    // Tracking area code, 0x0000 and 0xfffe are reserved values
+    tracking_area_code  =  40960;
+
+    plmn_list = ({ mcc = 208; mnc = 95; mnc_length = 2; snssaiList = ({ sst = 1, sd = 0xffffff }, { sst = 128, sd = 0x000080 }, { sst = 130, sd = 0x000082 }) });
+
+    nr_cellid = 12345678L
+    
+# Begin RIC-specific settings
+    RIC : {
+        remote_ipv4_addr = "192.168.84.37"; # TODO Replace it with the actual RIC e2t Address
+        remote_port = 36421;
+        enabled = "yes";
+    };
+
+
+#     tr_s_preference     = "local_mac"
+
+    ////////// Physical parameters:
+
+    #pusch_TargetSNRx10                                        = 200;
+    #pucch_TargetSNRx10                                        = 200;
+    ul_prbblacklist                                           = "51,52,53,54"
+    min_rxtxtime = 6;
+    do_SRS                                                    = 1;
+
+    pdcch_ConfigSIB1 = (
+      {
+        controlResourceSetZero = 11;
+        searchSpaceZero = 0;
+      }
+    );
+
+    servingCellConfigCommon = (
+    {
+ #spCellConfigCommon
+
+      physCellId                                                    = 0;
+
+#  downlinkConfigCommon
+    #frequencyInfoDL
+      # this is 3301.68 MHz + 22*12*30e-3 MHz = 3309.6
+      #absoluteFrequencySSB                                          = 620640;
+      # this is 3300.60 MHz + 53*12*30e-3 MHz = 3319.68
+      absoluteFrequencySSB                                          = 621312;
+      # this is 3503.28 MHz + 22*12*30e-3 MHz = 3511.2
+      #absoluteFrequencySSB                                          = 634080;
+      # this is 3600.48 MHz
+      #absoluteFrequencySSB                                          = 640032;
+      #dl_frequencyBand                                                 = 78;
+      # this is 3301.68 MHz
+      #dl_absoluteFrequencyPointA                                       = 620112;
+      # this is 3300.60 MHz
+      dl_absoluteFrequencyPointA                                       = 620040;
+      # this is 3502.56 MHz
+      #dl_absoluteFrequencyPointA                                       = 633552;
+      # this is 3600.48 MHz
+      #dl_absoluteFrequencyPointA                                       = 640032;
+      #scs-SpecificCarrierList
+        dl_offstToCarrier                                              = 0;
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        dl_subcarrierSpacing                                           = 1;
+        dl_carrierBandwidth                                            = 106;
+     #initialDownlinkBWP
+      #genericParameters
+        # this is RBstart=0,L=106 (275*(L-1))+RBstart
+        initialDLBWPlocationAndBandwidth                                        = 28875;
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialDLBWPsubcarrierSpacing                                           = 1;
+      #pdcch-ConfigCommon
+        initialDLBWPcontrolResourceSetZero                                      = 11;
+        initialDLBWPsearchSpaceZero                                             = 0;
+
+
+
+  #uplinkConfigCommon
+     #frequencyInfoUL
+      ul_frequencyBand                                                 = 78;
+      #scs-SpecificCarrierList
+      ul_offstToCarrier                                              = 0;
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+      ul_subcarrierSpacing                                           = 1;
+      ul_carrierBandwidth                                            = 106;
+      pMax                                                          = 20;
+     #initialUplinkBWP
+      #genericParameters
+        initialULBWPlocationAndBandwidth                                        = 28875;
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+        initialULBWPsubcarrierSpacing                                           = 1;
+      #rach-ConfigCommon
+        #rach-ConfigGeneric
+          prach_ConfigurationIndex                                  = 98;
+#prach_msg1_FDM
+#0 = one, 1=two, 2=four, 3=eight
+          prach_msg1_FDM                                            = 0;
+          prach_msg1_FrequencyStart                                 = 0;
+          zeroCorrelationZoneConfig                                 = 12;
+          preambleReceivedTargetPower                               = -104;
+#preamblTransMax (0...10) = (3,4,5,6,7,8,10,20,50,100,200)
+          preambleTransMax                                          = 6;
+#powerRampingStep
+# 0=dB0,1=dB2,2=dB4,3=dB6
+        powerRampingStep                                            = 1;
+#ra_ReponseWindow
+#1,2,4,8,10,20,40,80
+        ra_ResponseWindow                                           = 4;
+#ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR
+#1=oneeighth,2=onefourth,3=half,4=one,5=two,6=four,7=eight,8=sixteen
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR                = 3;
+#oneHalf (0..15) 4,8,12,16,...60,64
+        ssb_perRACH_OccasionAndCB_PreamblesPerSSB                   = 15;
+#ra_ContentionResolutionTimer
+#(0..7) 8,16,24,32,40,48,56,64
+        ra_ContentionResolutionTimer                                = 7;
+        rsrp_ThresholdSSB                                           = 19;
+#prach-RootSequenceIndex_PR
+#1 = 839, 2 = 139
+        prach_RootSequenceIndex_PR                                  = 2;
+        prach_RootSequenceIndex                                     = 1;
+        # SCS for msg1, can only be 15 for 30 kHz < 6 GHz, takes precendence over the one derived from prach-ConfigIndex
+        #
+        msg1_SubcarrierSpacing                                      = 1,
+# restrictedSetConfig
+# 0=unrestricted, 1=restricted type A, 2=restricted type B
+        restrictedSetConfig                                         = 0,
+
+        msg3_DeltaPreamble                                          = 1;
+        p0_NominalWithGrant                                         =-90;
+
+# pucch-ConfigCommon setup :
+# pucchGroupHopping
+# 0 = neither, 1= group hopping, 2=sequence hopping
+        pucchGroupHopping                                           = 0;
+        hoppingId                                                   = 40;
+        p0_nominal                                                  = -90;
+# ssb_PositionsInBurs_BitmapPR
+# 1=short, 2=medium, 3=long
+      ssb_PositionsInBurst_PR                                       = 2;
+      ssb_PositionsInBurst_Bitmap                                   = 1;
+
+# ssb_periodicityServingCell
+# 0 = ms5, 1=ms10, 2=ms20, 3=ms40, 4=ms80, 5=ms160, 6=spare2, 7=spare1
+      ssb_periodicityServingCell                                    = 2;
+
+# dmrs_TypeA_position
+# 0 = pos2, 1 = pos3
+      dmrs_TypeA_Position                                           = 0;
+
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+      subcarrierSpacing                                             = 1;
+
+
+  #tdd-UL-DL-ConfigurationCommon
+# subcarrierSpacing
+# 0=kHz15, 1=kHz30, 2=kHz60, 3=kHz120
+      referenceSubcarrierSpacing                                    = 1;
+      # pattern1
+      # dl_UL_TransmissionPeriodicity
+      # 0=ms0p5, 1=ms0p625, 2=ms1, 3=ms1p25, 4=ms2, 5=ms2p5, 6=ms5, 7=ms10
+      dl_UL_TransmissionPeriodicity                                 = 6;
+      nrofDownlinkSlots                                             = 7;
+      nrofDownlinkSymbols                                           = 6;
+      nrofUplinkSlots                                               = 2;
+      nrofUplinkSymbols                                             = 4;
+
+  ssPBCH_BlockPower                                             = -25;
+  }
+
+  );
+
+
+    # ------- SCTP definitions
+    SCTP :
+    {
+        # Number of streams to use in input/output
+        SCTP_INSTREAMS  = 2;
+        SCTP_OUTSTREAMS = 2;
+    };
+
+    ////////// AMF parameters:
+        amf_ip_address      = ( { ipv4       = "192.168.70.138";
+                                  ipv6       = "192:168:30::17";
+                                  active     = "yes";
+                                  preference = "ipv4";
+                                                                                                                              }
+                                                                                                                                          );
+
+        NETWORK_INTERFACES :
+        {
+
+           GNB_INTERFACE_NAME_FOR_NG_AMF            = "eth0";
+           GNB_IPV4_ADDRESS_FOR_NG_AMF              = "192.168.70.153";
+           GNB_INTERFACE_NAME_FOR_NGU               = "eth1";
+           GNB_IPV4_ADDRESS_FOR_NGU                 = "192.168.72.153";
+           GNB_PORT_FOR_S1U                         = 2152; # Spec 2152
+        };
+
+  }
+);
+
+MACRLCs = (
+  {
+    num_cc           = 1;
+    tr_s_preference  = "local_L1";
+    tr_n_preference  = "local_RRC";
+    pusch_TargetSNRx10 = 200;
+    pucch_TargetSNRx10 = 200;
+     ulsch_max_frame_inactivity = 1;
+  }
+);
+
+L1s = (
+{
+  num_cc = 1;
+  tr_n_preference = "local_mac";
+  prach_dtx_threshold = 200;
+#  pucch0_dtx_threshold = 150;
+}
+);
+
+RUs = (
+    {
+       local_rf       = "yes"
+         nb_tx          = 1
+         nb_rx          = 1
+         att_tx         = 0
+         att_rx         = 0;
+         bands          = [78];
+         max_pdschReferenceSignalPower = -27;
+         max_rxgain                    = 75;
+         eNB_instances  = [0];
+         ##beamforming 1x2 matrix: 1 layer x 2 antennas
+         bf_weights = [0x00007fff, 0x0000];
+         ##beamforming 1x4 matrix: 1 layer x 4 antennas
+         #bf_weights = [0x00007fff, 0x0000,0x0000, 0x0000];
+         ## beamforming 2x2 matrix:
+         # bf_weights = [0x00007fff, 0x00000000, 0x00000000, 0x00007fff];
+         ## beamforming 4x4 matrix:
+         #bf_weights = [0x00007fff, 0x0000, 0x0000, 0x0000, 0x00000000, 0x00007fff, 0x0000, 0x0000, 0x0000, 0x0000, 0x00007fff, 0x0000, 0x0000, 0x0000, 0x0000, 0x00007fff];
+         sf_extension = 0
+         sdr_addrs = "serial=XXXXXXX"
+    }
+);
+
+THREAD_STRUCT = (
+  {
+    #three config for level of parallelism "PARALLEL_SINGLE_THREAD", "PARALLEL_RU_L1_SPLIT", or "PARALLEL_RU_L1_TRX_SPLIT"
+    parallel_config    = "PARALLEL_SINGLE_THREAD";
+    #two option for worker "WORKER_DISABLE" or "WORKER_ENABLE"
+    worker_config      = "WORKER_ENABLE";
+  }
+);
+
+security = {
+  # preferred ciphering algorithms
+  # the first one of the list that an UE supports in chosen
+  # valid values: nea0, nea1, nea2, nea3
+  ciphering_algorithms = ( "nea0" );
+
+  # preferred integrity algorithms
+  # the first one of the list that an UE supports in chosen
+  # valid values: nia0, nia1, nia2, nia3
+  integrity_algorithms = ( "nia2", "nia0" );
+
+  # setting 'drb_ciphering' to "no" disables ciphering for DRBs, no matter
+  # what 'ciphering_algorithms' configures; same thing for 'drb_integrity'
+  drb_ciphering = "yes";
+  drb_integrity = "no";
+};
+
+     log_config :
+     {
+       global_log_level                      ="info";
+       hw_log_level                          ="info";
+       phy_log_level                         ="info";
+       mac_log_level                         ="info";
+       rlc_log_level                         ="info";
+       pdcp_log_level                        ="info";
+       rrc_log_level                         ="info";
+       f1ap_log_level                         ="debug";
+    };
+==================================
+== Load USRP binaries
+==================================
+== Starting gNB soft modem
+Additional option(s): --sa -E --rfsim --log_config.global_log_options level,nocolor,time --opt.type pcap --opt.path /home/pcap.pcap
+/opt/oai-gnb/bin/nr-softmodem -O /opt/oai-gnb/etc/gnb.conf --sa -E --rfsim --log_config.global_log_options level,nocolor,time --opt.type pcap --opt.path /home/pcap.pcap
+9079.731201 [HW] I # /dev/cpu_dma_latency set to 2 us
+9079.763968 [ENB_APP] I nfapi running mode: MONOLITHIC
+9079.763985 [GNB_APP] I Getting GNBSParams
+9080.764142 [ITTI] I Starting itti queue: TASK_UNKNOWN as task 0
+9080.764161 [ITTI] I Starting itti queue: TASK_TIMER as task 1
+9080.764165 [ITTI] I Starting itti queue: TASK_L2L1 as task 2
+9080.764168 [ITTI] I Starting itti queue: TASK_BM as task 3
+9080.764171 [ITTI] I Starting itti queue: TASK_PHY_ENB as task 4
+9080.764174 [ITTI] I Starting itti queue: TASK_MAC_GNB as task 5
+9080.764178 [ITTI] I Starting itti queue: TASK_RLC_ENB as task 6
+9080.764181 [ITTI] I Starting itti queue: TASK_RRC_ENB_NB_IoT as task 7
+9080.764185 [ITTI] I Starting itti queue: TASK_PDCP_ENB as task 8
+9080.764188 [ITTI] I Starting itti queue: TASK_PDCP_GNB as task 9
+9080.764191 [ITTI] I Starting itti queue: TASK_DATA_FORWARDING as task 10
+9080.764193 [ITTI] I Starting itti queue: TASK_END_MARKER as task 11
+9080.764196 [ITTI] I Starting itti queue: TASK_RRC_ENB as task 12
+9080.764199 [ITTI] I Starting itti queue: TASK_RRC_GNB as task 13
+9080.764201 [ITTI] I Starting itti queue: TASK_RAL_ENB as task 14
+9080.764203 [ITTI] I Starting itti queue: TASK_S1AP as task 15
+9080.764206 [ITTI] I Starting itti queue: TASK_NGAP as task 16
+9080.764208 [ITTI] I Starting itti queue: TASK_X2AP as task 17
+9080.764212 [ITTI] I Starting itti queue: TASK_M2AP_ENB as task 18
+9080.764217 [ITTI] I Starting itti queue: TASK_M2AP_MCE as task 19
+9080.764220 [ITTI] I Starting itti queue: TASK_M3AP as task 20
+9080.764225 [ITTI] I Starting itti queue: TASK_M3AP_MME as task 21
+9080.764229 [ITTI] I Starting itti queue: TASK_M3AP_MCE as task 22
+9080.764233 [ITTI] I Starting itti queue: TASK_SCTP as task 23
+9080.764238 [ITTI] I Starting itti queue: TASK_ENB_APP as task 24
+9080.764243 [ITTI] I Starting itti queue: TASK_GNB_APP as task 25
+9080.764248 [ITTI] I Starting itti queue: TASK_MCE_APP as task 26
+9080.764252 [ITTI] I Starting itti queue: TASK_MME_APP as task 27
+9080.764256 [ITTI] I Starting itti queue: TASK_PHY_UE as task 28
+9080.764260 [ITTI] I Starting itti queue: TASK_MAC_UE as task 29
+9080.764264 [ITTI] I Starting itti queue: TASK_RLC_UE as task 30
+9080.764278 [ITTI] I Starting itti queue: TASK_PDCP_UE as task 31
+9080.764282 [ITTI] I Starting itti queue: TASK_RRC_UE as task 32
+9080.764286 [ITTI] I Starting itti queue: TASK_RRC_NRUE as task 33
+9080.764290 [ITTI] I Starting itti queue: TASK_NAS_UE as task 34
+9080.764295 [ITTI] I Starting itti queue: TASK_RAL_UE as task 35
+9080.764300 [ITTI] I Starting itti queue: TASK_GTPV1_U as task 36
+9080.764304 [ITTI] I Starting itti queue: TASK_CU_F1 as task 37
+9080.764310 [ITTI] I Starting itti queue: TASK_DU_F1 as task 38
+9080.764315 [ITTI] I Starting itti queue: TASK_CUCP_E1 as task 39
+9080.764319 [ITTI] I Starting itti queue: TASK_CUUP_E1 as task 40
+9080.764322 [ITTI] I Starting itti queue: TASK_RRC_UE_SIM as task 41
+9080.764325 [ITTI] I Starting itti queue: TASK_RRC_GNB_SIM as task 42
+9080.764327 [ITTI] I Starting itti queue: TASK_RRC_NSA_UE as task 43
+9080.764330 [ITTI] I Starting itti queue: TASK_RRC_NSA_NRUE as task 44
+9080.764333 [ITTI] I Starting itti queue: TASK_NAS_NRUE as task 45
+9080.764348 [OPT] I mode PCAB : path is /home/pcap.pcap 
+9080.764461 [HW] I Version: Branch: HEAD Abrev. Hash: 790c3b999 Date: Tue Dec 12 12:39:04 2023 +0000
+9080.764464 [NR_PHY] I RC.gNB = 0x55c79c8f3660
+9080.764853 [NR_PHY] I PRB blacklist 51,52,53,54
+9080.764856 [NR_PHY] I Blacklisting prb 51
+9080.764857 [NR_PHY] I Blacklisting prb 52
+9080.764857 [NR_PHY] I Blacklisting prb 53
+9080.764858 [NR_PHY] I Blacklisting prb 54
+9080.764859 [NR_PHY] I Copying 4 blacklisted PRB to L1 context
+9080.764881 [PHY] I L1_RX_THREAD_CORE -1 (16)
+9080.764883 [PHY] I TX_AMP = 519 (-36 dBFS)
+9080.764885 [PHY] I l1_north_init_gNB() RC.nb_nr_L1_inst:1
+9080.764886 [PHY] I Installing callbacks for IF_Module - UL_indication
+9080.764888 [MAC] I Allocating shared L1/L2 interface structure for instance 0 @ 0x55c79c8f9440
+9080.764889 [PHY] I l1_north_init_gNB() RC.gNB[0] installing callbacks
+9080.764961 [PHY] I create_gNB_tasks() Task ready initialize structures
+9080.765071 [NR_PHY] I PRB blacklist 51,52,53,54
+9080.765072 [NR_PHY] I Blacklisting prb 51
+9080.765073 [NR_PHY] I Blacklisting prb 52
+9080.765074 [NR_PHY] I Blacklisting prb 53
+9080.765075 [NR_PHY] I Blacklisting prb 54
+9080.765075 [NR_PHY] I Copying 4 blacklisted PRB to L1 context
+9080.765097 [PHY] I L1_RX_THREAD_CORE -1 (16)
+9080.765098 [PHY] I TX_AMP = 519 (-36 dBFS)
+9080.765099 [PHY] I l1_north_init_gNB() RC.nb_nr_L1_inst:1
+9080.765100 [PHY] I Installing callbacks for IF_Module - UL_indication
+9080.765101 [PHY] I l1_north_init_gNB() RC.gNB[0] installing callbacks
+9080.765103 [PHY] I No prs_config configuration found..!!
+9080.765178 [GNB_APP] I pdsch_AntennaPorts N1 1 N2 1 XP 1 pusch_AntennaPorts 1
+9080.765180 [GNB_APP] I minTXRXTIME 6
+9080.765180 [GNB_APP] I SIB1 TDA 1
+9080.765181 [GNB_APP] I CSI-RS 0, SRS 1, 256 QAM may be on
+9080.765289 [RRC] I Read in ServingCellConfigCommon (PhysCellId 0, ABSFREQSSB 621312, DLBand 78, ABSFREQPOINTA 620040, DLBW 106,RACH_TargetReceivedPower -104
+9080.765292 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+9080.765293 [RRC] I absoluteFrequencySSB 621312 corresponds to 3319680000 Hz
+9080.765295 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+9080.765296 [NR_MAC] I NR band 78, duplex mode TDD, duplex spacing = 0 KHz
+9080.765297 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+9080.765298 [NR_MAC] I NR band 78, duplex mode TDD, duplex spacing = 0 KHz
+9080.765375 [MAC] I [MAIN] Init function start:nb_nr_macrlc_inst=1
+9080.765389 [UTIL] I Creating thread MAC_STATS with affinity -1 and priority 2
+9080.785326 [PHY] I Installing callbacks for IF_Module - UL_indication
+9080.785351 [NR_MAC] I Configuring common parameters from NR ServingCellConfig
+9080.785353 [NR_MAC] I config_common() dl_BandwidthP:40
+9080.785355 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+9080.785357 [NR_MAC] I config_common() dl_BandwidthP:40
+9080.785357 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+9080.785358 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+9080.785359 [NR_MAC] I NR band 78, duplex mode TDD, duplex spacing = 0 KHz
+9080.785361 [NR_MAC] I ssb_OffsetPointA 86, ssb_SubcarrierOffset 0
+9080.785363 [NR_MAC] I Set RX antenna number to 1, Set TX antenna number to 1 (num ssb 1: 80000000,0)
+9080.785364 [NR_MAC] I Setting TDD configuration period to 6
+9080.785368 [NR_MAC] I TDD has been properly configurated
+9080.785372 [PHY] I DL frequency 3319680000 Hz, UL frequency 3319680000 Hz: band 78, uldl offset 0 Hz
+9080.785373 [PHY] A Configuring MIB for instance 0, : (Nid_cell 0,DL freq 3319680000, UL freq 3319680000)
+9080.785375 [PHY] I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+9080.785377 [PHY] W Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+9080.785465 [PHY] I gNB 0 configured
+9080.785478 [NR_MAC] I PUSCH Target 200, PUCCH Target 200, PUCCH Failure 10, PUSCH Failure 10
+9080.785559 [GNB_APP] W no slices transported via F1 Setup Request!
+9080.785562 [NR_RRC] I SIB1 freq: offsetToPointA 86
+9080.785581 [NR_MAC] I NR band duplex spacing is 0 KHz (nr_bandtable[37].band = 78)
+9080.785582 [NR_MAC] I NR band 78, duplex mode TDD, duplex spacing = 0 KHz
+9080.785613 [GNB_APP] I F1AP: gNB idx 0 gNB_DU_id 3584, gNB_DU_name gnb-rfsim, TAC 40960 MCC/MNC/length 208/95/2 cellID 12345678
+9080.785615 [GNB_APP] I ngran_DU: Configuring Cell 0 for TDD
+9080.785629 [PHY] I create_gNB_tasks() RC.nb_nr_L1_inst:1
+9080.785630 [PHY] I l1_north_init_gNB() RC.nb_nr_L1_inst:1
+9080.785631 [PHY] I Installing callbacks for IF_Module - UL_indication
+9080.785633 [PHY] I l1_north_init_gNB() RC.gNB[0] installing callbacks
+9080.785633 [GNB_APP] I Allocating gNB_RRC_INST for 1 instances
+CMDLINE: "/opt/oai-gnb/bin/nr-softmodem" "-O" "/opt/oai-gnb/etc/gnb.conf" "--sa" "-E" "--rfsim" "--log_config.global_log_options" "level,nocolor,time" "--opt.type" "pcap" "--opt.path" "/home/pcap.pcap" 
+[CONFIG] get parameters from libconfig /opt/oai-gnb/etc/gnb.conf [LIBCONFIG] Path for include directive set to: /opt/oai-gnb/etc
+[CONFIG] function config_libconfig_init returned 0
+[CONFIG] config module libconfig loaded
+[LIBCONFIG] config: 2/2 parameters successfully set, (2 to default value)
+[CONFIG] debug flags: 0x00000000
+[LIBCONFIG] log_config: 3/3 parameters successfully set, (1 to default value)
+[LIBCONFIG] log_config: 53/53 parameters successfully set, (46 to default value)
+[LIBCONFIG] log_config: 53/53 parameters successfully set, (53 to default value)
+[LIBCONFIG] log_config: 16/16 parameters successfully set, (16 to default value)
+[LIBCONFIG] log_config: 16/16 parameters successfully set, (16 to default value)
+log init done
+Reading in command-line options
+[LIBCONFIG] (root): 41/41 parameters successfully set, (38 to default value)
+[LIBCONFIG] (root): 6/6 parameters successfully set, (5 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] THREAD_STRUCT.[0]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] THREAD_STRUCT.[0]: 2/2 parameters successfully set, (0 to default value)
+[CONFIG] parallel_conf is set to 0
+[CONFIG] worker_conf is set to 1
+Configuration: nb_rrc_inst 1, nb_nr_L1_inst 1, nb_ru 1
+[LIBCONFIG] TTracer: 3/3 parameters successfully set, (3 to default value)
+configuring for RAU/RRU
+[LIBCONFIG] opt: 3/3 parameters successfully set, (3 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] L1s.[0]: 19/19 parameters successfully set, (16 to default value)
+Initializing northbound interface for L1
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] L1s.[0]: 19/19 parameters successfully set, (16 to default value)
+Initializing northbound interface for L1
+[LIBCONFIG] list prs_config not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] gNBs.[0].servingCellConfigCommon.[0]: 60/60 parameters successfully set, (10 to default value)
+[LIBCONFIG] list gNBs.[0].servingCellConfigDedicated not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+DL frequency 3319680000: band 78, UL frequency 3319680000
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully set, (0 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default val9080.785746 [GNB_APP] I SDAP layer is disabled
+9080.785748 [GNB_APP] I Data Radio Bearer count 1
+9080.785754 [NR_RRC] I do_SIB23_NR, size 9 
+ 9080.785963 [PDCP] I pdcp init,usegtp 
+9080.786056 [GNB_APP] I default drx 0
+9080.786060 [GNB_APP] I [gNB 0] gNB_app_register for instance 0
+9080.786063 [UTIL] I Creating thread TASK_SCTP with affinity -1 and priority 50
+9080.788357 [ITTI] I Created Posix thread TASK_SCTP
+9080.788362 [X2AP] I X2AP is disabled.
+9080.788412 [UTIL] I Creating thread TASK_NGAP with affinity -1 and priority 50
+9080.790572 [NGAP] I Starting NGAP layer
+9080.790589 [ITTI] I Created Posix thread TASK_NGAP
+9080.790593 [UTIL] I Creating thread TASK_GNB_APP with affinity -1 and priority 50
+9080.790913 [NGAP] I Registered new gNB[0] and macro gNB id 3584
+9080.790917 [NGAP] I [gNB 0] check the amf registration state
+9080.791526 [NGAP] I 3584 -> 0000e000
+9080.793022 [ITTI] I Created Posix thread TASK_GNB_APP
+9080.793029 [UTIL] I Creating thread TASK_RRC_GNB with affinity -1 and priority 50
+9080.793198 [NGAP] I servedGUAMIs.list.count 2
+9080.793203 [NGAP] I PLMNSupportList.list.count 1
+9080.793204 [NGAP] I PLMNSupportList.list.count 6
+9080.793213 [GNB_APP] I [gNB 0] Received NGAP_REGISTER_GNB_CNF: associated AMF 1
+9080.795243 [ITTI] I Created Posix thread TASK_RRC_GNB
+9080.795309 [GTPU] I Configuring GTPu
+9080.795334 [GTPU] I SA mode 
+9080.795336 [GTPU] I Configuring GTPu address : 192.168.72.153, port : 2152
+9080.795338 [GTPU] I Initializing UDP for local address 192.168.72.153 with port 2152
+9080.795355 [GTPU] I Created gtpu instance id: 101
+9080.795549 [NR_RRC] I Entering main loop of NR_RRC message task
+9080.795558 [UTIL] I Creating thread TASK_GTPV1_U with affinity -1 and priority 50
+9080.795560 [NR_RRC] I Received F1 Setup Request from gNB_DU 3584 (gnb-rfsim) on assoc_id -1
+9080.795600 [RRC] I Accepting DU 3584 (gnb-rfsim), sending F1 Setup Response
+9080.795603 [MAC] I received F1 Setup Response from CU (null)
+9080.795606 [RRC] I Accepting new CU-UP ID 3584 name gnb-rfsim (assoc_id -1)
+9080.797754 [ITTI] I Created Posix thread TASK_GTPV1_U
+9080.801850 [PHY] I Initializing gNB 0 single_thread_flag:1
+9080.801853 [PHY] I Initializing gNB 0
+9080.801855 [PHY] I Registering with MAC interface module (before 0x55c79c8f9440)
+9080.801856 [PHY] I Installing callbacks for IF_Module - UL_indication
+9080.801858 [PHY] I Registering with MAC interface module (after 0x55c79c8f9440)
+9080.801859 [PHY] I Setting indication lists
+9080.801860 [PHY] I [nr-gnb.c] gNB structure allocated
+9080.852237 [PHY] I RU GPIO control set as 'generic'
+9080.852241 [PHY] I Setting clock source to internal
+9080.852242 [PHY] I Setting time source to internal
+9080.852261 [PHY] I number of L1 instances 1, number of RU 1, number of CPU cores 12
+9080.852263 [PHY] E DJP - delete code above this ../../../executables/nr-ru.c:1822
+9080.852264 [PHY] I Copying frame parms from gNB in RC to gNB 0 in ru 0 and frame_parms in ru
+9080.852459 [PHY] I Starting ru_thread 0
+9080.852461 [PHY] I Initialized RU proc 0 (,synch_to_ext_device),
+9080.852462 [PHY] I RU Thread pool size 2
+9080.852463 [PHY] I RU thread-pool core string -1,-1
+9080.852467 [UTIL] I Creating thread Tpool0_-1 with affinity -1 and priority 50
+ue)
+NRRRC 0: Southbound Transport local_mac
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully set, (0 to default value)
+[LIBCONFIG] security: 4/4 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] eNBs.[0]: 1/1 parameters successfully set, (1 to default value)
+[LIBCONFIG] gNBs.[0]: 1/1 parameters successfully set, (1 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[0]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[1]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[2]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].amf_ip_address.[0]: 4/4 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].SCTP: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].NETWORK_INTERFACES: 10/10 parameters successfully set, (3 to default value)
+[LIBCONFIG] gNBs.[0].NETWORK_INTERFACES: 10/10 parameters successfully set, (3 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] MACRLCs.[0]: 34/34 parameters successfully set, (28 to default value)
+[LIBCONFIG] list gNBs.[0].E1_INTERFACE not found in config file /opt/oai-gnb/etc/gnb.conf 
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0]: 3/3 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[0]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[1]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].plmn_list.[0].snssaiList.[2]: 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0].NETWORK_INTERFACES: 10/10 parameters successfully set, (3 to default value)
+START MAIN THREADS
+RC.nb_nr_L1_inst:1
+Initializing gNB threads single_thread_flag:1 wait_for_sync:0
+wait_gNBs()
+Waiting for gNB L1 instances to all get configured ... sleeping 50ms (nb_nr_sL1_inst 1)
+gNB L1 are configured
+About to Init RU threads RC.nb_RU:1
+Initializing RU threads
+configuring RU from file
+[LIBCONFIG] RUs.[0]: 43/43 parameters successfully set, (31 to default value)
+[LIBCONFIG] (root): 2/2 parameters successfully set, (0 to default value)
+[LIBCONFIG] gNBs.[0]: 30/30 parameters successfully set, (21 to default value)
+Set RU mask to 1
+Creating RC.ru[0]:0x55c79c951c60
+Setting function for RU 0 to gNodeB_3GPP
+[RU 0] Setting nr_flag 0, nr_band 78, nr_scs_for_raster 1
+[RU 0] Setting half-slot parallelization to 1
+configuring ru_id 0 (start_rf 0x55c797f595d0)
+create a thread for core -1
+create a t9080.854628 [UTIL] I Creating thread Tpool1_-1 with affinity -1 and priority 50
+9080.856844 [GNB_APP] W E2 agent is DISABLED (for activation, define .e2_agent.{near_ric_ip_addr,sm_dir} parameters)
+9080.856849 [UTIL] I Creating thread ru_thread with affinity -1 and priority 97
+9080.858991 [PHY] I Starting RU 0 (,synch_to_ext_device) on cpu 4
+9080.858996 [PHY] I Initializing frame parms for mu 1, N_RB 106, Ncp 0
+9080.858998 [PHY] W Init: N_RB_DL 106, first_carrier_offset 900, nb_prefix_samples 108,nb_prefix_samples0 132, ofdm_symbol_size 1536
+9080.859000 [PHY] I fp->scs=30000
+9080.859002 [PHY] I fp->ofdm_symbol_size=1536
+9080.859003 [PHY] I fp->nb_prefix_samples0=132
+9080.859004 [PHY] I fp->nb_prefix_samples=108
+9080.859003 [PHY] I Waiting for RUs to be configured ... RC.ru_mask:01
+9080.859006 [PHY] I fp->slots_per_subframe=2
+9080.859007 [PHY] I fp->samples_per_subframe_wCP=43008
+9080.859009 [PHY] I fp->samples_per_frame_wCP=430080
+9080.859010 [PHY] I fp->samples_per_subframe=46080
+9080.859011 [PHY] I fp->samples_per_frame=460800
+9080.859013 [PHY] I fp->dl_CarrierFreq=3319680000
+9080.859014 [PHY] I fp->ul_CarrierFreq=3319680000
+9080.859015 [PHY] I Setting RF config for N_RB 106, NB_RX 1, NB_TX 1
+9080.859017 [PHY] I Channel 0: setting tx_gain offset 0, rx_gain offset 75, tx_freq 3319680000 Hz, rx_freq 3319680000 Hz, tune_offset 0 Hz, sample_rate 46080000 Hz
+9080.859025 [PHY] I Initializing RU signal buffers (if_south local RF) nb_tx 1, nb_rx 1
+9080.859397 [PHY] I [INIT] common.txdata[0] = 0x7fa204090040 (1843200 bytes,sf_extension 0)
+9080.859400 [PHY] I [INIT] common.txdata[0] = 0x7fa204090040 
+9080.859716 [PHY] I nb_tx 1
+9080.859853 [PHY] I rxdata_7_5kHz[0] 0x7fa1fc581040 for RU 0
+9080.860174 [PHY] I [INIT] common.txdata_BF= 0x7fa1ec000b00 (8 bytes)
+9080.860217 [PHY] I txdataF_BF[0] 0x7fa204065040 for RU 0
+9080.860282 [PHY] I rxdataF[0] 0x7fa204010040 for RU 0
+9080.863508 [PHY] I [INIT] nr_phy_init_RU() ru->num_gNB:1 
+9080.864930 [HW] W The RFSIMULATOR environment variable is deprecated and support will be removed in the future. Instead, add parameter --rfsimulator.serveraddr server to set the server address. Note: the default is "server"; for the gNB/eNB, you don't have to set any configuration.
+9080.864934 [HW] I Remove RFSIMULATOR environment variable to get rid of this message and the sleep.
+9090.864950 [HW] W sample_rate 46080000.000000
+9090.864967 [HW] I Running as server waiting opposite rfsimulators to connect
+9090.865070 [HW] I [RAU] has loaded RFSIMULATOR device.
+9090.865074 [PHY] I RU 0 Setting N_TA_offset to 600 samples (factor 1.500000, UL Freq 3300600, N_RB 106, mu 1)
+9090.865077 [PHY] I Signaling main thread that RU 0 is ready, sl_ahead 6
+9090.865088 [PHY] I RUs configured
+9090.865094 [PHY] I init_eNB_afterRU() RC.nb_nr_inst:1
+9090.865096 [PHY] I RC.nb_nr_CC[inst:0]:0x7fa206ba9010
+9090.865098 [PHY] I [gNB 0] phy_init_nr_gNB() About to wait for gNB to be configured
+9091.030989 [PHY] I Initialise nr transport
+9091.200562 [PHY] I Mapping RX ports from 1 RUs to gNB 0
+9091.200573 [PHY] I gNB->num_RU:1
+9091.200574 [PHY] I Attaching RU 0 antenna 0 to gNB antenna 0
+9091.200581 [UTIL] I Creating thread Tpool0_-1 with affinity -1 and priority 50
+9091.202826 [UTIL] I Creating thread Tpool1_-1 with affinity -1 and priority 50
+9091.204924 [UTIL] I Creating thread Tpool2_-1 with affinity -1 and priority 50
+9091.207063 [UTIL] I Creating thread Tpool3_-1 with affinity -1 and priority 50
+9091.209208 [UTIL] I Creating thread Tpool4_-1 with affinity -1 and priority 50
+9091.211416 [UTIL] I Creating thread Tpool5_-1 with affinity -1 and priority 50
+9091.213506 [UTIL] I Creating thread Tpool6_-1 with affinity -1 and priority 50
+9091.215715 [UTIL] I Creating thread Tpool7_-1 with affinity -1 and priority 50
+9091.229212 [PHY] I Creating thread for TX reordering and dispatching to RU
+9091.229219 [UTIL] I Creating thread thread_tx_reorder with affinity -1 and priority 97
+9091.231565 [UTIL] I Creating thread L1_stats with affinity -1 and priority 1
+hread for core -1
+[LIBCONFIG] e2_agent: 2/2 parameters successfully set, (2 to default value)
+wait RUs
+[LIBCONFIG] device.recplay: 8/8 parameters successfully set, (8 to default value)
+[LIBCONFIG] device: 1/1 parameters successfully set, (1 to default value)
+[LIBCONFIG] loader: 2/2 parameters successfully set, (2 to default value)
+[LIBCONFIG] loader.rfsimulator: 2/2 parameters successfully set, (1 to default value)
+shlib_path librfsimulator.so
+[LOADER] library librfsimulator.so successfully loaded
+[LIBCONFIG] rfsimulator: 9/9 parameters successfully set, (8 to default value)
+Initializing random number generator, seed 8524304735400580195
+setup_RU_buffers: frame_parms = 0x7fa204253010
+waiting for sync (ru_thread,-1/0x55c798b790b4,0x55c79a47b3a0,0x55c79a47a5e0)
+RC.ru_mask:00
+ALL RUs READY!
+RC.nb_RU:1
+ALL RUs ready - init gNBs
+Not NFAPI mode - call init_eNB_afterRU()
+[LIBCONFIG] loader.dfts: 2/2 parameters successfully set, (1 to default value)
+shlib_path libdfts.so
+[LOADER] library libdfts.so successfully loaded
+[LIBCONFIG] loader.ldpc: 2/2 parameters successfully set, (1 to default value)
+shlib_path libldpc.so
+[LOADER] library libldpc.so successfully loaded
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+waiting for sync (L1_stats_thread,-1/0x55c798b790b4,0x55c79a47b3a0,0x55c79a47a5e0)
+ALL RUs ready - ALL gNBs ready
+Sending sync to all threads
+Entering ITTI signals handler
+TYPE <CTRL-C> TO TERMINATE
+got sync (L1_stats_thread)
+got sync (ru_thread)
+9091.233694 [HW] W running command "/sbin/sysctl -n -e -q -w net.core.rmem_default=134217728" to increase RFsim performance
+9091.241304 [HW] W running command "/sbin/sysctl -n -e -q -w net.core.rmem_max=134217728" to increase RFsim performance
+9091.241892 [HW] W running command "/sbin/sysctl -n -e -q -w net.core.wmem_default=134217728" to increase RFsim performance
+9091.242443 [HW] W running command "/sbin/sysctl -n -e -q -w net.core.wmem_max=134217728" to increase RFsim performance
+9091.243021 [PHY] I RU 0 rf device ready
+9091.243025 [PHY] I RU 0 RF started opp_enabled 0
+9091.243030 [HW] W No connected device, generating void samples...
+9091.244644 [PHY] I tx_reorder_thread started
+9093.898795 [NR_MAC] I Frame.Slot 128.0
+
+9096.518246 [NR_MAC] I Frame.Slot 256.0
+
+9099.135307 [NR_MAC] I Frame.Slot 384.0
+
+9101.753961 [NR_MAC] I Frame.Slot 512.0
+
+9104.372588 [NR_MAC] I Frame.Slot 640.0
+
+9106.990451 [NR_MAC] I Frame.Slot 768.0
+
+9109.606787 [NR_MAC] I Frame.Slot 896.0
+
+9112.221968 [NR_MAC] I Frame.Slot 0.0
+
+9113.666339 [HW] I A client connects, sending the current time
+9114.815081 [NR_MAC] I Frame.Slot 128.0
+
+9115.111238 [NR_MAC] I Frame.Slot 256.0
+
+9115.413527 [NR_MAC] I Frame.Slot 384.0
+
+9115.665873 [HW] W Lost socket
+9116.088963 [NR_MAC] I Frame.Slot 512.0
+
+9118.717925 [NR_MAC] I Frame.Slot 640.0
+
+9121.345848 [NR_MAC] I Frame.Slot 768.0
+
+9123.976050 [NR_MAC] I Frame.Slot 896.0
+
+9126.603855 [NR_MAC] I Frame.Slot 0.0
+
+9129.232185 [NR_MAC] I Frame.Slot 128.0
+
+9131.859096 [NR_MAC] I Frame.Slot 256.0
+
+9134.006299 [HW] I A client connects, sending the current time
+9135.060589 [NR_MAC] I Frame.Slot 384.0
+
+9135.290804 [NR_MAC] I Frame.Slot 512.0
+
+9135.500178 [NR_MAC] I Frame.Slot 640.0
+
+9135.708080 [NR_MAC] I Frame.Slot 768.0
+
+9135.918231 [NR_MAC] I Frame.Slot 896.0
+
+9136.008941 [HW] W Lost socket
+9137.554976 [NR_MAC] I Frame.Slot 0.0
+
+9140.234286 [NR_MAC] I Frame.Slot 128.0
+
+9142.856436 [NR_MAC] I Frame.Slot 256.0
+
+9145.477761 [NR_MAC] I Frame.Slot 384.0
+
+9148.096059 [NR_MAC] I Frame.Slot 512.0
+
+9148.630147 [HW] I A client connects, sending the current time
+9148.938220 [HW] W Lost socket
+9151.023532 [NR_MAC] I Frame.Slot 640.0
+
+9153.702531 [NR_MAC] I Frame.Slot 768.0
+
+9156.319621 [NR_MAC] I Frame.Slot 896.0
+
+9158.935333 [NR_MAC] I Frame.Slot 0.0
+
+9161.553455 [NR_MAC] I Frame.Slot 128.0
+
+9164.173909 [NR_MAC] I Frame.Slot 256.0
+
+9166.792699 [NR_MAC] I Frame.Slot 384.0
+
+9169.411641 [NR_MAC] I Frame.Slot 512.0
+
+9172.031129 [NR_MAC] I Frame.Slot 640.0
+
+9174.652234 [NR_MAC] I Frame.Slot 768.0
+
+9177.272631 [NR_MAC] I Frame.Slot 896.0
+
+9179.891337 [NR_MAC] I Frame.Slot 0.0
+
+9182.510271 [NR_MAC] I Frame.Slot 128.0
+
+9185.132398 [NR_MAC] I Frame.Slot 256.0
+
+9187.750480 [NR_MAC] I Frame.Slot 384.0
+
+9190.368436 [NR_MAC] I Frame.Slot 512.0
+
+9192.985796 [NR_MAC] I Frame.Slot 640.0
+
+9195.604546 [NR_MAC] I Frame.Slot 768.0
+
+9198.220565 [NR_MAC] I Frame.Slot 896.0
+
+9200.839450 [NR_MAC] I Frame.Slot 0.0
+
+9201.694749 [HW] I A client connects, sending the current time
+9202.862886 [NR_MAC] I Frame.Slot 128.0
+
+9203.105315 [NR_MAC] I Frame.Slot 256.0
+
+9203.388664 [HW] W Lost socket
+9204.039419 [NR_MAC] I Frame.Slot 384.0
+
+9206.654936 [NR_MAC] I Frame.Slot 512.0
+
+9209.270539 [NR_MAC] I Frame.Slot 640.0
+
+9211.888294 [NR_MAC] I Frame.Slot 768.0
+
+9214.507287 [NR_MAC] I Frame.Slot 896.0
+
+9217.125773 [NR_MAC] I Frame.Slot 0.0
+
+9219.740563 [NR_MAC] I Frame.Slot 128.0
+
+9222.355018 [NR_MAC] I Frame.Slot 256.0
+
+9224.972213 [NR_MAC] I Frame.Slot 384.0
+
+9227.587830 [NR_MAC] I Frame.Slot 512.0
+
+9230.202624 [NR_MAC] I Frame.Slot 640.0
+
+9232.817736 [NR_MAC] I Frame.Slot 768.0
+
+9235.436972 [NR_MAC] I Frame.Slot 896.0
+
+9237.788356 [HW] I A client connects, sending the current time
+9238.820076 [NR_MAC] I Frame.Slot 0.0
+
+9239.047660 [NR_MAC] I Frame.Slot 128.0
+
+9239.266681 [NR_MAC] I Frame.Slot 256.0
+
+9239.487313 [NR_MAC] I Frame.Slot 384.0
+
+9239.719075 [NR_MAC] I Frame.Slot 512.0
+
+9239.791334 [HW] W Lost socket
+9241.631143 [NR_MAC] I Frame.Slot 640.0
+
+9244.323286 [NR_MAC] I Frame.Slot 768.0
+
+9246.955520 [NR_MAC] I Frame.Slot 896.0
+
+9247.550244 [HW] I A client connects, sending the current time
+9248.741019 [HW] W Lost socket
+9249.278376 [NR_MAC] I Frame.Slot 0.0
+
+9251.895638 [NR_MAC] I Frame.Slot 128.0
+
+9254.576964 [NR_MAC] I Frame.Slot 256.0
+
+9257.196656 [NR_MAC] I Frame.Slot 384.0
+
+9259.816051 [NR_MAC] I Frame.Slot 512.0
+
+9262.434785 [NR_MAC] I Frame.Slot 640.0
+
+9265.054624 [NR_MAC] I Frame.Slot 768.0
+
+9267.674183 [NR_MAC] I Frame.Slot 896.0
+
+9270.292797 [NR_MAC] I Frame.Slot 0.0
+
+9272.910516 [NR_MAC] I Frame.Slot 128.0
+
+9275.529760 [NR_MAC] I Frame.Slot 256.0
+
+9278.148058 [NR_MAC] I Frame.Slot 384.0
+
+9280.767155 [NR_MAC] I Frame.Slot 512.0
+
+9283.388253 [NR_MAC] I Frame.Slot 640.0
+
+9286.010823 [NR_MAC] I Frame.Slot 768.0
+
+9288.630882 [NR_MAC] I Frame.Slot 896.0
+
+9291.251200 [NR_MAC] I Frame.Slot 0.0
+
+9293.869737 [NR_MAC] I Frame.Slot 128.0
+
+9296.488657 [NR_MAC] I Frame.Slot 256.0
+
+9299.106606 [NR_MAC] I Frame.Slot 384.0
+
+9301.726233 [NR_MAC] I Frame.Slot 512.0
+
+9304.346236 [NR_MAC] I Frame.Slot 640.0
+
+9306.965980 [NR_MAC] I Frame.Slot 768.0
+
+9309.583921 [NR_MAC] I Frame.Slot 896.0
+
+9312.202703 [NR_MAC] I Frame.Slot 0.0
+
+9314.824934 [NR_MAC] I Frame.Slot 128.0
+
+9317.448656 [NR_MAC] I Frame.Slot 256.0
+
+9320.075123 [NR_MAC] I Frame.Slot 384.0
+
+9322.697145 [NR_MAC] I Frame.Slot 512.0
+
+9325.322117 [NR_MAC] I Frame.Slot 640.0
+
+9327.944213 [NR_MAC] I Frame.Slot 768.0
+
+9330.562207 [NR_MAC] I Frame.Slot 896.0
+
+9333.182394 [NR_MAC] I Frame.Slot 0.0
+
+9335.814393 [NR_MAC] I Frame.Slot 128.0
+
+9338.438163 [NR_MAC] I Frame.Slot 256.0
+
+9341.067671 [NR_MAC] I Frame.Slot 384.0
+
+9343.690153 [NR_MAC] I Frame.Slot 512.0
+
+9346.311589 [NR_MAC] I Frame.Slot 640.0
+
+9348.931110 [NR_MAC] I Frame.Slot 768.0
+
+9351.552500 [NR_MAC] I Frame.Slot 896.0
+
+9354.171766 [NR_MAC] I Frame.Slot 0.0
+
+9356.791287 [NR_MAC] I Frame.Slot 128.0
+
+9359.411225 [NR_MAC] I Frame.Slot 256.0
+
+9362.029538 [NR_MAC] I Frame.Slot 384.0
+
+9364.649221 [NR_MAC] I Frame.Slot 512.0
+
+9367.268469 [NR_MAC] I Frame.Slot 640.0
+
+9369.887299 [NR_MAC] I Frame.Slot 768.0
+
+9372.506711 [NR_MAC] I Frame.Slot 896.0
+
+9375.126058 [NR_MAC] I Frame.Slot 0.0
+
+9377.745294 [NR_MAC] I Frame.Slot 128.0
+
+9380.364198 [NR_MAC] I Frame.Slot 256.0
+
+9382.983149 [NR_MAC] I Frame.Slot 384.0
+
+9385.606814 [NR_MAC] I Frame.Slot 512.0
+
+9388.225431 [NR_MAC] I Frame.Slot 640.0
+
+9390.843977 [NR_MAC] I Frame.Slot 768.0
+
+9393.463802 [NR_MAC] I Frame.Slot 896.0
+
+9396.085516 [NR_MAC] I Frame.Slot 0.0
+
+9398.706338 [NR_MAC] I Frame.Slot 128.0
+
+9401.329078 [NR_MAC] I Frame.Slot 256.0
+
+9403.949519 [NR_MAC] I Frame.Slot 384.0
+
+9406.570129 [NR_MAC] I Frame.Slot 512.0
+
+9409.190559 [NR_MAC] I Frame.Slot 640.0
+
+9411.809880 [NR_MAC] I Frame.Slot 768.0
+
+9414.429668 [NR_MAC] I Frame.Slot 896.0
+
+9417.051695 [NR_MAC] I Frame.Slot 0.0
+
+9419.671239 [NR_MAC] I Frame.Slot 128.0
+
+9422.291472 [NR_MAC] I Frame.Slot 256.0
+
+9424.913812 [NR_MAC] I Frame.Slot 384.0
+
+9427.535299 [NR_MAC] I Frame.Slot 512.0
+
+9430.157360 [NR_MAC] I Frame.Slot 640.0
+
+9432.778787 [NR_MAC] I Frame.Slot 768.0
+
+9435.400028 [NR_MAC] I Frame.Slot 896.0
+
+9438.020360 [NR_MAC] I Frame.Slot 0.0
+
+9440.639055 [NR_MAC] I Frame.Slot 128.0
+
+9443.259696 [NR_MAC] I Frame.Slot 256.0
+
+9445.882756 [NR_MAC] I Frame.Slot 384.0
+
+9447.095171 [HW] I A client connects, sending the current time
+9448.208381 [NR_MAC] I Frame.Slot 512.0
+
+9448.405654 [NR_MAC] I Frame.Slot 640.0
+
+9448.657247 [HW] W Lost socket
+9449.383556 [NR_MAC] I Frame.Slot 768.0
+
+9452.002902 [NR_MAC] I Frame.Slot 896.0
+
+9454.680054 [NR_MAC] I Frame.Slot 0.0
+
+9457.300149 [NR_MAC] I Frame.Slot 128.0
+
+9459.918596 [NR_MAC] I Frame.Slot 256.0
+
+9462.537990 [NR_MAC] I Frame.Slot 384.0
+
+9465.157241 [NR_MAC] I Frame.Slot 512.0
+
+9467.776372 [NR_MAC] I Frame.Slot 640.0
+
+9470.395674 [NR_MAC] I Frame.Slot 768.0
+
+9473.017388 [NR_MAC] I Frame.Slot 896.0
+
+9475.637299 [NR_MAC] I Frame.Slot 0.0
+
+9478.253637 [NR_MAC] I Frame.Slot 128.0
+
+9480.867542 [NR_MAC] I Frame.Slot 256.0
+
+9483.484206 [NR_MAC] I Frame.Slot 384.0
+
+9486.103674 [NR_MAC] I Frame.Slot 512.0
+
+9488.720643 [NR_MAC] I Frame.Slot 640.0
+
+9491.336741 [NR_MAC] I Frame.Slot 768.0
+
+9493.951146 [NR_MAC] I Frame.Slot 896.0
+
+9496.569099 [NR_MAC] I Frame.Slot 0.0
+
+9499.185307 [NR_MAC] I Frame.Slot 128.0
+
+9501.800316 [NR_MAC] I Frame.Slot 256.0
+
+9504.414544 [NR_MAC] I Frame.Slot 384.0
+
+9507.029108 [NR_MAC] I Frame.Slot 512.0
+
+9509.644687 [NR_MAC] I Frame.Slot 640.0
+
+9512.260959 [NR_MAC] I Frame.Slot 768.0
+
+9514.875062 [NR_MAC] I Frame.Slot 896.0
+
+9517.489518 [NR_MAC] I Frame.Slot 0.0
+
+9520.106077 [NR_MAC] I Frame.Slot 128.0
+
+9522.720358 [NR_MAC] I Frame.Slot 256.0
+
+9525.334929 [NR_MAC] I Frame.Slot 384.0
+
+9527.949404 [NR_MAC] I Frame.Slot 512.0
+
+9530.564490 [NR_MAC] I Frame.Slot 640.0
+
+9533.179780 [NR_MAC] I Frame.Slot 768.0
+
+9535.796530 [NR_MAC] I Frame.Slot 896.0
+
+9538.412809 [NR_MAC] I Frame.Slot 0.0
+
+9541.026616 [NR_MAC] I Frame.Slot 128.0
+
+9543.640676 [NR_MAC] I Frame.Slot 256.0
+
+9546.256576 [NR_MAC] I Frame.Slot 384.0
+
+9548.872388 [NR_MAC] I Frame.Slot 512.0
+
+9551.487805 [NR_MAC] I Frame.Slot 640.0
+
+9554.102629 [NR_MAC] I Frame.Slot 768.0
+
+9556.718711 [NR_MAC] I Frame.Slot 896.0
+
+9559.332433 [NR_MAC] I Frame.Slot 0.0
+
+9561.947160 [NR_MAC] I Frame.Slot 128.0
+
+9564.564113 [NR_MAC] I Frame.Slot 256.0
+
+9567.180761 [NR_MAC] I Frame.Slot 384.0
+
+9569.794957 [NR_MAC] I Frame.Slot 512.0
+
+9572.408898 [NR_MAC] I Frame.Slot 640.0
+
+9574.031546 [HW] I A client connects, sending the current time
+9575.145287 [NR_MAC] I Frame.Slot 768.0
+
+9575.425062 [NR_MAC] I Frame.Slot 896.0
+
+9575.706895 [NR_MAC] I Frame.Slot 0.0
+
+9575.996034 [NR_MAC] I Frame.Slot 128.0
+
+9576.022651 [HW] W Lost socket
+9578.434350 [NR_MAC] I Frame.Slot 256.0
+
+9581.108579 [NR_MAC] I Frame.Slot 384.0
+
+9583.725329 [NR_MAC] I Frame.Slot 512.0
+
+9586.343337 [NR_MAC] I Frame.Slot 640.0
+
+9588.958636 [NR_MAC] I Frame.Slot 768.0
+
+9591.250652 [HW] I A client connects, sending the current time
+9592.296036 [NR_MAC] I Frame.Slot 896.0
+
+9592.579839 [NR_MAC] I Frame.Slot 0.0
+
+9592.859438 [NR_MAC] I Frame.Slot 128.0
+
+9593.136460 [NR_MAC] I Frame.Slot 256.0
+
+9593.436966 [NR_MAC] I Frame.Slot 384.0
+
+9593.720970 [NR_MAC] I Frame.Slot 512.0
+
+9594.021950 [NR_MAC] I Frame.Slot 640.0
+
+9594.303676 [NR_MAC] I Frame.Slot 768.0
+
+9594.606672 [NR_MAC] I Frame.Slot 896.0
+
+9594.793176 [HW] W Lost socket
+9595.884515 [NR_MAC] I Frame.Slot 0.0
+
+9598.557651 [NR_MAC] I Frame.Slot 128.0
+
+9601.171285 [NR_MAC] I Frame.Slot 256.0
+
+9603.786594 [NR_MAC] I Frame.Slot 384.0
+
+9606.403444 [NR_MAC] I Frame.Slot 512.0
+
+9609.018877 [NR_MAC] I Frame.Slot 640.0
+
+9610.692454 [HW] I A client connects, sending the current time
+9611.783861 [NR_MAC] I Frame.Slot 768.0
+
+9612.063452 [NR_MAC] I Frame.Slot 896.0
+
+9612.356625 [NR_MAC] I Frame.Slot 0.0
+
+9612.629437 [NR_MAC] I Frame.Slot 128.0
+
+9612.920591 [NR_MAC] I Frame.Slot 256.0
+
+9613.199426 [NR_MAC] I Frame.Slot 384.0
+
+9613.482447 [NR_MAC] I Frame.Slot 512.0
+
+9613.761749 [NR_MAC] I Frame.Slot 640.0
+
+9614.049187 [NR_MAC] I Frame.Slot 768.0
+
+9614.227584 [HW] W Lost socket
+9615.257591 [NR_MAC] I Frame.Slot 896.0
+
+9617.933665 [NR_MAC] I Frame.Slot 0.0
+
+9620.550279 [NR_MAC] I Frame.Slot 128.0
+
+9623.166221 [NR_MAC] I Frame.Slot 256.0
+
+9625.783005 [NR_MAC] I Frame.Slot 384.0
+
+9628.400366 [NR_MAC] I Frame.Slot 512.0
+
+9631.015027 [NR_MAC] I Frame.Slot 640.0
+
+9633.630044 [NR_MAC] I Frame.Slot 768.0
+
+9636.246594 [NR_MAC] I Frame.Slot 896.0
+
+9638.865166 [NR_MAC] I Frame.Slot 0.0
+
+9641.481933 [NR_MAC] I Frame.Slot 128.0
+
+9644.097487 [NR_MAC] I Frame.Slot 256.0
+
+9646.714044 [NR_MAC] I Frame.Slot 384.0
+
+9649.334906 [NR_MAC] I Frame.Slot 512.0
+
+9651.951504 [NR_MAC] I Frame.Slot 640.0
+
+9654.572215 [NR_MAC] I Frame.Slot 768.0
+
+9657.195656 [NR_MAC] I Frame.Slot 896.0
+
+9659.813934 [NR_MAC] I Frame.Slot 0.0
+
+9662.429997 [NR_MAC] I Frame.Slot 128.0
+
+9665.046662 [NR_MAC] I Frame.Slot 256.0
+
+9667.664989 [NR_MAC] I Frame.Slot 384.0
+
+9670.280722 [NR_MAC] I Frame.Slot 512.0
+
+9672.896057 [NR_MAC] I Frame.Slot 640.0
+
+9675.513104 [NR_MAC] I Frame.Slot 768.0
+
+9678.132720 [NR_MAC] I Frame.Slot 896.0
+
+9680.747843 [NR_MAC] I Frame.Slot 0.0
+
+9683.364344 [NR_MAC] I Frame.Slot 128.0
+
+9685.981585 [NR_MAC] I Frame.Slot 256.0
+
+9688.598485 [NR_MAC] I Frame.Slot 384.0
+
+9691.213969 [NR_MAC] I Frame.Slot 512.0
+
+9693.830388 [NR_MAC] I Frame.Slot 640.0
+
+9696.449902 [NR_MAC] I Frame.Slot 768.0
+
+9699.067204 [NR_MAC] I Frame.Slot 896.0
+
+9701.684021 [NR_MAC] I Frame.Slot 0.0
+
+9704.299154 [NR_MAC] I Frame.Slot 128.0
+
+9706.916775 [NR_MAC] I Frame.Slot 256.0
+
+9709.533459 [NR_MAC] I Frame.Slot 384.0
+
+9712.150404 [NR_MAC] I Frame.Slot 512.0
+
+9714.766048 [NR_MAC] I Frame.Slot 640.0
+
+9717.383459 [NR_MAC] I Frame.Slot 768.0
+
+9719.998454 [NR_MAC] I Frame.Slot 896.0
+
+9722.612746 [NR_MAC] I Frame.Slot 0.0
+
+9725.228400 [NR_MAC] I Frame.Slot 128.0
+
+9727.847949 [NR_MAC] I Frame.Slot 256.0
+
+9730.464147 [NR_MAC] I Frame.Slot 384.0
+
+9733.081403 [NR_MAC] I Frame.Slot 512.0
+
+9735.697406 [NR_MAC] I Frame.Slot 640.0
+
+9738.314363 [NR_MAC] I Frame.Slot 768.0
+
+9740.929531 [NR_MAC] I Frame.Slot 896.0
+
+9743.546061 [NR_MAC] I Frame.Slot 0.0
+
+9746.162275 [NR_MAC] I Frame.Slot 128.0
+
+9748.778907 [NR_MAC] I Frame.Slot 256.0
+
+9751.392824 [NR_MAC] I Frame.Slot 384.0
+
+9754.007407 [NR_MAC] I Frame.Slot 512.0
+
+9756.623781 [NR_MAC] I Frame.Slot 640.0
+
+9759.238713 [NR_MAC] I Frame.Slot 768.0
+
+9761.853688 [NR_MAC] I Frame.Slot 896.0
+
+9764.467627 [NR_MAC] I Frame.Slot 0.0
+
+9767.085004 [NR_MAC] I Frame.Slot 128.0
+
+9769.700836 [NR_MAC] I Frame.Slot 256.0
+
+9772.315779 [NR_MAC] I Frame.Slot 384.0
+
+9774.930336 [NR_MAC] I Frame.Slot 512.0
+
+9777.547473 [NR_MAC] I Frame.Slot 640.0
+
+9780.160959 [NR_MAC] I Frame.Slot 768.0
+
+9780.652905 [HW] I A client connects, sending the current time
+9781.935097 [NR_MAC] I Frame.Slot 896.0
+
+9782.294791 [NR_MAC] I Frame.Slot 0.0
+
+9782.666206 [NR_MAC] I Frame.Slot 128.0
+
+9782.982216 [NR_MAC] I Frame.Slot 256.0
+
+9783.309229 [NR_MAC] I Frame.Slot 384.0
+
+9783.670735 [NR_MAC] I Frame.Slot 512.0
+
+9784.040532 [NR_MAC] I Frame.Slot 640.0
+
+9784.356749 [NR_MAC] I Frame.Slot 768.0
+
+9784.690527 [NR_MAC] I Frame.Slot 896.0
+
+9785.055767 [NR_MAC] I Frame.Slot 0.0
+
+9785.430103 [NR_MAC] I Frame.Slot 128.0
+
+9785.751641 [NR_MAC] I Frame.Slot 256.0
+
+9786.181132 [NR_MAC] I Frame.Slot 384.0
+
+9786.567573 [NR_MAC] I Frame.Slot 512.0
+
+9786.944364 [NR_MAC] I Frame.Slot 640.0
+
+9787.070928 [HW] W Lost socket
+9788.713948 [NR_MAC] I Frame.Slot 768.0
+
+9791.327812 [NR_MAC] I Frame.Slot 896.0
+
+9793.942265 [NR_MAC] I Frame.Slot 0.0
+
+9796.557720 [NR_MAC] I Frame.Slot 128.0
+
+9799.172281 [NR_MAC] I Frame.Slot 256.0
+
+9801.787905 [NR_MAC] I Frame.Slot 384.0
+
+9804.403839 [NR_MAC] I Frame.Slot 512.0
+
+9807.019138 [NR_MAC] I Frame.Slot 640.0
+
+9809.635255 [NR_MAC] I Frame.Slot 768.0
+
+9812.249153 [NR_MAC] I Frame.Slot 896.0
+
+9814.863844 [NR_MAC] I Frame.Slot 0.0
+
+9817.479807 [NR_MAC] I Frame.Slot 128.0
+
+9820.093827 [NR_MAC] I Frame.Slot 256.0
+
+9822.707850 [NR_MAC] I Frame.Slot 384.0
+
+9825.323350 [NR_MAC] I Frame.Slot 512.0
+
+9827.941516 [NR_MAC] I Frame.Slot 640.0
+
+9830.556444 [NR_MAC] I Frame.Slot 768.0
+
+9833.171812 [NR_MAC] I Frame.Slot 896.0
+
+9835.785877 [NR_MAC] I Frame.Slot 0.0
+
+9838.402293 [NR_MAC] I Frame.Slot 128.0
+
+9841.017671 [NR_MAC] I Frame.Slot 256.0
+
+9843.633225 [NR_MAC] I Frame.Slot 384.0
+
+9846.248529 [NR_MAC] I Frame.Slot 512.0
+
+9848.866807 [NR_MAC] I Frame.Slot 640.0
+
+9851.482808 [NR_MAC] I Frame.Slot 768.0
+
+9854.096322 [NR_MAC] I Frame.Slot 896.0
+
+9856.711130 [NR_MAC] I Frame.Slot 0.0
+
+9859.327154 [NR_MAC] I Frame.Slot 128.0
+
+9861.942004 [NR_MAC] I Frame.Slot 256.0
+
+9864.557446 [NR_MAC] I Frame.Slot 384.0
+
+9867.173736 [NR_MAC] I Frame.Slot 512.0
+
+9869.790102 [NR_MAC] I Frame.Slot 640.0
+
+9872.405353 [NR_MAC] I Frame.Slot 768.0
+
+9875.022390 [NR_MAC] I Frame.Slot 896.0
+
+9877.641491 [NR_MAC] I Frame.Slot 0.0
+
+9880.387315 [NR_MAC] I Frame.Slot 128.0
+
+9883.006084 [NR_MAC] I Frame.Slot 256.0
+
+9885.624744 [NR_MAC] I Frame.Slot 384.0
+
+9888.244380 [NR_MAC] I Frame.Slot 512.0
+
+9890.863366 [NR_MAC] I Frame.Slot 640.0
+
+9893.483364 [NR_MAC] I Frame.Slot 768.0
+
+9896.102410 [NR_MAC] I Frame.Slot 896.0
+
+9898.718240 [NR_MAC] I Frame.Slot 0.0
+
+9901.334046 [NR_MAC] I Frame.Slot 128.0
+
+9903.948584 [NR_MAC] I Frame.Slot 256.0
+
+9906.564678 [NR_MAC] I Frame.Slot 384.0
+
+9909.180252 [NR_MAC] I Frame.Slot 512.0
+
+9910.346672 [HW] I A client connects, sending the current time
+9911.494181 [NR_MAC] I Frame.Slot 640.0
+
+9911.782887 [NR_MAC] I Frame.Slot 768.0
+
+9912.074274 [NR_MAC] I Frame.Slot 896.0
+
+9912.357949 [NR_MAC] I Frame.Slot 0.0
+
+9912.655736 [NR_MAC] I Frame.Slot 128.0
+
+9912.945776 [NR_MAC] I Frame.Slot 256.0
+
+9913.236630 [NR_MAC] I Frame.Slot 384.0
+
+9913.519361 [NR_MAC] I Frame.Slot 512.0
+
+9913.802331 [NR_MAC] I Frame.Slot 640.0
+
+9914.090940 [NR_MAC] I Frame.Slot 768.0
+
+9914.393534 [NR_MAC] I Frame.Slot 896.0
+
+9914.675909 [NR_MAC] I Frame.Slot 0.0
+
+9914.961131 [NR_MAC] I Frame.Slot 128.0
+
+9915.250758 [NR_MAC] I Frame.Slot 256.0
+
+9915.597708 [NR_MAC] I Frame.Slot 384.0
+
+9915.895895 [NR_MAC] I Frame.Slot 512.0
+
+9916.185136 [NR_MAC] I Frame.Slot 640.0
+
+9916.479408 [NR_MAC] I Frame.Slot 768.0
+
+9916.760144 [NR_MAC] I Frame.Slot 896.0
+
+9917.042399 [HW] W Lost socket
+9917.212266 [NR_MAC] I Frame.Slot 0.0
+
+9919.827117 [NR_MAC] I Frame.Slot 128.0
+
+9922.441298 [NR_MAC] I Frame.Slot 256.0
+
+9925.057940 [NR_MAC] I Frame.Slot 384.0
+
+9925.604555 [HW] I A client connects, sending the current time
+9925.604661 [HW] E Not supported to send Tx out of order (same in USRP) 22364052480, 22364029439
+9926.820859 [NR_MAC] I Frame.Slot 512.0
+
+9927.116156 [NR_MAC] I Frame.Slot 640.0
+
+9927.409663 [NR_MAC] I Frame.Slot 768.0
+
+9927.681400 [NR_MAC] I Frame.Slot 896.0
+
+9927.980299 [NR_MAC] I Frame.Slot 0.0
+
+9928.263100 [NR_MAC] I Frame.Slot 128.0
+
+9928.553766 [NR_MAC] I Frame.Slot 256.0
+
+9928.863858 [NR_MAC] I Frame.Slot 384.0
+
+9929.107237 [HW] W Lost socket
+9929.688296 [NR_MAC] I Frame.Slot 512.0
+
+9932.369687 [NR_MAC] I Frame.Slot 640.0
+
+9934.988421 [NR_MAC] I Frame.Slot 768.0
+
+9937.608778 [NR_MAC] I Frame.Slot 896.0
+
+9940.228996 [NR_MAC] I Frame.Slot 0.0
+
+9942.970041 [NR_MAC] I Frame.Slot 128.0
+
+9945.587738 [NR_MAC] I Frame.Slot 256.0
+
+9945.889954 [HW] I A client connects, sending the current time
+9947.129850 [NR_MAC] I Frame.Slot 384.0
+
+9947.435800 [NR_MAC] I Frame.Slot 512.0
+
+9947.729828 [NR_MAC] I Frame.Slot 640.0
+
+9948.029438 [NR_MAC] I Frame.Slot 768.0
+
+9948.331923 [NR_MAC] I Frame.Slot 896.0
+
+9948.606057 [NR_MAC] I Frame.Slot 0.0
+
+9948.894642 [NR_MAC] I Frame.Slot 128.0
+
+9949.180129 [NR_MAC] I Frame.Slot 256.0
+
+9949.464559 [NR_MAC] I Frame.Slot 384.0
+
+9949.752359 [NR_MAC] I Frame.Slot 512.0
+
+9950.045662 [NR_MAC] I Frame.Slot 640.0
+
+9950.325587 [NR_MAC] I Frame.Slot 768.0
+
+9950.599483 [NR_MAC] I Frame.Slot 896.0
+
+9950.942782 [NR_MAC] I Frame.Slot 0.0
+
+9951.215062 [NR_MAC] I Frame.Slot 128.0
+
+9951.483234 [NR_MAC] I Frame.Slot 256.0
+
+9951.759795 [NR_MAC] I Frame.Slot 384.0
+
+9952.041444 [NR_MAC] I Frame.Slot 512.0
+
+9952.318859 [NR_MAC] I Frame.Slot 640.0
+
+9952.595969 [NR_MAC] I Frame.Slot 768.0
+
+9952.870373 [NR_MAC] I Frame.Slot 896.0
+
+9953.145705 [NR_MAC] I Frame.Slot 0.0
+
+9953.416056 [NR_MAC] I Frame.Slot 128.0
+
+9953.691695 [NR_MAC] I Frame.Slot 256.0
+
+9953.976424 [NR_MAC] I Frame.Slot 384.0
+
+9954.261518 [NR_MAC] I Frame.Slot 512.0
+
+9954.529899 [NR_MAC] I Frame.Slot 640.0
+
+9954.811539 [NR_MAC] I Frame.Slot 768.0
+
+9955.098693 [NR_MAC] I Frame.Slot 896.0
+
+9955.388312 [NR_MAC] I Frame.Slot 0.0
+
+9955.674022 [NR_MAC] I Frame.Slot 128.0
+
+9955.953661 [NR_MAC] I Frame.Slot 256.0
+
+9956.239378 [NR_MAC] I Frame.Slot 384.0
+
+9956.542840 [NR_MAC] I Frame.Slot 512.0
+
+9956.815741 [NR_MAC] I Frame.Slot 640.0
+
+9957.090834 [NR_MAC] I Frame.Slot 768.0
+
+9957.388774 [NR_MAC] I Frame.Slot 896.0
+
+9957.669749 [NR_MAC] I Frame.Slot 0.0
+
+9957.972316 [NR_MAC] I Frame.Slot 128.0
+
+9958.256443 [NR_MAC] I Frame.Slot 256.0
+
+9958.534379 [NR_MAC] I Frame.Slot 384.0
+
+9958.822259 [NR_MAC] I Frame.Slot 512.0
+
+9959.110099 [NR_MAC] I Frame.Slot 640.0
+
+9959.391190 [NR_MAC] I Frame.Slot 768.0
+
+9959.668986 [NR_MAC] I Frame.Slot 896.0
+
+9959.946730 [NR_MAC] I Frame.Slot 0.0
+
+9960.223306 [NR_MAC] I Frame.Slot 128.0
+
+9960.495236 [NR_MAC] I Frame.Slot 256.0
+
+9960.780804 [NR_MAC] I Frame.Slot 384.0
+
+9961.068331 [NR_MAC] I Frame.Slot 512.0
+
+9961.347248 [NR_MAC] I Frame.Slot 640.0
+
+9961.625289 [NR_MAC] I Frame.Slot 768.0
+
+9961.909493 [NR_MAC] I Frame.Slot 896.0
+
+9962.188098 [NR_MAC] I Frame.Slot 0.0
+
+9962.465930 [NR_MAC] I Frame.Slot 128.0
+
+9962.738490 [NR_MAC] I Frame.Slot 256.0
+
+9963.012905 [NR_MAC] I Frame.Slot 384.0
+
+9963.298911 [NR_MAC] I Frame.Slot 512.0
+
+9963.573385 [NR_MAC] I Frame.Slot 640.0
+
+9963.865191 [NR_MAC] I Frame.Slot 768.0
+
+9964.150015 [NR_MAC] I Frame.Slot 896.0
+
+9964.435950 [NR_MAC] I Frame.Slot 0.0
+
+9964.708629 [NR_MAC] I Frame.Slot 128.0
+
+9964.987571 [NR_MAC] I Frame.Slot 256.0
+
+9965.271577 [NR_MAC] I Frame.Slot 384.0
+
+9965.560125 [NR_MAC] I Frame.Slot 512.0
+
+9965.853044 [NR_MAC] I Frame.Slot 640.0
+
+9966.140248 [NR_MAC] I Frame.Slot 768.0
+
+9966.433318 [NR_MAC] I Frame.Slot 896.0
+
+9966.734924 [NR_MAC] I Frame.Slot 0.0
+
+9967.011174 [NR_MAC] I Frame.Slot 128.0
+
+9967.294600 [NR_MAC] I Frame.Slot 256.0
+
+9967.601332 [NR_MAC] I Frame.Slot 384.0
+
+9967.896314 [NR_MAC] I Frame.Slot 512.0
+
+9968.221078 [NR_MAC] I Frame.Slot 640.0
+
+9968.526676 [NR_MAC] I Frame.Slot 768.0
+
+9968.823442 [NR_MAC] I Frame.Slot 896.0
+
+9969.122092 [NR_MAC] I Frame.Slot 0.0
+
+9969.410100 [NR_MAC] I Frame.Slot 128.0
+
+9969.707140 [NR_MAC] I Frame.Slot 256.0
+
+9970.004611 [NR_MAC] I Frame.Slot 384.0
+
+9970.298207 [NR_MAC] I Frame.Slot 512.0
+
+9970.588777 [NR_MAC] I Frame.Slot 640.0
+
+9970.867937 [NR_MAC] I Frame.Slot 768.0
+
+9971.161184 [NR_MAC] I Frame.Slot 896.0
+
+9971.453244 [NR_MAC] I Frame.Slot 0.0
+
+9971.763019 [NR_MAC] I Frame.Slot 128.0
+
+9972.069312 [NR_MAC] I Frame.Slot 256.0
+
+9972.351798 [NR_MAC] I Frame.Slot 384.0
+
+9972.635874 [NR_MAC] I Frame.Slot 512.0
+
+9972.928510 [NR_MAC] I Frame.Slot 640.0
+
+9973.218419 [NR_MAC] I Frame.Slot 768.0
+
+9973.496305 [NR_MAC] I Frame.Slot 896.0
+
+9973.779691 [NR_MAC] I Frame.Slot 0.0
+
+9974.064149 [NR_MAC] I Frame.Slot 128.0
+
+9974.344107 [NR_MAC] I Frame.Slot 256.0
+
+9974.628320 [NR_MAC] I Frame.Slot 384.0
+
+9974.911112 [NR_MAC] I Frame.Slot 512.0
+
+9975.185900 [NR_MAC] I Frame.Slot 640.0
+
+9975.462337 [NR_MAC] I Frame.Slot 768.0
+
+9975.743622 [NR_MAC] I Frame.Slot 896.0
+
+9976.041933 [NR_MAC] I Frame.Slot 0.0
+
+9976.321906 [NR_MAC] I Frame.Slot 128.0
+
+9976.631993 [NR_MAC] I Frame.Slot 256.0
+
+9976.917601 [NR_MAC] I Frame.Slot 384.0
+
+9977.217636 [NR_MAC] I Frame.Slot 512.0
+
+9977.524346 [NR_MAC] I Frame.Slot 640.0
+
+9977.821246 [NR_MAC] I Frame.Slot 768.0
+
+9978.120832 [NR_MAC] I Frame.Slot 896.0
+
+9978.422503 [NR_MAC] I Frame.Slot 0.0
+
+9978.723992 [NR_MAC] I Frame.Slot 128.0
+
+9979.020313 [NR_MAC] I Frame.Slot 256.0
+
+9979.300723 [NR_MAC] I Frame.Slot 384.0
+
+9979.606575 [NR_MAC] I Frame.Slot 512.0
+
+9979.926784 [NR_MAC] I Frame.Slot 640.0
+
+9980.241183 [NR_MAC] I Frame.Slot 768.0
+
+9980.549681 [NR_MAC] I Frame.Slot 896.0
+
+9980.863212 [NR_MAC] I Frame.Slot 0.0
+
+9981.162029 [NR_MAC] I Frame.Slot 128.0
+
+9981.427512 [NR_MAC] I Frame.Slot 256.0
+
+9981.713737 [NR_MAC] I Frame.Slot 384.0
+
+9982.002617 [NR_MAC] I Frame.Slot 512.0
+
+9982.300671 [NR_MAC] I Frame.Slot 640.0
+
+9982.579428 [NR_MAC] I Frame.Slot 768.0
+
+9982.873731 [NR_MAC] I Frame.Slot 896.0
+
+9983.154245 [NR_MAC] I Frame.Slot 0.0
+
+9983.446091 [NR_MAC] I Frame.Slot 128.0
+
+9983.744100 [NR_MAC] I Frame.Slot 256.0
+
+9984.026236 [NR_MAC] I Frame.Slot 384.0
+
+9984.322877 [NR_MAC] I Frame.Slot 512.0
+
+9984.615430 [NR_MAC] I Frame.Slot 640.0
+
+9984.914712 [NR_MAC] I Frame.Slot 768.0
+
+9985.196218 [NR_MAC] I Frame.Slot 896.0
+
+9985.483743 [NR_MAC] I Frame.Slot 0.0
+
+9985.779918 [NR_MAC] I Frame.Slot 128.0
+
+9986.058437 [NR_MAC] I Frame.Slot 256.0
+
+9986.330054 [NR_MAC] I Frame.Slot 384.0
+
+9986.618408 [NR_MAC] I Frame.Slot 512.0
+
+9986.919863 [NR_MAC] I Frame.Slot 640.0
+
+9987.230587 [NR_MAC] I Frame.Slot 768.0
+
+9987.531216 [NR_MAC] I Frame.Slot 896.0
+
+9987.818812 [NR_MAC] I Frame.Slot 0.0
+
+9988.101739 [NR_MAC] I Frame.Slot 128.0
+
+9988.398213 [NR_MAC] I Frame.Slot 256.0
+
+9988.708839 [NR_MAC] I Frame.Slot 384.0
+
+9989.002827 [NR_MAC] I Frame.Slot 512.0
+
+9989.280747 [NR_MAC] I Frame.Slot 640.0
+
+9989.560899 [NR_MAC] I Frame.Slot 768.0
+
+9989.872135 [NR_MAC] I Frame.Slot 896.0
+
+9990.147415 [NR_MAC] I Frame.Slot 0.0
+
+9990.416540 [NR_MAC] I Frame.Slot 128.0
+
+9990.684362 [NR_MAC] I Frame.Slot 256.0
+
+9990.967725 [NR_MAC] I Frame.Slot 384.0
+
+9991.239662 [NR_MAC] I Frame.Slot 512.0
+
+9991.512996 [NR_MAC] I Frame.Slot 640.0
+
+9991.788233 [NR_MAC] I Frame.Slot 768.0
+
+9992.077711 [NR_MAC] I Frame.Slot 896.0
+
+9992.353643 [NR_MAC] I Frame.Slot 0.0
+
+9992.632391 [NR_MAC] I Frame.Slot 128.0
+
+9992.914477 [NR_MAC] I Frame.Slot 256.0
+
+9993.188142 [NR_MAC] I Frame.Slot 384.0
+
+9993.456930 [NR_MAC] I Frame.Slot 512.0
+
+9993.723045 [NR_MAC] I Frame.Slot 640.0
+
+9994.001274 [NR_MAC] I Frame.Slot 768.0
+
+9994.265037 [NR_MAC] I Frame.Slot 896.0
+
+9994.534458 [NR_MAC] I Frame.Slot 0.0
+
+9994.806340 [NR_MAC] I Frame.Slot 128.0
+
+9995.100967 [NR_MAC] I Frame.Slot 256.0
+
+9995.385129 [NR_MAC] I Frame.Slot 384.0
+
+9995.660227 [NR_MAC] I Frame.Slot 512.0
+
+9995.937962 [NR_MAC] I Frame.Slot 640.0
+
+9996.217783 [NR_MAC] I Frame.Slot 768.0
+
+9996.503928 [NR_MAC] I Frame.Slot 896.0
+
+9996.795182 [NR_MAC] I Frame.Slot 0.0
+
+9997.086059 [NR_MAC] I Frame.Slot 128.0
+
+9997.356337 [NR_MAC] I Frame.Slot 256.0
+
+9997.660987 [NR_MAC] I Frame.Slot 384.0
+
+9997.953239 [NR_MAC] I Frame.Slot 512.0
+
+9998.250653 [NR_MAC] I Frame.Slot 640.0
+
+9998.537644 [NR_MAC] I Frame.Slot 768.0
+
+9998.817698 [NR_MAC] I Frame.Slot 896.0
+
+9999.084414 [NR_MAC] I Frame.Slot 0.0
+
+9999.356783 [NR_MAC] I Frame.Slot 128.0
+
+9999.629963 [NR_MAC] I Frame.Slot 256.0
+
+9999.905074 [NR_MAC] I Frame.Slot 384.0
+
+10000.189806 [NR_MAC] I Frame.Slot 512.0
+
+10000.456562 [NR_MAC] I Frame.Slot 640.0
+
+10000.734392 [NR_MAC] I Frame.Slot 768.0
+
+10001.038960 [NR_MAC] I Frame.Slot 896.0
+
+10001.097606 [HW] W Lost socket
+10003.171055 [NR_MAC] I Frame.Slot 0.0
+
+10005.785532 [NR_MAC] I Frame.Slot 128.0
+
+10008.403924 [NR_MAC] I Frame.Slot 256.0
+
+10011.021595 [NR_MAC] I Frame.Slot 384.0
+
+10013.638313 [NR_MAC] I Frame.Slot 512.0
+
+10016.254765 [NR_MAC] I Frame.Slot 640.0
+
+10018.873151 [NR_MAC] I Frame.Slot 768.0
+
+10021.487842 [NR_MAC] I Frame.Slot 896.0
+
+10024.105573 [NR_MAC] I Frame.Slot 0.0
+
+10026.721101 [NR_MAC] I Frame.Slot 128.0
+
+10029.339848 [NR_MAC] I Frame.Slot 256.0
+
+10031.956392 [NR_MAC] I Frame.Slot 384.0
+
+10034.574912 [NR_MAC] I Frame.Slot 512.0
+
+10037.192054 [NR_MAC] I Frame.Slot 640.0
+
+10039.810987 [NR_MAC] I Frame.Slot 768.0
+
+10042.431588 [NR_MAC] I Frame.Slot 896.0
+
+10045.185396 [NR_MAC] I Frame.Slot 0.0
+
+10047.802488 [NR_MAC] I Frame.Slot 128.0
+
+10050.478395 [NR_MAC] I Frame.Slot 256.0
+
+10053.094224 [NR_MAC] I Frame.Slot 384.0
+
+10055.710764 [NR_MAC] I Frame.Slot 512.0
+
+10058.331289 [NR_MAC] I Frame.Slot 640.0
+
+10060.951531 [NR_MAC] I Frame.Slot 768.0
+
+10063.569915 [NR_MAC] I Frame.Slot 896.0
+
+10066.189885 [NR_MAC] I Frame.Slot 0.0
+
+10068.810986 [NR_MAC] I Frame.Slot 128.0
+
+10069.288608 [HW] I A client connects, sending the current time
+10070.517504 [NR_MAC] I Frame.Slot 256.0
+
+10070.801147 [NR_MAC] I Frame.Slot 384.0
+
+10071.089577 [NR_MAC] I Frame.Slot 512.0
+
+10071.376678 [NR_MAC] I Frame.Slot 640.0
+
+10071.662511 [NR_MAC] I Frame.Slot 768.0
+
+10071.954805 [NR_MAC] I Frame.Slot 896.0
+
+10072.258668 [NR_MAC] I Frame.Slot 0.0
+
+10072.546595 [NR_MAC] I Frame.Slot 128.0
+
+10072.840869 [NR_MAC] I Frame.Slot 256.0
+
+10073.014771 [HW] W Lost socket
+10074.086207 [NR_MAC] I Frame.Slot 384.0
+
+10076.760018 [NR_MAC] I Frame.Slot 512.0
+
+10079.374973 [NR_MAC] I Frame.Slot 640.0
+
+10081.988340 [NR_MAC] I Frame.Slot 768.0
+
+10084.603490 [NR_MAC] I Frame.Slot 896.0
+
+10087.218391 [NR_MAC] I Frame.Slot 0.0
+
+10089.835029 [NR_MAC] I Frame.Slot 128.0
+
+10092.450497 [NR_MAC] I Frame.Slot 256.0
+
+10095.064472 [NR_MAC] I Frame.Slot 384.0
+
+10097.680033 [NR_MAC] I Frame.Slot 512.0
+
+10100.295476 [NR_MAC] I Frame.Slot 640.0
+
+10102.910938 [NR_MAC] I Frame.Slot 768.0
+
+10105.526220 [NR_MAC] I Frame.Slot 896.0
+
+10108.143285 [NR_MAC] I Frame.Slot 0.0
+
+10110.761147 [NR_MAC] I Frame.Slot 128.0
+
+10113.378416 [NR_MAC] I Frame.Slot 256.0
+
+10115.993253 [NR_MAC] I Frame.Slot 384.0
+
+10118.609642 [NR_MAC] I Frame.Slot 512.0
+
+10121.225552 [NR_MAC] I Frame.Slot 640.0
+
+10123.840112 [NR_MAC] I Frame.Slot 768.0
+
+10126.454953 [NR_MAC] I Frame.Slot 896.0
+
+10129.072411 [NR_MAC] I Frame.Slot 0.0
+
+10131.686107 [NR_MAC] I Frame.Slot 128.0
+
+10134.300627 [NR_MAC] I Frame.Slot 256.0
+
+10136.915172 [NR_MAC] I Frame.Slot 384.0
+
+10139.530682 [NR_MAC] I Frame.Slot 512.0
+
+10142.145570 [NR_MAC] I Frame.Slot 640.0
+
+10144.761448 [NR_MAC] I Frame.Slot 768.0
+
+10147.375033 [NR_MAC] I Frame.Slot 896.0
+
+10149.993925 [NR_MAC] I Frame.Slot 0.0
+
+10152.609837 [NR_MAC] I Frame.Slot 128.0
+
+10155.224813 [NR_MAC] I Frame.Slot 256.0
+
+10157.840643 [NR_MAC] I Frame.Slot 384.0
+
+10160.456031 [NR_MAC] I Frame.Slot 512.0
+
+10163.070992 [NR_MAC] I Frame.Slot 640.0
+
+10165.685845 [NR_MAC] I Frame.Slot 768.0
+
+10168.300527 [NR_MAC] I Frame.Slot 896.0
+
+10170.916630 [NR_MAC] I Frame.Slot 0.0
+
+10173.533569 [NR_MAC] I Frame.Slot 128.0
+
+10176.148607 [NR_MAC] I Frame.Slot 256.0
+
+10178.767563 [NR_MAC] I Frame.Slot 384.0
+
+10181.383503 [NR_MAC] I Frame.Slot 512.0
+
+10184.000588 [NR_MAC] I Frame.Slot 640.0
+
+10186.617702 [NR_MAC] I Frame.Slot 768.0
+
+10189.235629 [NR_MAC] I Frame.Slot 896.0
+
+10191.850150 [NR_MAC] I Frame.Slot 0.0
+
+10194.466835 [NR_MAC] I Frame.Slot 128.0
+
+10197.083408 [NR_MAC] I Frame.Slot 256.0
+
+10199.701873 [NR_MAC] I Frame.Slot 384.0
+
+10202.316931 [NR_MAC] I Frame.Slot 512.0
+
+10204.931801 [NR_MAC] I Frame.Slot 640.0
+
+10207.546293 [NR_MAC] I Frame.Slot 768.0
+
+10210.165671 [NR_MAC] I Frame.Slot 896.0
+
+10212.782115 [NR_MAC] I Frame.Slot 0.0
+
+10215.399430 [NR_MAC] I Frame.Slot 128.0
+
+10218.016068 [NR_MAC] I Frame.Slot 256.0
+
+10220.633447 [NR_MAC] I Frame.Slot 384.0
+
+10223.251026 [NR_MAC] I Frame.Slot 512.0
+
+10225.866462 [NR_MAC] I Frame.Slot 640.0
+
+10228.482118 [NR_MAC] I Frame.Slot 768.0
+
+10231.098963 [NR_MAC] I Frame.Slot 896.0
+
+10233.713750 [NR_MAC] I Frame.Slot 0.0
+
+10236.329322 [NR_MAC] I Frame.Slot 128.0
+
+10238.945336 [NR_MAC] I Frame.Slot 256.0
+
+10241.561247 [NR_MAC] I Frame.Slot 384.0
+
+10244.176443 [NR_MAC] I Frame.Slot 512.0
+
+10246.791062 [NR_MAC] I Frame.Slot 640.0
+
+10249.407503 [NR_MAC] I Frame.Slot 768.0
+
+10252.021992 [NR_MAC] I Frame.Slot 896.0
+
+10254.636740 [NR_MAC] I Frame.Slot 0.0
+
+10257.252677 [NR_MAC] I Frame.Slot 128.0
+
+10259.869751 [NR_MAC] I Frame.Slot 256.0
+
+10262.485975 [NR_MAC] I Frame.Slot 384.0
+
+10265.103720 [NR_MAC] I Frame.Slot 512.0
+
+10267.719811 [NR_MAC] I Frame.Slot 640.0
+
+10270.338336 [NR_MAC] I Frame.Slot 768.0
+
+10272.954097 [NR_MAC] I Frame.Slot 896.0
+
+10275.571260 [NR_MAC] I Frame.Slot 0.0
+
+10278.187075 [NR_MAC] I Frame.Slot 128.0
+
+10280.804943 [NR_MAC] I Frame.Slot 256.0
+
+10281.824629 [HW] I A client connects, sending the current time
+10283.012549 [NR_MAC] I Frame.Slot 384.0
+
+10283.301275 [NR_MAC] I Frame.Slot 512.0
+
+10283.587055 [NR_MAC] I Frame.Slot 640.0
+
+10283.873474 [NR_MAC] I Frame.Slot 768.0
+
+10284.161787 [NR_MAC] I Frame.Slot 896.0
+
+10284.445740 [NR_MAC] I Frame.Slot 0.0
+
+10284.771678 [NR_MAC] I Frame.Slot 128.0
+
+10285.098750 [NR_MAC] I Frame.Slot 256.0
+
+10285.433528 [NR_MAC] I Frame.Slot 384.0
+
+10285.765055 [NR_MAC] I Frame.Slot 512.0
+
+10286.069837 [NR_MAC] I Frame.Slot 640.0
+
+10286.350154 [NR_MAC] I Frame.Slot 768.0
+
+10286.631631 [NR_MAC] I Frame.Slot 896.0
+
+10286.912054 [NR_MAC] I Frame.Slot 0.0
+
+10287.299026 [NR_MAC] I Frame.Slot 128.0
+
+10287.629669 [NR_MAC] I Frame.Slot 256.0
+
+10287.961401 [NR_MAC] I Frame.Slot 384.0
+
+10288.302668 [NR_MAC] I Frame.Slot 512.0
+
+10288.611878 [NR_MAC] I Frame.Slot 640.0
+
+10288.909345 [NR_MAC] I Frame.Slot 768.0
+
+10289.199701 [NR_MAC] I Frame.Slot 896.0
+
+10289.270602 [HW] W Lost socket
+10290.183487 [HW] I A client connects, sending the current time
+10291.278256 [NR_MAC] I Frame.Slot 0.0
+
+10291.486268 [NR_MAC] I Frame.Slot 128.0
+
+10291.697582 [NR_MAC] I Frame.Slot 256.0
+
+10291.916612 [NR_MAC] I Frame.Slot 384.0
+
+10292.130411 [NR_MAC] I Frame.Slot 512.0
+
+10292.348071 [NR_MAC] I Frame.Slot 640.0
+
+10292.569572 [NR_MAC] I Frame.Slot 768.0
+
+10292.786487 [NR_MAC] I Frame.Slot 896.0
+
+10292.997247 [NR_MAC] I Frame.Slot 0.0
+
+10293.216033 [NR_MAC] I Frame.Slot 128.0
+
+10293.447710 [NR_MAC] I Frame.Slot 256.0
+
+10293.669838 [NR_MAC] I Frame.Slot 384.0
+
+10293.894713 [NR_MAC] I Frame.Slot 512.0
+
+10294.110031 [NR_MAC] I Frame.Slot 640.0
+
+10294.341241 [NR_MAC] I Frame.Slot 768.0
+
+10294.554508 [NR_MAC] I Frame.Slot 896.0
+
+10294.766491 [NR_MAC] I Frame.Slot 0.0
+
+10294.982449 [NR_MAC] I Frame.Slot 128.0
+
+10295.260210 [NR_MAC] I Frame.Slot 256.0
+
+10295.485717 [NR_MAC] I Frame.Slot 384.0
+
+10295.705029 [NR_MAC] I Frame.Slot 512.0
+
+10295.927976 [NR_MAC] I Frame.Slot 640.0
+
+10296.146107 [NR_MAC] I Frame.Slot 768.0
+
+10296.369610 [NR_MAC] I Frame.Slot 896.0
+
+10296.585164 [NR_MAC] I Frame.Slot 0.0
+
+10296.810403 [NR_MAC] I Frame.Slot 128.0
+
+10297.030054 [NR_MAC] I Frame.Slot 256.0
+
+10297.256422 [NR_MAC] I Frame.Slot 384.0
+
+10297.467394 [NR_MAC] I Frame.Slot 512.0
+
+10297.685277 [NR_MAC] I Frame.Slot 640.0
+
+10297.907365 [NR_MAC] I Frame.Slot 768.0
+
+10298.125025 [NR_MAC] I Frame.Slot 896.0
+
+10298.358324 [NR_MAC] I Frame.Slot 0.0
+
+10298.584154 [NR_MAC] I Frame.Slot 128.0
+
+10298.801374 [NR_MAC] I Frame.Slot 256.0
+
+10299.016140 [NR_MAC] I Frame.Slot 384.0
+
+10299.248730 [NR_MAC] I Frame.Slot 512.0
+
+10299.484374 [NR_MAC] I Frame.Slot 640.0
+
+10299.719859 [NR_MAC] I Frame.Slot 768.0
+
+10299.955816 [NR_MAC] I Frame.Slot 896.0
+
+10300.169127 [NR_MAC] I Frame.Slot 0.0
+
+10300.390353 [NR_MAC] I Frame.Slot 128.0
+
+10300.626144 [NR_MAC] I Frame.Slot 256.0
+
+10300.869506 [NR_MAC] I Frame.Slot 384.0
+
+10301.083120 [NR_MAC] I Frame.Slot 512.0
+
+10301.296102 [NR_MAC] I Frame.Slot 640.0
+
+10301.515085 [NR_MAC] I Frame.Slot 768.0
+
+10301.744296 [NR_MAC] I Frame.Slot 896.0
+
+10301.967367 [NR_MAC] I Frame.Slot 0.0
+
+10302.179782 [NR_MAC] I Frame.Slot 128.0
+
+10302.399492 [NR_MAC] I Frame.Slot 256.0
+
+10302.612346 [NR_MAC] I Frame.Slot 384.0
+
+10302.839585 [NR_MAC] I Frame.Slot 512.0
+
+10303.053853 [NR_MAC] I Frame.Slot 640.0
+
+10303.273016 [NR_MAC] I Frame.Slot 768.0
+
+10303.509547 [NR_MAC] I Frame.Slot 896.0
+
+10303.744225 [NR_MAC] I Frame.Slot 0.0
+
+10303.966420 [NR_MAC] I Frame.Slot 128.0
+
+10304.180300 [NR_MAC] I Frame.Slot 256.0
+
+10304.395564 [NR_MAC] I Frame.Slot 384.0
+
+10304.613422 [NR_MAC] I Frame.Slot 512.0
+
+10304.833406 [NR_MAC] I Frame.Slot 640.0
+
+10305.055656 [NR_MAC] I Frame.Slot 768.0
+
+10305.287452 [NR_MAC] I Frame.Slot 896.0
+
+10305.505641 [NR_MAC] I Frame.Slot 0.0
+
+10305.741211 [NR_MAC] I Frame.Slot 128.0
+
+10305.959454 [NR_MAC] I Frame.Slot 256.0
+
+10306.172838 [NR_MAC] I Frame.Slot 384.0
+
+10306.391823 [NR_MAC] I Frame.Slot 512.0
+
+10306.612578 [NR_MAC] I Frame.Slot 640.0
+
+10306.831847 [NR_MAC] I Frame.Slot 768.0
+
+10307.050338 [NR_MAC] I Frame.Slot 896.0
+
+10307.282300 [NR_MAC] I Frame.Slot 0.0
+
+10307.499998 [NR_MAC] I Frame.Slot 128.0
+
+10307.728404 [NR_MAC] I Frame.Slot 256.0
+
+10307.949877 [NR_MAC] I Frame.Slot 384.0
+
+10308.165794 [NR_MAC] I Frame.Slot 512.0
+
+10308.410862 [NR_MAC] I Frame.Slot 640.0
+
+10308.643018 [NR_MAC] I Frame.Slot 768.0
+
+10308.866634 [NR_MAC] I Frame.Slot 896.0
+
+10309.092157 [NR_MAC] I Frame.Slot 0.0
+
+10309.324588 [NR_MAC] I Frame.Slot 128.0
+
+10309.556408 [NR_MAC] I Frame.Slot 256.0
+
+10309.783990 [NR_MAC] I Frame.Slot 384.0
+
+10310.017554 [NR_MAC] I Frame.Slot 512.0
+
+10310.230634 [NR_MAC] I Frame.Slot 640.0
+
+10310.458568 [NR_MAC] I Frame.Slot 768.0
+
+10310.693966 [NR_MAC] I Frame.Slot 896.0
+
+10310.915633 [NR_MAC] I Frame.Slot 0.0
+
+10311.129275 [NR_MAC] I Frame.Slot 128.0
+
+10311.348658 [NR_MAC] I Frame.Slot 256.0
+
+10311.580267 [NR_MAC] I Frame.Slot 384.0
+
+10311.811972 [NR_MAC] I Frame.Slot 512.0
+
+10312.030763 [NR_MAC] I Frame.Slot 640.0
+
+10312.263108 [NR_MAC] I Frame.Slot 768.0
+
+10312.488379 [NR_MAC] I Frame.Slot 896.0
+
+10312.713721 [NR_MAC] I Frame.Slot 0.0
+
+10312.942221 [NR_MAC] I Frame.Slot 128.0
+
+10313.163237 [NR_MAC] I Frame.Slot 256.0
+
+10313.386993 [NR_MAC] I Frame.Slot 384.0
+
+10313.602605 [NR_MAC] I Frame.Slot 512.0
+
+10313.834651 [NR_MAC] I Frame.Slot 640.0
+
+10314.068274 [NR_MAC] I Frame.Slot 768.0
+
+10314.288501 [NR_MAC] I Frame.Slot 896.0
+
+10314.522210 [NR_MAC] I Frame.Slot 0.0
+
+10314.744850 [NR_MAC] I Frame.Slot 128.0
+
+10314.988474 [NR_MAC] I Frame.Slot 256.0
+
+10315.221418 [NR_MAC] I Frame.Slot 384.0
+
+10315.455913 [NR_MAC] I Frame.Slot 512.0
+
+10315.683736 [NR_MAC] I Frame.Slot 640.0
+
+10315.918480 [NR_MAC] I Frame.Slot 768.0
+
+10316.144367 [NR_MAC] I Frame.Slot 896.0
+
+10316.371717 [NR_MAC] I Frame.Slot 0.0
+
+10316.592840 [NR_MAC] I Frame.Slot 128.0
+
+10316.815901 [NR_MAC] I Frame.Slot 256.0
+
+10317.030367 [NR_MAC] I Frame.Slot 384.0
+
+10317.265129 [NR_MAC] I Frame.Slot 512.0
+
+10317.492940 [NR_MAC] I Frame.Slot 640.0
+
+10317.732377 [NR_MAC] I Frame.Slot 768.0
+
+10317.957672 [NR_MAC] I Frame.Slot 896.0
+
+10318.173020 [NR_MAC] I Frame.Slot 0.0
+
+10318.410207 [NR_MAC] I Frame.Slot 128.0
+
+10318.654406 [NR_MAC] I Frame.Slot 256.0
+
+10318.906423 [NR_MAC] I Frame.Slot 384.0
+
+10319.154992 [NR_MAC] I Frame.Slot 512.0
+
+10319.397603 [NR_MAC] I Frame.Slot 640.0
+
+10319.638749 [NR_MAC] I Frame.Slot 768.0
+
+10319.887718 [NR_MAC] I Frame.Slot 896.0
+
+10320.129247 [NR_MAC] I Frame.Slot 0.0
+
+10320.352219 [NR_MAC] I Frame.Slot 128.0
+
+10320.572185 [NR_MAC] I Frame.Slot 256.0
+
+10320.811349 [NR_MAC] I Frame.Slot 384.0
+
+10321.042969 [NR_MAC] I Frame.Slot 512.0
+
+10321.259497 [NR_MAC] I Frame.Slot 640.0
+
+10321.497921 [NR_MAC] I Frame.Slot 768.0
+
+10321.729007 [NR_MAC] I Frame.Slot 896.0
+
+10321.957606 [NR_MAC] I Frame.Slot 0.0
+
+10322.184703 [NR_MAC] I Frame.Slot 128.0
+
+10322.425116 [NR_MAC] I Frame.Slot 256.0
+
+10322.643356 [NR_MAC] I Frame.Slot 384.0
+
+10322.869580 [NR_MAC] I Frame.Slot 512.0
+
+10323.091174 [NR_MAC] I Frame.Slot 640.0
+
+10323.304804 [NR_MAC] I Frame.Slot 768.0
+
+10323.520487 [NR_MAC] I Frame.Slot 896.0
+
+10323.742354 [NR_MAC] I Frame.Slot 0.0
+
+10323.968132 [NR_MAC] I Frame.Slot 128.0
+
+10324.190345 [NR_MAC] I Frame.Slot 256.0
+
+10324.424281 [NR_MAC] I Frame.Slot 384.0
+
+10324.641459 [NR_MAC] I Frame.Slot 512.0
+
+10324.858561 [NR_MAC] I Frame.Slot 640.0
+
+10325.078023 [NR_MAC] I Frame.Slot 768.0
+
+10325.295242 [NR_MAC] I Frame.Slot 896.0
+
+10325.510444 [NR_MAC] I Frame.Slot 0.0
+
+10325.738368 [NR_MAC] I Frame.Slot 128.0
+
+10325.965366 [NR_MAC] I Frame.Slot 256.0
+
+10326.189494 [NR_MAC] I Frame.Slot 384.0
+
+10326.419797 [NR_MAC] I Frame.Slot 512.0
+
+10326.642131 [NR_MAC] I Frame.Slot 640.0
+
+10326.877027 [NR_MAC] I Frame.Slot 768.0
+
+10327.102416 [NR_MAC] I Frame.Slot 896.0
+
+10327.336187 [NR_MAC] I Frame.Slot 0.0
+
+10327.557413 [NR_MAC] I Frame.Slot 128.0
+
+10327.793667 [NR_MAC] I Frame.Slot 256.0
+
+10328.012764 [NR_MAC] I Frame.Slot 384.0
+
+10328.237783 [NR_MAC] I Frame.Slot 512.0
+
+10328.478749 [NR_MAC] I Frame.Slot 640.0
+
+10328.715898 [NR_MAC] I Frame.Slot 768.0
+
+10328.936328 [NR_MAC] I Frame.Slot 896.0
+
+10329.166235 [NR_MAC] I Frame.Slot 0.0
+
+10329.404189 [NR_MAC] I Frame.Slot 128.0
+
+10329.643153 [NR_MAC] I Frame.Slot 256.0
+
+10329.870786 [NR_MAC] I Frame.Slot 384.0
+
+10330.098755 [NR_MAC] I Frame.Slot 512.0
+
+10330.327322 [NR_MAC] I Frame.Slot 640.0
+
+10330.549179 [NR_MAC] I Frame.Slot 768.0
+
+10330.771650 [NR_MAC] I Frame.Slot 896.0
+
+10331.001448 [NR_MAC] I Frame.Slot 0.0
+
+10331.227106 [NR_MAC] I Frame.Slot 128.0
+
+10331.448779 [NR_MAC] I Frame.Slot 256.0
+
+10331.670626 [NR_MAC] I Frame.Slot 384.0
+
+10331.893405 [NR_MAC] I Frame.Slot 512.0
+
+10332.116955 [NR_MAC] I Frame.Slot 640.0
+
+10332.358664 [NR_MAC] I Frame.Slot 768.0
+
+10332.582555 [NR_MAC] I Frame.Slot 896.0
+
+10332.804162 [NR_MAC] I Frame.Slot 0.0
+
+10333.030762 [NR_MAC] I Frame.Slot 128.0
+
+10333.250577 [NR_MAC] I Frame.Slot 256.0
+
+10333.470529 [NR_MAC] I Frame.Slot 384.0
+
+10333.691414 [NR_MAC] I Frame.Slot 512.0
+
+10333.928416 [NR_MAC] I Frame.Slot 640.0
+
+10334.140424 [NR_MAC] I Frame.Slot 768.0
+
+10334.357320 [NR_MAC] I Frame.Slot 896.0
+
+10334.579820 [NR_MAC] I Frame.Slot 0.0
+
+10334.795599 [NR_MAC] I Frame.Slot 128.0
+
+10335.022405 [NR_MAC] I Frame.Slot 256.0
+
+10335.256676 [NR_MAC] I Frame.Slot 384.0
+
+10335.509147 [NR_MAC] I Frame.Slot 512.0
+
+10335.740152 [NR_MAC] I Frame.Slot 640.0
+
+10335.966817 [NR_MAC] I Frame.Slot 768.0
+
+10336.187704 [NR_MAC] I Frame.Slot 896.0
+
+10336.405036 [NR_MAC] I Frame.Slot 0.0
+
+10336.624974 [NR_MAC] I Frame.Slot 128.0
+
+10336.842797 [NR_MAC] I Frame.Slot 256.0
+
+10337.065618 [NR_MAC] I Frame.Slot 384.0
+
+10337.312212 [NR_MAC] I Frame.Slot 512.0
+
+10337.543991 [NR_MAC] I Frame.Slot 640.0
+
+10337.773008 [NR_MAC] I Frame.Slot 768.0
+
+10338.021245 [NR_MAC] I Frame.Slot 896.0
+
+10338.249184 [NR_MAC] I Frame.Slot 0.0
+
+10338.485906 [NR_MAC] I Frame.Slot 128.0
+
+10338.736306 [NR_MAC] I Frame.Slot 256.0
+
+10338.965720 [NR_MAC] I Frame.Slot 384.0
+
+10339.187753 [NR_MAC] I Frame.Slot 512.0
+
+10339.435763 [NR_MAC] I Frame.Slot 640.0
+
+10339.678281 [NR_MAC] I Frame.Slot 768.0
+
+10339.910478 [NR_MAC] I Frame.Slot 896.0
+
+10340.144168 [NR_MAC] I Frame.Slot 0.0
+
+10340.372796 [NR_MAC] I Frame.Slot 128.0
+
+10340.611668 [NR_MAC] I Frame.Slot 256.0
+
+10340.843473 [NR_MAC] I Frame.Slot 384.0
+
+10341.076698 [NR_MAC] I Frame.Slot 512.0
+
+10341.291341 [NR_MAC] I Frame.Slot 640.0
+
+10341.513437 [NR_MAC] I Frame.Slot 768.0
+
+10341.743212 [NR_MAC] I Frame.Slot 896.0
+
+10341.977337 [NR_MAC] I Frame.Slot 0.0
+
+10342.200701 [NR_MAC] I Frame.Slot 128.0
+
+10342.432832 [NR_MAC] I Frame.Slot 256.0
+
+10342.676932 [NR_MAC] I Frame.Slot 384.0
+
+10342.918457 [NR_MAC] I Frame.Slot 512.0
+
+10343.150363 [NR_MAC] I Frame.Slot 640.0
+
+10343.373478 [NR_MAC] I Frame.Slot 768.0
+
+10343.596225 [NR_MAC] I Frame.Slot 896.0
+
+10343.816734 [NR_MAC] I Frame.Slot 0.0
+
+10344.044818 [NR_MAC] I Frame.Slot 128.0
+
+10344.271976 [NR_MAC] I Frame.Slot 256.0
+
+10344.496489 [NR_MAC] I Frame.Slot 384.0
+
+10344.726045 [NR_MAC] I Frame.Slot 512.0
+
+10344.960818 [NR_MAC] I Frame.Slot 640.0
+
+10345.187813 [NR_MAC] I Frame.Slot 768.0
+
+10345.415306 [NR_MAC] I Frame.Slot 896.0
+
+10345.644734 [NR_MAC] I Frame.Slot 0.0
+
+10345.874610 [NR_MAC] I Frame.Slot 128.0
+
+10346.097972 [NR_MAC] I Frame.Slot 256.0
+
+10346.318318 [NR_MAC] I Frame.Slot 384.0
+
+10346.537600 [NR_MAC] I Frame.Slot 512.0
+
+10346.765856 [NR_MAC] I Frame.Slot 640.0
+
+10346.980686 [NR_MAC] I Frame.Slot 768.0
+
+10347.199285 [NR_MAC] I Frame.Slot 896.0
+
+10347.430146 [NR_MAC] I Frame.Slot 0.0
+
+10347.672280 [NR_MAC] I Frame.Slot 128.0
+
+10347.900454 [NR_MAC] I Frame.Slot 256.0
+
+10348.120123 [NR_MAC] I Frame.Slot 384.0
+
+10348.344392 [NR_MAC] I Frame.Slot 512.0
+
+10348.574071 [NR_MAC] I Frame.Slot 640.0
+
+10348.823449 [NR_MAC] I Frame.Slot 768.0
+
+10349.044653 [NR_MAC] I Frame.Slot 896.0
+
+10349.265276 [NR_MAC] I Frame.Slot 0.0
+
+10349.489474 [NR_MAC] I Frame.Slot 128.0
+
+10349.737595 [NR_MAC] I Frame.Slot 256.0
+
+10349.970362 [NR_MAC] I Frame.Slot 384.0
+
+10350.201477 [NR_MAC] I Frame.Slot 512.0
+
+10350.429437 [NR_MAC] I Frame.Slot 640.0
+
+10350.651260 [NR_MAC] I Frame.Slot 768.0
+
+10350.881341 [NR_MAC] I Frame.Slot 896.0
+
+10351.108154 [NR_MAC] I Frame.Slot 0.0
+
+10351.337040 [NR_MAC] I Frame.Slot 128.0
+
+10351.568075 [NR_MAC] I Frame.Slot 256.0
+
+10351.792767 [NR_MAC] I Frame.Slot 384.0
+
+10352.017932 [NR_MAC] I Frame.Slot 512.0
+
+10352.237862 [NR_MAC] I Frame.Slot 640.0
+
+10352.457847 [NR_MAC] I Frame.Slot 768.0
+
+10352.677504 [NR_MAC] I Frame.Slot 896.0
+
+10352.902394 [NR_MAC] I Frame.Slot 0.0
+
+10353.128484 [NR_MAC] I Frame.Slot 128.0
+
+10353.359287 [NR_MAC] I Frame.Slot 256.0
+
+10353.584245 [NR_MAC] I Frame.Slot 384.0
+
+10353.802047 [NR_MAC] I Frame.Slot 512.0
+
+10354.033986 [NR_MAC] I Frame.Slot 640.0
+
+10354.255745 [NR_MAC] I Frame.Slot 768.0
+
+10354.482331 [NR_MAC] I Frame.Slot 896.0
+
+10354.702536 [NR_MAC] I Frame.Slot 0.0
+
+10354.938336 [NR_MAC] I Frame.Slot 128.0
+
+10355.160634 [NR_MAC] I Frame.Slot 256.0
+
+10355.381000 [NR_MAC] I Frame.Slot 384.0
+
+10355.602509 [NR_MAC] I Frame.Slot 512.0
+
+10355.829474 [NR_MAC] I Frame.Slot 640.0
+
+10356.059466 [NR_MAC] I Frame.Slot 768.0
+
+10356.295498 [NR_MAC] I Frame.Slot 896.0
+
+10356.519888 [NR_MAC] I Frame.Slot 0.0
+
+10356.744380 [NR_MAC] I Frame.Slot 128.0
+
+10356.973458 [NR_MAC] I Frame.Slot 256.0
+
+10357.203224 [NR_MAC] I Frame.Slot 384.0
+
+10357.440273 [NR_MAC] I Frame.Slot 512.0
+
+10357.681667 [NR_MAC] I Frame.Slot 640.0
+
+10357.912475 [NR_MAC] I Frame.Slot 768.0
+
+10358.136824 [NR_MAC] I Frame.Slot 896.0
+
+10358.371559 [NR_MAC] I Frame.Slot 0.0
+
+10358.602229 [NR_MAC] I Frame.Slot 128.0
+
+10358.848077 [NR_MAC] I Frame.Slot 256.0
+
+10359.071376 [NR_MAC] I Frame.Slot 384.0
+
+10359.289586 [NR_MAC] I Frame.Slot 512.0
+
+10359.528235 [NR_MAC] I Frame.Slot 640.0
+
+10359.775447 [NR_MAC] I Frame.Slot 768.0
+
+10360.016964 [NR_MAC] I Frame.Slot 896.0
+
+10360.254744 [NR_MAC] I Frame.Slot 0.0
+
+10360.490704 [NR_MAC] I Frame.Slot 128.0
+
+10360.726395 [NR_MAC] I Frame.Slot 256.0
+
+10360.944928 [NR_MAC] I Frame.Slot 384.0
+
+10361.169490 [NR_MAC] I Frame.Slot 512.0
+
+10361.399724 [NR_MAC] I Frame.Slot 640.0
+
+10361.621462 [NR_MAC] I Frame.Slot 768.0
+
+10361.842895 [NR_MAC] I Frame.Slot 896.0
+
+10362.061849 [NR_MAC] I Frame.Slot 0.0
+
+10362.286250 [NR_MAC] I Frame.Slot 128.0
+
+10362.512853 [NR_MAC] I Frame.Slot 256.0
+
+10362.735784 [NR_MAC] I Frame.Slot 384.0
+
+10362.962429 [NR_MAC] I Frame.Slot 512.0
+
+10363.190990 [NR_MAC] I Frame.Slot 640.0
+
+10363.412940 [NR_MAC] I Frame.Slot 768.0
+
+10363.628929 [NR_MAC] I Frame.Slot 896.0
+
+10363.859087 [NR_MAC] I Frame.Slot 0.0
+
+10364.082365 [NR_MAC] I Frame.Slot 128.0
+
+10364.307616 [NR_MAC] I Frame.Slot 256.0
+
+10364.530143 [NR_MAC] I Frame.Slot 384.0
+
+10364.749599 [NR_MAC] I Frame.Slot 512.0
+
+10364.976583 [NR_MAC] I Frame.Slot 640.0
+
+10365.201812 [NR_MAC] I Frame.Slot 768.0
+
+10365.418271 [NR_MAC] I Frame.Slot 896.0
+
+10365.644807 [NR_MAC] I Frame.Slot 0.0
+
+10365.871665 [NR_MAC] I Frame.Slot 128.0
+
+10366.106243 [NR_MAC] I Frame.Slot 256.0
+
+10366.343464 [NR_MAC] I Frame.Slot 384.0
+
+10366.570578 [NR_MAC] I Frame.Slot 512.0
+
+10366.802451 [NR_MAC] I Frame.Slot 640.0
+
+10367.036537 [NR_MAC] I Frame.Slot 768.0
+
+10367.269150 [NR_MAC] I Frame.Slot 896.0
+
+10367.496766 [NR_MAC] I Frame.Slot 0.0
+
+10367.727320 [NR_MAC] I Frame.Slot 128.0
+
+10367.951028 [NR_MAC] I Frame.Slot 256.0
+
+10368.168791 [NR_MAC] I Frame.Slot 384.0
+
+10368.402660 [NR_MAC] I Frame.Slot 512.0
+
+10368.645910 [NR_MAC] I Frame.Slot 640.0
+
+10368.909019 [NR_MAC] I Frame.Slot 768.0
+
+10369.136945 [NR_MAC] I Frame.Slot 896.0
+
+10369.353713 [NR_MAC] I Frame.Slot 0.0
+
+10369.594847 [NR_MAC] I Frame.Slot 128.0
+
+10369.826093 [NR_MAC] I Frame.Slot 256.0
+
+10370.066709 [NR_MAC] I Frame.Slot 384.0
+
+10370.308549 [NR_MAC] I Frame.Slot 512.0
+
+10370.566618 [NR_MAC] I Frame.Slot 640.0
+
+10370.807584 [NR_MAC] I Frame.Slot 768.0
+
+10371.045224 [NR_MAC] I Frame.Slot 896.0
+
+10371.285932 [NR_MAC] I Frame.Slot 0.0
+
+10371.514358 [NR_MAC] I Frame.Slot 128.0
+
+10371.734537 [NR_MAC] I Frame.Slot 256.0
+
+10371.967666 [NR_MAC] I Frame.Slot 384.0
+
+10372.198681 [NR_MAC] I Frame.Slot 512.0
+
+10372.435256 [NR_MAC] I Frame.Slot 640.0
+
+10372.657431 [NR_MAC] I Frame.Slot 768.0
+
+10372.881009 [NR_MAC] I Frame.Slot 896.0
+
+10373.109638 [NR_MAC] I Frame.Slot 0.0
+
+10373.330654 [NR_MAC] I Frame.Slot 128.0
+
+10373.551172 [NR_MAC] I Frame.Slot 256.0
+
+10373.783582 [NR_MAC] I Frame.Slot 384.0
+
+10374.037830 [NR_MAC] I Frame.Slot 512.0
+
+10374.263451 [NR_MAC] I Frame.Slot 640.0
+
+10374.488522 [NR_MAC] I Frame.Slot 768.0
+
+10374.707362 [NR_MAC] I Frame.Slot 896.0
+
+10374.930950 [NR_MAC] I Frame.Slot 0.0
+
+10375.167030 [NR_MAC] I Frame.Slot 128.0
+
+10375.386612 [NR_MAC] I Frame.Slot 256.0
+
+10375.606758 [NR_MAC] I Frame.Slot 384.0
+
+10375.830509 [NR_MAC] I Frame.Slot 512.0
+
+10376.060146 [NR_MAC] I Frame.Slot 640.0
+
+10376.292160 [NR_MAC] I Frame.Slot 768.0
+
+10376.515227 [NR_MAC] I Frame.Slot 896.0
+
+10376.738712 [NR_MAC] I Frame.Slot 0.0
+
+10376.958875 [NR_MAC] I Frame.Slot 128.0
+
+10377.181731 [NR_MAC] I Frame.Slot 256.0
+
+10377.415610 [NR_MAC] I Frame.Slot 384.0
+
+10377.639047 [NR_MAC] I Frame.Slot 512.0
+
+10377.874665 [NR_MAC] I Frame.Slot 640.0
+
+10378.117082 [NR_MAC] I Frame.Slot 768.0
+
+10378.352353 [NR_MAC] I Frame.Slot 896.0
+
+10378.584845 [NR_MAC] I Frame.Slot 0.0
+
+10378.820440 [NR_MAC] I Frame.Slot 128.0
+
+10379.054028 [NR_MAC] I Frame.Slot 256.0
+
+10379.286279 [NR_MAC] I Frame.Slot 384.0
+
+10379.537255 [NR_MAC] I Frame.Slot 512.0
+
+10379.799277 [NR_MAC] I Frame.Slot 640.0
+
+10380.046554 [NR_MAC] I Frame.Slot 768.0
+
+10380.308199 [NR_MAC] I Frame.Slot 896.0
+
+10380.560429 [NR_MAC] I Frame.Slot 0.0
+
+10380.788049 [NR_MAC] I Frame.Slot 128.0
+
+10381.021371 [NR_MAC] I Frame.Slot 256.0
+
+10381.256533 [NR_MAC] I Frame.Slot 384.0
+
+10381.501979 [NR_MAC] I Frame.Slot 512.0
+
+10381.750775 [NR_MAC] I Frame.Slot 640.0
+
+10381.996304 [NR_MAC] I Frame.Slot 768.0
+
+10382.218451 [NR_MAC] I Frame.Slot 896.0
+
+10382.444140 [NR_MAC] I Frame.Slot 0.0
+
+10382.672353 [NR_MAC] I Frame.Slot 128.0
+
+10382.902423 [NR_MAC] I Frame.Slot 256.0
+
+10383.133305 [NR_MAC] I Frame.Slot 384.0
+
+10383.362604 [NR_MAC] I Frame.Slot 512.0
+
+10383.594574 [NR_MAC] I Frame.Slot 640.0
+
+10383.831581 [NR_MAC] I Frame.Slot 768.0
+
+10384.062220 [NR_MAC] I Frame.Slot 896.0
+
+10384.301790 [NR_MAC] I Frame.Slot 0.0
+
+10384.550142 [NR_MAC] I Frame.Slot 128.0
+
+10384.783280 [NR_MAC] I Frame.Slot 256.0
+
+10385.010557 [NR_MAC] I Frame.Slot 384.0
+
+10385.239213 [NR_MAC] I Frame.Slot 512.0
+
+10385.468726 [NR_MAC] I Frame.Slot 640.0
+
+10385.686278 [NR_MAC] I Frame.Slot 768.0
+
+10385.921775 [NR_MAC] I Frame.Slot 896.0
+
+10386.170817 [NR_MAC] I Frame.Slot 0.0
+
+10386.394324 [NR_MAC] I Frame.Slot 128.0
+
